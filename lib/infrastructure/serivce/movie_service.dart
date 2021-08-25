@@ -34,24 +34,38 @@ class MovieService extends IMovieService {
   }
 
   Future _executeMethod(MovieMethod method) async {
-    return method.map(trending: getTrending, configuration: getConfiguration);
+    return method.map(
+      configuration: getConfiguration,
+      trending: getTrending,
+      movieDetail: getMovieDetail,
+    );
   }
 
+  /// Configuration
+  Future<Configuration> getConfiguration(
+      GetConfiguration getConfiguration) async {
+    Option<Configuration> config = localRepository.getConfiguration();
+    if (config.isNone()) {
+      Configuration remoteConfig = await remoteRepository.configuration();
+      getIt<SharedPreferences>().setString(
+          Constants.ImageGlobalConfig, json.encode(remoteConfig.toJson()));
+      return remoteConfig;
+    }
+    throw Exception('no config');
+  }
+
+  /// Trending
   Future<ApiResult<Movie>> getTrending(GetTrending getTrending) async {
     return await remoteRepository.trending(
         mediaType: getTrending.mediaType.name,
         timeWindow: getTrending.timeWindow.name);
   }
 
-  Future<Configuration> getConfiguration(
-      GetConfiguration getConfiguration) async {
-    Option<Configuration> config = localRepository.getConfiguration();
-    if (config.isNone()) {
-      Configuration remoteConfig = await remoteRepository.configuration();
-      getIt<SharedPreferences>()
-          .setString(Constants.ImageGlobalConfig, json.encode(remoteConfig.toJson()));
-      return remoteConfig;
-    }
-    throw Exception('no config');
+  /// Movie Details
+  getMovieDetail(GetMovieDetail getMovieDetail) async {
+    return await remoteRepository.movieDetail(
+        movieId: getMovieDetail.movieId,
+        language: getMovieDetail.language,
+        appendToResponse: getMovieDetail.appendToResponse);
   }
 }

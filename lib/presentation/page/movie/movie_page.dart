@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_info/application/get_it/get_it_main.dart';
+import 'package:movie_info/application/route/movie_router.gr.dart';
 import 'package:movie_info/application/util/image_global_config.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
 import 'package:movie_info/domain/model/result/api_result.dart';
@@ -23,10 +25,15 @@ class _MoviePageState extends State<MoviePage> {
       ),
       itemBuilder: (_, index) {
         final movie = widget.movies.results[index];
-        return Container(
-          child: CachedNetworkImage(
-            imageUrl: ImageGlobalConfig.imageUrl(movie.posterPath),
-            fit: BoxFit.cover,
+        return Material(
+          child: InkWell(
+            onTap: () {
+              getIt<MovieRouter>().navigate(MovieDetailRoute(movie: movie));
+            },
+            child: CachedNetworkImage(
+              imageUrl: ImageGlobalConfig.imageUrl(movie.posterPath),
+              fit: BoxFit.cover,
+            ),
           ),
         );
       },

@@ -4,9 +4,17 @@ part 'movie_method.freezed.dart';
 
 @freezed
 class MovieMethod with _$MovieMethod {
+  /// Configuration
+  const factory MovieMethod.configuration() = GetConfiguration;
+
+  /// Trending
   const factory MovieMethod.trending(
       {required MediaType mediaType,
       required TimeWindow timeWindow}) = GetTrending;
 
-  const factory MovieMethod.configuration() = GetConfiguration;
+  /// Movies
+  const factory MovieMethod.movieDetail(
+      {required String movieId,
+      String? language,
+      String? appendToResponse}) = GetMovieDetail;
 }
