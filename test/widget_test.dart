@@ -30,9 +30,5 @@ void main() {
     expect(find.text('0'), findsNothing);
     expect(find.text('1'), findsOneWidget);
 
-    getIt<Dio>().interceptors..add(LogInterceptor());
-
-    final result = await getIt<IMovieService>().trending();
-    print(result);
   });
 }

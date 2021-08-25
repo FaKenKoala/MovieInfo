@@ -4,5 +4,5 @@ part of 'trending_bloc.dart';
 class TrendingState with _$TrendingState {
   const factory TrendingState.initial() = _Initial;
   const factory TrendingState.data(ApiResult<Movie> data) = _Data;
-  const factory TrendingState.error() = _Error;
+  const factory TrendingState.error(Exception exception) = _Error;
 }

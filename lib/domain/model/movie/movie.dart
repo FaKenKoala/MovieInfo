@@ -65,7 +65,3 @@ class Movie {
     return '${this.toJson()}';
   }
 }
-
-extension PosterPathX on String {
-  String get postUrl => '${Constants.TMDB_BASE_URL}$this';
-}

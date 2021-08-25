@@ -5,10 +5,12 @@ class MovieErroWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: Text(
-      'Error',
-      style: TextStyle(color: Colors.red),
-    ));
+    return Scaffold(
+      body: Center(
+          child: Text(
+        'Error',
+        style: TextStyle(color: Colors.red),
+      )),
+    );
   }
 }

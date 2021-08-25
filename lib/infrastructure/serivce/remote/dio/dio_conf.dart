@@ -10,7 +10,7 @@ abstract class DioModule {
   Dio get dio {
     BaseOptions options = BaseOptions(
         baseUrl: baseUrl,
-        queryParameters: {'api_key': Constants.TMDB_API_KEY},
+        queryParameters: {'api_key': Constants.TMDB_V3_API_KEY},
         connectTimeout: 6000,
         receiveTimeout: 6000,
         sendTimeout: 6000);

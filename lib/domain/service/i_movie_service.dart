@@ -1,10 +1,6 @@
-import 'package:movie_info/domain/model/enum_values/media_type.dart';
-import 'package:movie_info/domain/model/enum_values/time_window.dart';
-import 'package:movie_info/domain/model/movie/movie.dart';
-import 'package:movie_info/domain/model/result/api_result.dart';
+import 'package:dartz/dartz.dart';
+import 'package:movie_info/infrastructure/movie_method/movie_method.dart';
 
 abstract class IMovieService {
-  Future<ApiResult<Movie>> trending(
-      {MediaType mediaType = MediaType.ALL,
-      TimeWindow timeWindow = TimeWindow.DAY});
+  Future<Either<T, Exception>> execute<T>(MovieMethod method);
 }
