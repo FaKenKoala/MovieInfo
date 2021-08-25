@@ -3,9 +3,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'language.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Language {
-  @JsonKey(name: 'english_name')
   String englishName;
   @JsonKey(name: 'iso_639_1')
   String iso6391;

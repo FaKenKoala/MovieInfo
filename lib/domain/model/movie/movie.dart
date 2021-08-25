@@ -1,62 +1,46 @@
-import 'dart:convert';
-
 import 'package:json_annotation/json_annotation.dart';
 import 'package:movie_info/domain/model/company/company.dart';
 import 'package:movie_info/domain/model/country/country.dart';
 import 'package:movie_info/domain/model/enum_values/media_type.dart';
 import 'package:movie_info/domain/model/genre/genre.dart';
 import 'package:movie_info/domain/model/language/language.dart';
-import 'package:movie_info/infrastructure/util/constant.dart';
 part 'movie.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
 class Movie {
   bool adult;
-  @JsonKey(name: 'backdrop_path')
   String backdropPath;
-  @JsonKey(name: 'genre_ids')
   List<int> genreIds;
   int id;
-  @JsonKey(name: 'original_language')
   String originalLanguage;
 
-  @JsonKey(name: 'original_title')
   String originalTitle;
 
   String overview;
 
-  @JsonKey(name: 'poster_path')
   String posterPath;
   double popularity;
-  @JsonKey(name: 'release_date')
   DateTime? releaseDate;
 
   String title;
 
   bool video;
 
-  @JsonKey(name: 'vote_average')
   double voteAverage;
 
-  @JsonKey(name: 'vote_count')
   int voteCount;
 
-  @JsonKey(name: 'media_type')
   MediaType mediaType;
 
   dynamic belongsToCollection;
   int budget;
   List<Genre> genres;
   String homepage;
-  @JsonKey(name: 'imdb_id')
   String imdbId;
-  @JsonKey(name: 'production_companies')
   List<Company> productionCompanies;
-  @JsonKey(name: 'production_countries')
   List<Country> productionCountries;
   int revenue;
   int runtime;
-  @JsonKey(name: 'spoken_languages')
   List<Language> spokenLanguages;
   String status;
   String tagline;
@@ -76,7 +60,7 @@ class Movie {
     this.overview = '',
     this.posterPath = '',
     this.popularity = 0,
-    required this.mediaType,
+    this.mediaType = MediaType.MOVIE,
     this.belongsToCollection,
     this.budget = 0,
     this.genres = const [],

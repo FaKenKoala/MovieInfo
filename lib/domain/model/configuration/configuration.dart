@@ -1,10 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'configuration.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(explicitToJson: true,fieldRename: FieldRename.snake)
 class Configuration {
   final ImageConfig images;
-  @JsonKey(name: 'change_keys')
   final List<String> changeKeys;
 
   Configuration({

@@ -32,7 +32,7 @@ class TrendingBloc extends Bloc<TrendingEvent, TrendingState> {
         mediaType: event.mediaType ?? MediaType.ALL,
         timeWindow: event.timeWindow ?? TimeWindow.DAY));
 
-    return result.fold((data) => TrendingState.data(data),
-        (error) => TrendingState.error(error));
+    return result.fold((error) => TrendingState.error(error),
+        (data) => TrendingState.data(data));
   }
 }

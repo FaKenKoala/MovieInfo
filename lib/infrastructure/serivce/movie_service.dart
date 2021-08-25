@@ -4,10 +4,15 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
+import 'package:movie_info/domain/model/account_state/account_state.dart';
 import 'package:movie_info/domain/model/configuration/configuration.dart';
 import 'package:movie_info/domain/model/enum_values/enum_values.dart';
+import 'package:movie_info/domain/model/movie/external_id.dart';
+import 'package:movie_info/domain/model/movie/movie_change.dart';
+import 'package:movie_info/domain/model/movie/movie_credit.dart';
 import 'package:movie_info/domain/model/result/api_result.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
+import 'package:movie_info/domain/model/title/title.dart';
 
 import 'package:movie_info/domain/service/i_movie_service.dart';
 import 'package:movie_info/infrastructure/movie_method/movie_method.dart';
@@ -23,13 +28,17 @@ class MovieService extends IMovieService {
   final LocalRepository localRepository;
   MovieService(this.remoteRepository, this.localRepository);
 
-  Future<Either<T, Exception>> execute<T>(MovieMethod method) async {
+  Future<ExceptionEither<T>> execute<T>(MovieMethod method) async {
+    /// 这个_executeMethod方法应该用编译时注解自动生成代码，格式时根据method.map的参数名称 {name}，
+    /// 生成 name: get{name.firstUppercase}的方法调用，如同现有的_executeMethod所展示的一样。
+    ///
+    /// 这个方法也可以自动生成，格式是： remoteRepository.{name},参数就根据method的所有参数依此赋值
     try {
-      return left(await _executeMethod(method));
+      return right(await _executeMethod(method));
     } on DioError catch (e) {
-      return right(e);
+      return left(e);
     } on Exception catch (e) {
-      return right(e);
+      return left(e);
     }
   }
 
@@ -38,6 +47,11 @@ class MovieService extends IMovieService {
       configuration: getConfiguration,
       trending: getTrending,
       movieDetail: getMovieDetail,
+      movieAccountState: getMovieAccountState,
+      movieAlternativeTitles: getMovieAlterNativeTiles,
+      movieChanges: getMovieChanges,
+      movieCredit: getMovieCredit,
+      movieExternalId: getMovieExternalId,
     );
   }
 
@@ -62,10 +76,53 @@ class MovieService extends IMovieService {
   }
 
   /// Movie Details
-  getMovieDetail(GetMovieDetail getMovieDetail) async {
+  Future<Movie> getMovieDetail(GetMovieDetail getMovieDetail) async {
     return await remoteRepository.movieDetail(
         movieId: getMovieDetail.movieId,
         language: getMovieDetail.language,
         appendToResponse: getMovieDetail.appendToResponse);
   }
+
+  /// Movie Account State
+  Future<AccountState> getMovieAccountState(
+      GetMovieAccountState getMovieAccountState) async {
+    return await remoteRepository.movieAccountState(
+      movieId: getMovieAccountState.movieId,
+    );
+  }
+
+  /// Movie Alternative Titles
+  Future<AlternativeTitles> getMovieAlterNativeTiles(
+      GetMovieAlternativeTitles titles) async {
+    return await remoteRepository.movieAlternativeTitles(
+      movieId: titles.movieId,
+      country: titles.country,
+    );
+  }
+
+  /// Movie Changes
+  Future<Changes> getMovieChanges(
+    GetMovieChanges changes,
+  ) async {
+    return await remoteRepository.movieChanges(
+      movieId: changes.movieId,
+      startDate: changes.startDate,
+      endDate: changes.endDate,
+      page: changes.page,
+    );
+  }
+
+  /// Movie Credits
+  Future<MovieCredit> getMovieCredit(GetMovieCredit credit) async {
+    return await remoteRepository.movieCredit(
+      movieId: credit.movieId,
+      language: credit.language,
+    );
+  }
+
+  /// Movie External Ids
+  Future<ExternalId> getMovieExternalId(GetMovieExternalId id) async {
+    return await remoteRepository.movieExternalId(movieId: id.movieId);
+  }
+
 }

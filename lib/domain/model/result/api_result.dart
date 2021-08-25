@@ -2,14 +2,12 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:movie_info/domain/model/generic_converter/generic_converter.dart';
 part 'api_result.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ApiResult<T> {
   final int page;
   @GenericConverter()
   final List<T> results;
-  @JsonKey(name: 'total_pages')
   final int totalPages;
-  @JsonKey(name: 'total_results')
   final int totalResults;
 
   ApiResult(

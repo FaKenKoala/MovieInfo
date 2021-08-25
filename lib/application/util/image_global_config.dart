@@ -48,12 +48,12 @@ class ImageGlobalConfig {
       return;
     }
 
-    Either<Configuration, Exception> result =
+    ExceptionEither<Configuration> result =
         await getIt<IMovieService>().execute(GetConfiguration());
 
-    result.fold((l) {
-      _instance!._remoteConfig = l;
-    }, (_) {});
+    result.fold((_) {}, (r) {
+      _instance!._remoteConfig = r;
+    });
   }
 
   static String imageUrl(String posterPath) {

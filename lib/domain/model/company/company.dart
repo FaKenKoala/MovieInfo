@@ -1,19 +1,17 @@
 import 'package:json_annotation/json_annotation.dart';
 part 'company.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Company {
   final int id;
-  @JsonKey(name: 'logo_path')
-  final String logoPath;
+  final String? logoPath;
   final String name;
-  @JsonKey(name: 'origin_country')
   final String originCountry;
   Company({
-    required this.id,
-    required this.logoPath,
-    required this.name,
-    required this.originCountry,
+    this.id = 0,
+    this.logoPath,
+    this.name = '',
+    this.originCountry = '',
   });
 
   factory Company.fromJson(Map<String, dynamic> json) =>
