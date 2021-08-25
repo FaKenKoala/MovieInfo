@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:movie_info/domain/model/enum_values/media_type.dart';
+import 'package:movie_info/infrastructure/util/constant.dart';
 part 'movie.g.dart';
 
 @JsonSerializable(explicitToJson: true)
@@ -63,4 +64,8 @@ class Movie {
   String toString() {
     return '${this.toJson()}';
   }
+}
+
+extension PosterPathX on String {
+  String get postUrl => '${Constants.TMDB_BASE_URL}$this';
 }

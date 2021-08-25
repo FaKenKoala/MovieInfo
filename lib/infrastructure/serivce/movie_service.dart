@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:movie_info/domain/model/enum_values/enum_values.dart';
-import 'package:movie_info/domain/model/result/result.dart';
+import 'package:movie_info/domain/model/result/api_result.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
 
 import 'package:movie_info/domain/service/i_movie_service.dart';
@@ -12,7 +12,7 @@ class MovieService extends IMovieService {
   MovieService(this.client);
 
   @override
-  Future<Result<Movie>> trending(
+  Future<ApiResult<Movie>> trending(
       {MediaType mediaType = MediaType.ALL,
       TimeWindow timeWindow = TimeWindow.DAY}) async {
     return await client.trending(

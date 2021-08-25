@@ -1,9 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:movie_info/domain/model/generic_converter/generic_converter.dart';
-part 'result.g.dart';
+part 'api_result.g.dart';
 
 @JsonSerializable()
-class Result<T> {
+class ApiResult<T> {
   final int page;
   @GenericConverter()
   final List<T> results;
@@ -12,14 +12,14 @@ class Result<T> {
   @JsonKey(name: 'total_results')
   final int totalResults;
 
-  Result(
+  ApiResult(
       {required this.page,
       this.results = const [],
       required this.totalPages,
       required this.totalResults});
 
-  factory Result.fromJson(Map<String, dynamic> json) => _$ResultFromJson(json);
-  Map<String, dynamic> toJson() => _$ResultToJson(this);
+  factory ApiResult.fromJson(Map<String, dynamic> json) => _$ApiResultFromJson(json);
+  Map<String, dynamic> toJson() => _$ApiResultToJson(this);
 
   @override
   String toString() {
