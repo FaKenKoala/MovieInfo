@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 part 'company.g.dart';
 
-@JsonSerializable(fieldRename: FieldRename.snake)
+@JsonSerializable()
 class Company {
   final int id;
   final String? logoPath;

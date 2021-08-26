@@ -29,7 +29,7 @@ class Change {
   Map<String, dynamic> toJson() => _$ChangeToJson(this);
 }
 
-@JsonSerializable(fieldRename: FieldRename.snake)
+@JsonSerializable()
 class ChangeItem {
   String id;
   String action;

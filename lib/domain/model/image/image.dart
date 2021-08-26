@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'image.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class MovieImage {
   final int id;
   final List<AppImage> backdrops;
@@ -19,7 +19,7 @@ class MovieImage {
   Map<String, dynamic> toJson() => _$MovieImageToJson(this);
 }
 
-@JsonSerializable(fieldRename: FieldRename.snake)
+@JsonSerializable()
 class AppImage {
   final double aspectRatio;
   final int height;
@@ -39,6 +39,7 @@ class AppImage {
     this.width = 0,
   });
 
-  factory AppImage.fromJson(Map<String, dynamic> json) => _$AppImageFromJson(json);
+  factory AppImage.fromJson(Map<String, dynamic> json) =>
+      _$AppImageFromJson(json);
   Map<String, dynamic> toJson() => _$AppImageToJson(this);
 }

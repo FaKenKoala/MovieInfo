@@ -30,7 +30,7 @@ class _MovieDetailState extends State<MovieDetail> {
     super.initState();
     movieDetail = widget.movie;
     addDioLogger();
-    getIt<IMovieService>().execute(GetMovieRecommendation(movieId: movieDetail.id));
+    getIt<IMovieService>().execute(GetMovieReleaseDate(movieId: movieDetail.id));
   }
 
   @override

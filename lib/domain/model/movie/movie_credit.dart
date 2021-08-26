@@ -2,14 +2,14 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'movie_credit.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class MovieCredit {
   final int id;
   final List<MovieCast> cast;
   final List<MovieCrew> crew;
   MovieCredit({
     this.id = 0,
-    this.cast = const[],
+    this.cast = const [],
     this.crew = const [],
   });
 
@@ -18,7 +18,7 @@ class MovieCredit {
   Map<String, dynamic> toJson() => _$MovieCreditToJson(this);
 }
 
-@JsonSerializable(fieldRename: FieldRename.snake)
+@JsonSerializable()
 class MovieCast {
   MovieCast({
     this.adult = false,
@@ -48,11 +48,12 @@ class MovieCast {
   final String creditId;
   final int order;
 
-  factory MovieCast.fromJson(Map<String, dynamic> json) => _$MovieCastFromJson(json);
+  factory MovieCast.fromJson(Map<String, dynamic> json) =>
+      _$MovieCastFromJson(json);
   Map<String, dynamic> toJson() => _$MovieCastToJson(this);
 }
 
-@JsonSerializable(fieldRename: FieldRename.snake)
+@JsonSerializable()
 class MovieCrew {
   final bool adult;
   final int gender;

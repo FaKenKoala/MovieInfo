@@ -6,7 +6,7 @@ import 'package:movie_info/domain/model/genre/genre.dart';
 import 'package:movie_info/domain/model/language/language.dart';
 part 'movie.g.dart';
 
-@JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
+@JsonSerializable()
 class Movie {
   bool adult;
   String backdropPath;

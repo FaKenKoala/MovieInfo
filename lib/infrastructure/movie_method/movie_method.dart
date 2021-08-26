@@ -76,4 +76,9 @@ class MovieMethod with _$MovieMethod {
     String? language,
     int? page,
   }) = GetMovieRecommendation;
+
+  /// Get Movie Release Date
+  const factory MovieMethod.movieReleaseDate({
+    required int movieId,
+  }) = GetMovieReleaseDate;
 }

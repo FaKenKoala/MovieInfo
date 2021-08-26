@@ -5,17 +5,19 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
 import 'package:movie_info/domain/model/account_state/account_state.dart';
+import 'package:movie_info/domain/model/api_result/id_result.dart';
 import 'package:movie_info/domain/model/configuration/configuration.dart';
 import 'package:movie_info/domain/model/enum_values/enum_values.dart';
 import 'package:movie_info/domain/model/image/image.dart';
 import 'package:movie_info/domain/model/movie/external_id.dart';
-import 'package:movie_info/domain/model/movie/keywords.dart';
+import 'package:movie_info/domain/model/movie/keyword.dart';
 import 'package:movie_info/domain/model/movie/movie_change.dart';
 import 'package:movie_info/domain/model/movie/movie_credit.dart';
 import 'package:movie_info/domain/model/movie/movie_list.dart';
-import 'package:movie_info/domain/model/page_result/page_result.dart';
+import 'package:movie_info/domain/model/api_result/page_result.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
 import 'package:movie_info/domain/model/recommendation/recommendation.dart';
+import 'package:movie_info/domain/model/release_date/release_date.dart';
 import 'package:movie_info/domain/model/title/title.dart';
 
 import 'package:movie_info/domain/service/i_movie_service.dart';
@@ -59,7 +61,8 @@ class MovieService extends IMovieService {
         movieImage: getMovieImage,
         movieKeyword: getMovieKeyword,
         movieList: getMovieList,
-        moveiRecommendation: getMovieRecommendation);
+        moveiRecommendation: getMovieRecommendation,
+        movieReleaseDate: getMovieReleaseDate);
   }
 
   /// Configuration
@@ -99,7 +102,7 @@ class MovieService extends IMovieService {
   }
 
   /// Movie Alternative Titles
-  Future<AlternativeTitles> getMovieAlterNativeTiles(
+  Future<IDResult<Title>> getMovieAlterNativeTiles(
       GetMovieAlternativeTitles titles) async {
     return await remoteRepository.movieAlternativeTitles(
       movieId: titles.movieId,
@@ -139,7 +142,7 @@ class MovieService extends IMovieService {
   }
 
   /// Movie Changes
-  Future<KeywordList> getMovieKeyword(GetMovieKeyword change) async {
+  Future<IDResult<Keyword>> getMovieKeyword(GetMovieKeyword change) async {
     return await remoteRepository.movieKeyword(movieId: change.movieId);
   }
 
@@ -150,8 +153,17 @@ class MovieService extends IMovieService {
   }
 
   /// Movie Lists belongs to
-  Future<PageResult<Recommendation>> getMovieRecommendation(GetMovieRecommendation list) async {
+  Future<PageResult<Recommendation>> getMovieRecommendation(
+      GetMovieRecommendation list) async {
     return await remoteRepository.movieRecommendation(
         movieId: list.movieId, language: list.language, page: list.page);
+  }
+
+  /// Movie Release Dates
+  Future<IDResult<ReleaseDateWithCountry>> getMovieReleaseDate(
+      GetMovieReleaseDate date) async {
+    return await remoteRepository.movieReleaseDate(
+      movieId: date.movieId,
+    );
   }
 }

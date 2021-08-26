@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'configuration.g.dart';
 
-@JsonSerializable(explicitToJson: true,fieldRename: FieldRename.snake)
+@JsonSerializable()
 class Configuration {
   final ImageConfig images;
   final List<String> changeKeys;
@@ -22,7 +22,7 @@ class Configuration {
   }
 }
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class ImageConfig {
   ImageConfig({
     this.baseUrl = '',

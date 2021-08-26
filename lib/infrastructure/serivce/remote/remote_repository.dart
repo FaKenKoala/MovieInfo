@@ -1,16 +1,18 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movie_info/domain/model/account_state/account_state.dart';
+import 'package:movie_info/domain/model/api_result/id_result.dart';
 import 'package:movie_info/domain/model/configuration/configuration.dart';
 import 'package:movie_info/domain/model/image/image.dart';
 import 'package:movie_info/domain/model/movie/external_id.dart';
-import 'package:movie_info/domain/model/movie/keywords.dart';
+import 'package:movie_info/domain/model/movie/keyword.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
 import 'package:movie_info/domain/model/movie/movie_change.dart';
 import 'package:movie_info/domain/model/movie/movie_credit.dart';
 import 'package:movie_info/domain/model/movie/movie_list.dart';
-import 'package:movie_info/domain/model/page_result/page_result.dart';
+import 'package:movie_info/domain/model/api_result/page_result.dart';
 import 'package:movie_info/domain/model/recommendation/recommendation.dart';
+import 'package:movie_info/domain/model/release_date/release_date.dart';
 import 'package:movie_info/domain/model/title/title.dart';
 import 'package:retrofit/retrofit.dart';
 part 'remote_repository.g.dart';
@@ -41,7 +43,7 @@ abstract class RemoteRepository {
   Future<AccountState> movieAccountState({@Path(MovieId) required int movieId});
 
   @GET('$MoviePrefix/alternative_titles')
-  Future<AlternativeTitles> movieAlternativeTitles({
+  Future<IDResult<Title>> movieAlternativeTitles({
     @Path(MovieId) required int movieId,
     @Query('country') String? country,
   });
@@ -70,7 +72,7 @@ abstract class RemoteRepository {
   });
 
   @GET('$MoviePrefix/keywords')
-  Future<KeywordList> movieKeyword({
+  Future<IDResult<Keyword>> movieKeyword({
     @Path(MovieId) required int movieId,
   });
 
@@ -86,6 +88,11 @@ abstract class RemoteRepository {
     @Path(MovieId) required int movieId,
     @Query(Language) String? language,
     @Query(Page) int? page,
+  });
+
+  @GET('$MoviePrefix/release_dates')
+  Future<IDResult<ReleaseDateWithCountry>> movieReleaseDate({
+    @Path(MovieId) required int movieId,
   });
 }
 
