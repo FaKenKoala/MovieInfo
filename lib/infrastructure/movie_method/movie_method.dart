@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:movie_info/domain/model/enum_values/enum_values.dart';
-import 'package:movie_info/domain/model/error_response/movie_exception.dart';
+import 'package:movie_info/domain/model/code_response/movie_exception.dart';
+import 'package:movie_info/domain/model/movie/rate_content.dart';
 part 'movie_method.freezed.dart';
 
 typedef MovieExceptionEither<T> = Either<MovieException, T>;
@@ -112,4 +113,10 @@ class MovieMethod with _$MovieMethod {
   const factory MovieMethod.movieWatchProvider({
     required int movieId,
   }) = GetMovieWatchProvider;
+
+  /// Rate
+  const factory MovieMethod.rateMovie({
+    required int movieId,
+    required RateContent rateContent,
+  }) = RateMovie;
 }

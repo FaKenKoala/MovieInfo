@@ -6,10 +6,10 @@ import 'package:injectable/injectable.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
 import 'package:movie_info/domain/model/account_state/account_state.dart';
 import 'package:movie_info/domain/model/api_result/id_result.dart';
+import 'package:movie_info/domain/model/code_response/code_response.dart';
 import 'package:movie_info/domain/model/configuration/configuration.dart';
 import 'package:movie_info/domain/model/enum_values/enum_values.dart';
-import 'package:movie_info/domain/model/error_response/error_response.dart';
-import 'package:movie_info/domain/model/error_response/movie_exception.dart';
+import 'package:movie_info/domain/model/code_response/movie_exception.dart';
 import 'package:movie_info/domain/model/media/image.dart';
 import 'package:movie_info/domain/model/movie/external_id.dart';
 import 'package:movie_info/domain/model/movie/keyword.dart';
@@ -18,6 +18,7 @@ import 'package:movie_info/domain/model/movie/movie_credit.dart';
 import 'package:movie_info/domain/model/movie/movie_list.dart';
 import 'package:movie_info/domain/model/api_result/page_result.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
+import 'package:movie_info/domain/model/movie/rate_content.dart';
 import 'package:movie_info/domain/model/recommendation/recommendation.dart';
 import 'package:movie_info/domain/model/release_date/release_date.dart';
 import 'package:movie_info/domain/model/review/review.dart';
@@ -51,9 +52,8 @@ class MovieService extends IMovieService {
       MovieException? movieException;
       if (e is DioError) {
         try {
-          ErrorResponse errorResponse =
-              ErrorResponse.fromJson(e.response?.data);
-          movieException = MovieException(errorResponse: errorResponse);
+          CodeResponse errorResponse = CodeResponse.fromJson(e.response?.data);
+          movieException = MovieException(codeResponse: errorResponse);
         } catch (_) {}
       }
       movieException ??= MovieException(message: e);
@@ -81,7 +81,8 @@ class MovieService extends IMovieService {
         movieSimilar: getMovieSimilar,
         movieTranslation: getMovieTranslation,
         movieVideo: getMovieVideo,
-        movieWatchProvider: getMovieWatchProvider);
+        movieWatchProvider: getMovieWatchProvider,
+        rateMovie: rateMovie);
   }
 
   /// Configuration
@@ -215,9 +216,16 @@ class MovieService extends IMovieService {
   }
 
   /// Movie Watch Provider
-  Future<WatchProviderList> getMovieWatchProvider(GetMovieWatchProvider video) async {
+  Future<WatchProviderList> getMovieWatchProvider(
+      GetMovieWatchProvider video) async {
     return await remoteRepository.movieWatchProvider(
       movieId: video.movieId,
     );
+  }
+
+  /// Rate Movie
+  Future<CodeResponse> rateMovie(RateMovie rateMovie) async {
+    return await remoteRepository.rateMovie(
+        movieId: rateMovie.movieId, content: rateMovie.rateContent);
   }
 }

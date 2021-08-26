@@ -7,10 +7,12 @@ import 'package:movie_info/application/route/movie_router.gr.dart';
 import 'package:movie_info/application/util/image_global_config.dart';
 import 'package:movie_info/domain/model/account_state/account_state.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
+import 'package:movie_info/domain/model/movie/rate_content.dart';
 import 'package:movie_info/domain/service/i_movie_service.dart';
 import 'package:movie_info/infrastructure/movie_method/movie_method.dart';
 import 'package:movie_info/infrastructure/util/dio_logger.dart';
 import 'package:movie_info/presentation/page/movie/movie_image_page.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:provider/provider.dart';
 import 'package:auto_route/auto_route.dart';
 
@@ -29,20 +31,22 @@ class _MovieDetailState extends State<MovieDetail> {
   void initState() {
     super.initState();
     movieDetail = widget.movie;
-    addDioLogger();
-    getIt<IMovieService>().execute(GetMovieWatchProvider(movieId: movieDetail.id));
+    addDioLogger(
+        PrettyDioLogger(requestHeader: true, requestBody: true, error: false));
+    getIt<IMovieService>().execute(RateMovie(
+        movieId: movieDetail.id, rateContent: RateContent(value: 10)));
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
         create: (_) => getIt<MovieBloc>()
-          // ..add(
-          //   MovieEvent.detail(
-          //     movieId: widget.movie.id,
-          //   ),
-          // )
-          ,
+        // ..add(
+        //   MovieEvent.detail(
+        //     movieId: widget.movie.id,
+        //   ),
+        // )
+        ,
         child: BlocListener<MovieBloc, MovieState>(
           listenWhen: (previousState, state) {
             return state.maybeMap(detail: (_) => true, orElse: () => false);

@@ -1,7 +1,8 @@
-import 'package:dio/dio.dart';
+import 'package:dio/dio.dart' hide Headers;
 import 'package:injectable/injectable.dart';
 import 'package:movie_info/domain/model/account_state/account_state.dart';
 import 'package:movie_info/domain/model/api_result/id_result.dart';
+import 'package:movie_info/domain/model/code_response/code_response.dart';
 import 'package:movie_info/domain/model/configuration/configuration.dart';
 import 'package:movie_info/domain/model/media/image.dart';
 import 'package:movie_info/domain/model/movie/external_id.dart';
@@ -11,6 +12,7 @@ import 'package:movie_info/domain/model/movie/movie_change.dart';
 import 'package:movie_info/domain/model/movie/movie_credit.dart';
 import 'package:movie_info/domain/model/movie/movie_list.dart';
 import 'package:movie_info/domain/model/api_result/page_result.dart';
+import 'package:movie_info/domain/model/movie/rate_content.dart';
 import 'package:movie_info/domain/model/recommendation/recommendation.dart';
 import 'package:movie_info/domain/model/release_date/release_date.dart';
 import 'package:movie_info/domain/model/review/review.dart';
@@ -125,6 +127,12 @@ abstract class RemoteRepository {
   @GET('$MoviePrefix/watch/providers')
   Future<WatchProviderList> movieWatchProvider({
     @Path(MovieId) required int movieId,
+  });
+
+  @POST('$MoviePrefix/rating')
+  Future<CodeResponse> rateMovie({
+    @Path(MovieId) required int movieId,
+    @Body() required RateContent content,
   });
 }
 
