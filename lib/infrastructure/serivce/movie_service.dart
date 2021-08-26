@@ -9,6 +9,7 @@ import 'package:movie_info/domain/model/configuration/configuration.dart';
 import 'package:movie_info/domain/model/enum_values/enum_values.dart';
 import 'package:movie_info/domain/model/image/image.dart';
 import 'package:movie_info/domain/model/movie/external_id.dart';
+import 'package:movie_info/domain/model/movie/keywords.dart';
 import 'package:movie_info/domain/model/movie/movie_change.dart';
 import 'package:movie_info/domain/model/movie/movie_credit.dart';
 import 'package:movie_info/domain/model/result/api_result.dart';
@@ -45,16 +46,16 @@ class MovieService extends IMovieService {
 
   Future _executeMethod(MovieMethod method) async {
     return method.map(
-      configuration: getConfiguration,
-      trending: getTrending,
-      movieDetail: getMovieDetail,
-      movieAccountState: getMovieAccountState,
-      movieAlternativeTitles: getMovieAlterNativeTiles,
-      movieChanges: getMovieChanges,
-      movieCredit: getMovieCredit,
-      movieExternalId: getMovieExternalId,
-      movieImage: getMovieImage
-    );
+        configuration: getConfiguration,
+        trending: getTrending,
+        movieDetail: getMovieDetail,
+        movieAccountState: getMovieAccountState,
+        movieAlternativeTitles: getMovieAlterNativeTiles,
+        movieChanges: getMovieChanges,
+        movieCredit: getMovieCredit,
+        movieExternalId: getMovieExternalId,
+        movieImage: getMovieImage,
+        movieKeyword: getMovieKeyword);
   }
 
   /// Configuration
@@ -103,7 +104,7 @@ class MovieService extends IMovieService {
   }
 
   /// Movie Changes
-  Future<Changes> getMovieChanges(
+  Future<ChangeList> getMovieChanges(
     GetMovieChanges changes,
   ) async {
     return await remoteRepository.movieChanges(
@@ -129,6 +130,12 @@ class MovieService extends IMovieService {
 
   /// Movie Images
   Future<MovieImage> getMovieImage(GetMovieImage image) async {
-    return await remoteRepository.movieImage(movieId: image.movieId, language: image.language);
+    return await remoteRepository.movieImage(
+        movieId: image.movieId, language: image.language);
+  }
+
+  /// Movie Changes
+  Future<KeywordList> getMovieKeyword(GetMovieKeyword change) async {
+    return await remoteRepository.movieKeyword(movieId: change.movieId);
   }
 }

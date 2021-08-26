@@ -30,7 +30,7 @@ class _MovieDetailState extends State<MovieDetail> {
     super.initState();
     movieDetail = widget.movie;
     addDioLogger();
-    getIt<IMovieService>().execute(GetMovieImage(movieId: movieDetail.id));
+    getIt<IMovieService>().execute(GetMovieKeyword(movieId: movieDetail.id));
   }
 
   @override
@@ -102,8 +102,6 @@ class _MovieDetailState extends State<MovieDetail> {
                           onPressed: () {
                             // getIt<MovieRouter>()
                             //     .push(MovieImagePageRoute(movie: movieDetail));
-                            print(
-                                'currentPage context 哈希值: ${context.read<MovieBloc>()}');
                             MovieBloc bloc = context.read<MovieBloc>();
                             Navigator.of(context)
                                 .push(MaterialPageRoute(builder: (context) {

@@ -57,4 +57,9 @@ class MovieMethod with _$MovieMethod {
     required int movieId,
     String? language,
   }) = GetMovieImage;
+
+  /// Get Movie keyword
+  const factory MovieMethod.movieKeyword({
+    required int movieId,
+  }) = GetMovieKeyword;
 }

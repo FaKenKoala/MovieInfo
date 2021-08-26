@@ -1,10 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dartz/dartz.dart' show Either;
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_info/application/bloc/movie/movie_bloc.dart';
+import 'package:movie_info/application/get_it/get_it_main.dart';
 import 'package:movie_info/application/util/image_global_config.dart';
 import 'package:movie_info/domain/model/image/image.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
+import 'package:movie_info/domain/service/i_movie_service.dart';
+import 'package:movie_info/infrastructure/movie_method/movie_method.dart';
+import 'package:movie_info/presentation/widget/loading_widget.dart';
 import 'package:movie_info/presentation/widget/movie_error_widget.dart';
 
 class MovieImagePage extends StatefulWidget {
@@ -16,10 +19,12 @@ class MovieImagePage extends StatefulWidget {
 }
 
 class _MovieImagePageState extends State<MovieImagePage> {
+  Future<Either<Exception, MovieImage>>? future;
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    context.read<MovieBloc>().add(MovieEvent.image(movieId: widget.movie.id));
+  void initState() {
+    super.initState();
+    future =
+        getIt<IMovieService>().execute(GetMovieImage(movieId: widget.movie.id));
   }
 
   @override
@@ -28,44 +33,71 @@ class _MovieImagePageState extends State<MovieImagePage> {
       appBar: AppBar(
         title: Text('${widget.movie.title}'),
       ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: BlocBuilder<MovieBloc, MovieState>(
-            builder: (_, state) {
-              return state.maybeMap(
-                  image: (image) {
-                    final backdrops = image.image.backdrops;
-                    final logos = image.image.logos;
-                    final posters = image.image.posters;
-                    return Container(
-                      height: 500,
-                      child:Text('fuck you'));
-                      // child: GridView.builder(
-                      //   physics: NeverScrollableScrollPhysics(),
-                      //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      //       crossAxisCount: 2,
-                      //       mainAxisSpacing: 10,
-                      //       crossAxisSpacing: 10),
-                      //   itemBuilder: (_, index) {
-                      //     return CachedNetworkImage(
-                      //         imageUrl: ImageGlobalConfig.imageUrl(
-                      //             backdrops[index].filePath));
-                      //   },
-                      //   itemCount: backdrops.length,
-                      // ),
-                    // );
-                  },
-                  orElse: () => Container(
-                    height: 100,
-                    child: MovieErroWidget()));
-            },
-            buildWhen: (prev, now) {
-              return now is MovieStateImage || now is MovieStateError;
-            },
-          ),
-        ),
+      body: FutureBuilder<Either<Exception, MovieImage>>(
+        future: future,
+        builder: (_, snapshot) {
+          if (!snapshot.hasData) {
+            return LoadingWidget();
+          }
+          return snapshot.data!.fold(
+              (l) => MovieErroWidget(),
+              (r) => SingleChildScrollView(
+                    child: DefaultTextStyle(
+                      style: TextStyle(
+                        color: Colors.green,
+                        fontSize: 20,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          TextWidget(text: 'Backdrops'),
+                          GridViewWidget(images: r.backdrops),
+                          TextWidget(text: 'Logos'),
+                          GridViewWidget(images: r.logos),
+                          TextWidget(text: 'Posters'),
+                          GridViewWidget(images: r.posters),
+                        ],
+                      ),
+                    ),
+                  ));
+        },
       ),
     );
   }
+}
 
+class TextWidget extends StatelessWidget {
+  final String text;
+  const TextWidget({Key? key, required this.text}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.yellow[100],
+      padding: const EdgeInsets.all(8.0),
+      child: Text(text),
+    );
+  }
+}
+
+class GridViewWidget extends StatelessWidget {
+  final List<AppImage> images;
+  const GridViewWidget({Key? key, required this.images}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+      shrinkWrap: true,
+      primary: false,
+      physics: NeverScrollableScrollPhysics(),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2, mainAxisSpacing: 10, crossAxisSpacing: 10),
+      itemBuilder: (_, index) {
+        return CachedNetworkImage(
+            imageUrl: ImageGlobalConfig.imageUrl(images[index].filePath),
+            fit: BoxFit.cover);
+      },
+      itemCount: images.length,
+    );
+  }
 }

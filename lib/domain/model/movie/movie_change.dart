@@ -3,16 +3,16 @@ import 'package:json_annotation/json_annotation.dart';
 part 'movie_change.g.dart';
 
 @JsonSerializable()
-class Changes {
+class ChangeList {
   List<Change> changes;
 
-  Changes({
+  ChangeList({
     this.changes = const [],
   });
 
-  Map<String, dynamic> toJson() => _$ChangesToJson(this);
-  factory Changes.fromJson(Map<String, dynamic> json) =>
-      _$ChangesFromJson(json);
+  Map<String, dynamic> toJson() => _$ChangeListToJson(this);
+  factory ChangeList.fromJson(Map<String, dynamic> json) =>
+      _$ChangeListFromJson(json);
 }
 
 @JsonSerializable()

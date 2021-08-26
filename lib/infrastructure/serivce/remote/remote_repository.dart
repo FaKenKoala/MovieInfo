@@ -4,6 +4,7 @@ import 'package:movie_info/domain/model/account_state/account_state.dart';
 import 'package:movie_info/domain/model/configuration/configuration.dart';
 import 'package:movie_info/domain/model/image/image.dart';
 import 'package:movie_info/domain/model/movie/external_id.dart';
+import 'package:movie_info/domain/model/movie/keywords.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
 import 'package:movie_info/domain/model/movie/movie_change.dart';
 import 'package:movie_info/domain/model/movie/movie_credit.dart';
@@ -44,7 +45,7 @@ abstract class RemoteRepository {
   });
 
   @GET('$MoviePrefix/changes')
-  Future<Changes> movieChanges(
+  Future<ChangeList> movieChanges(
       {@Path(MovieId) required String movieId,
       @Query('start_date') String? startDate,
       @Query('end_date') String? endDate,
@@ -64,6 +65,11 @@ abstract class RemoteRepository {
   Future<MovieImage> movieImage({
     @Path(MovieId) required int movieId,
     @Query('language') String? language,
+  });
+
+  @GET('$MoviePrefix/keywords')
+  Future<KeywordList> movieKeyword({
+    @Path(MovieId) required int movieId,
   });
 }
 
