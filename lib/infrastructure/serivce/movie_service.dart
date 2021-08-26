@@ -10,7 +10,7 @@ import 'package:movie_info/domain/model/configuration/configuration.dart';
 import 'package:movie_info/domain/model/enum_values/enum_values.dart';
 import 'package:movie_info/domain/model/error_response/error_response.dart';
 import 'package:movie_info/domain/model/error_response/movie_exception.dart';
-import 'package:movie_info/domain/model/image/image.dart';
+import 'package:movie_info/domain/model/media/image.dart';
 import 'package:movie_info/domain/model/movie/external_id.dart';
 import 'package:movie_info/domain/model/movie/keyword.dart';
 import 'package:movie_info/domain/model/movie/movie_change.dart';
@@ -22,6 +22,7 @@ import 'package:movie_info/domain/model/recommendation/recommendation.dart';
 import 'package:movie_info/domain/model/release_date/release_date.dart';
 import 'package:movie_info/domain/model/review/review.dart';
 import 'package:movie_info/domain/model/title/title.dart';
+import 'package:movie_info/domain/model/translation/translatetion_list.dart';
 
 import 'package:movie_info/domain/service/i_movie_service.dart';
 import 'package:movie_info/infrastructure/movie_method/movie_method.dart';
@@ -55,7 +56,7 @@ class MovieService extends IMovieService {
         } catch (_) {}
       }
       movieException ??= MovieException(message: e);
-      MovieLog.print('$movieException');
+      MovieLog.print('${method.runtimeType} $movieException');
       return left(movieException);
     }
   }
@@ -76,20 +77,20 @@ class MovieService extends IMovieService {
         moveiRecommendation: getMovieRecommendation,
         movieReleaseDate: getMovieReleaseDate,
         movieReview: getMovieReview,
-        movieSimilar: getMovieSimilar);
+        movieSimilar: getMovieSimilar,
+        movieTranslation: getMovieTranslation,
+        movieVideo: getMovieVideo);
   }
 
   /// Configuration
   Future<Configuration> getConfiguration(
       GetConfiguration getConfiguration) async {
-    Option<Configuration> config = localRepository.getConfiguration();
-    if (config.isNone()) {
+    return localRepository.getConfiguration().fold(() async {
       Configuration remoteConfig = await remoteRepository.configuration();
       getIt<SharedPreferences>().setString(
           Constants.ImageGlobalConfig, json.encode(remoteConfig.toJson()));
       return remoteConfig;
-    }
-    throw Exception('no config');
+    }, (a) => a);
   }
 
   /// Trending
@@ -190,6 +191,24 @@ class MovieService extends IMovieService {
   /// Movie Lists belongs to
   Future<PageResult<Movie>> getMovieSimilar(GetMovieSimilar similar) async {
     return await remoteRepository.movieSimilar(
-        movieId: similar.movieId, language: similar.language, page: similar.page);
+        movieId: similar.movieId,
+        language: similar.language,
+        page: similar.page);
+  }
+
+  /// Movie Translations
+  Future<TranslationList> getMovieTranslation(
+      GetMovieTranslation translation) async {
+    return await remoteRepository.movieTranslation(
+      movieId: translation.movieId,
+    );
+  }
+
+  /// Movie Videos
+  Future<TranslationList> getMovieVideo(GetMovieVideo video) async {
+    return await remoteRepository.movieVideo(
+      movieId: video.movieId,
+      language: video.language,
+    );
   }
 }

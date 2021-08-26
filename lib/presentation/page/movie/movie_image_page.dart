@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart' show Either;
 import 'package:flutter/material.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
 import 'package:movie_info/application/util/image_global_config.dart';
-import 'package:movie_info/domain/model/image/image.dart';
+import 'package:movie_info/domain/model/media/image.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
 import 'package:movie_info/domain/service/i_movie_service.dart';
 import 'package:movie_info/infrastructure/movie_method/movie_method.dart';

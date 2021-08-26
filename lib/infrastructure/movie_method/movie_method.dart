@@ -96,4 +96,15 @@ class MovieMethod with _$MovieMethod {
     String? language,
     int? page,
   }) = GetMovieSimilar;
+
+  /// Get Movie Translations
+  const factory MovieMethod.movieTranslation({
+    required int movieId,
+  }) = GetMovieTranslation;
+
+  /// Get Movie Video
+  const factory MovieMethod.movieVideo({
+    required int movieId,
+    String? language,
+  }) = GetMovieVideo;
 }
