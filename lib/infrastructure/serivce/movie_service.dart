@@ -15,6 +15,7 @@ import 'package:movie_info/domain/model/movie/movie_credit.dart';
 import 'package:movie_info/domain/model/movie/movie_list.dart';
 import 'package:movie_info/domain/model/page_result/page_result.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
+import 'package:movie_info/domain/model/recommendation/recommendation.dart';
 import 'package:movie_info/domain/model/title/title.dart';
 
 import 'package:movie_info/domain/service/i_movie_service.dart';
@@ -57,7 +58,8 @@ class MovieService extends IMovieService {
         movieExternalId: getMovieExternalId,
         movieImage: getMovieImage,
         movieKeyword: getMovieKeyword,
-        movieList: getMovieList);
+        movieList: getMovieList,
+        moveiRecommendation: getMovieRecommendation);
   }
 
   /// Configuration
@@ -144,6 +146,12 @@ class MovieService extends IMovieService {
   /// Movie Lists belongs to
   Future<PageResult<MovieList>> getMovieList(GetMovieList list) async {
     return await remoteRepository.movieList(
+        movieId: list.movieId, language: list.language, page: list.page);
+  }
+
+  /// Movie Lists belongs to
+  Future<PageResult<Recommendation>> getMovieRecommendation(GetMovieRecommendation list) async {
+    return await remoteRepository.movieRecommendation(
         movieId: list.movieId, language: list.language, page: list.page);
   }
 }

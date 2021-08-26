@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
 import 'package:movie_info/domain/model/movie/movie_list.dart';
+import 'package:movie_info/domain/model/recommendation/recommendation.dart';
 
 class GenericConverter<T> implements JsonConverter<T, Object?> {
   const GenericConverter();
@@ -13,6 +14,8 @@ class GenericConverter<T> implements JsonConverter<T, Object?> {
           return Movie.fromJson(json) as T;
         case MovieList:
           return MovieList.fromJson(json) as T;
+        case Recommendation:
+          return Recommendation.fromJson(json) as T;
       }
     }
 

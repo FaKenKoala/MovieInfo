@@ -10,6 +10,7 @@ import 'package:movie_info/domain/model/movie/movie_change.dart';
 import 'package:movie_info/domain/model/movie/movie_credit.dart';
 import 'package:movie_info/domain/model/movie/movie_list.dart';
 import 'package:movie_info/domain/model/page_result/page_result.dart';
+import 'package:movie_info/domain/model/recommendation/recommendation.dart';
 import 'package:movie_info/domain/model/title/title.dart';
 import 'package:retrofit/retrofit.dart';
 part 'remote_repository.g.dart';
@@ -75,6 +76,13 @@ abstract class RemoteRepository {
 
   @GET('$MoviePrefix/lists')
   Future<PageResult<MovieList>> movieList({
+    @Path(MovieId) required int movieId,
+    @Query(Language) String? language,
+    @Query(Page) int? page,
+  });
+
+  @GET('$MoviePrefix/recommendations')
+  Future<PageResult<Recommendation>> movieRecommendation({
     @Path(MovieId) required int movieId,
     @Query(Language) String? language,
     @Query(Page) int? page,

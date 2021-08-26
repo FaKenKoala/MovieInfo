@@ -69,4 +69,11 @@ class MovieMethod with _$MovieMethod {
     String? language,
     int? page,
   }) = GetMovieList;
+
+  /// Get Movie Recommendation
+  const factory MovieMethod.moveiRecommendation({
+    required int movieId,
+    String? language,
+    int? page,
+  }) = GetMovieRecommendation;
 }

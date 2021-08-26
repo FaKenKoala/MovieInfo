@@ -1,8 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:movie_info/domain/model/generic_converter/generic_converter.dart';
+import 'package:movie_info/domain/model/page_result/generic_converter.dart';
 part 'page_result.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
+
 class PageResult<T> {
   final int page;
   @GenericConverter()
