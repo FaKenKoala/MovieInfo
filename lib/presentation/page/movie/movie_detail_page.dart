@@ -30,18 +30,19 @@ class _MovieDetailState extends State<MovieDetail> {
     super.initState();
     movieDetail = widget.movie;
     addDioLogger();
-    getIt<IMovieService>().execute(GetMovieKeyword(movieId: movieDetail.id));
+    getIt<IMovieService>().execute(GetMovieList(movieId: movieDetail.id));
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
         create: (_) => getIt<MovieBloc>()
-          ..add(
-            MovieEvent.detail(
-              movieId: widget.movie.id,
-            ),
-          ),
+          // ..add(
+          //   MovieEvent.detail(
+          //     movieId: widget.movie.id,
+          //   ),
+          // )
+          ,
         child: BlocListener<MovieBloc, MovieState>(
           listenWhen: (previousState, state) {
             return state.maybeMap(detail: (_) => true, orElse: () => false);

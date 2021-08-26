@@ -12,7 +12,8 @@ import 'package:movie_info/domain/model/movie/external_id.dart';
 import 'package:movie_info/domain/model/movie/keywords.dart';
 import 'package:movie_info/domain/model/movie/movie_change.dart';
 import 'package:movie_info/domain/model/movie/movie_credit.dart';
-import 'package:movie_info/domain/model/result/api_result.dart';
+import 'package:movie_info/domain/model/movie/movie_list.dart';
+import 'package:movie_info/domain/model/page_result/page_result.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
 import 'package:movie_info/domain/model/title/title.dart';
 
@@ -55,7 +56,8 @@ class MovieService extends IMovieService {
         movieCredit: getMovieCredit,
         movieExternalId: getMovieExternalId,
         movieImage: getMovieImage,
-        movieKeyword: getMovieKeyword);
+        movieKeyword: getMovieKeyword,
+        movieList: getMovieList);
   }
 
   /// Configuration
@@ -72,7 +74,7 @@ class MovieService extends IMovieService {
   }
 
   /// Trending
-  Future<ApiResult<Movie>> getTrending(GetTrending getTrending) async {
+  Future<PageResult<Movie>> getTrending(GetTrending getTrending) async {
     return await remoteRepository.trending(
         mediaType: getTrending.mediaType.name,
         timeWindow: getTrending.timeWindow.name);
@@ -137,5 +139,11 @@ class MovieService extends IMovieService {
   /// Movie Changes
   Future<KeywordList> getMovieKeyword(GetMovieKeyword change) async {
     return await remoteRepository.movieKeyword(movieId: change.movieId);
+  }
+
+  /// Movie Lists belongs to
+  Future<PageResult<MovieList>> getMovieList(GetMovieList list) async {
+    return await remoteRepository.movieList(
+        movieId: list.movieId, language: list.language, page: list.page);
   }
 }

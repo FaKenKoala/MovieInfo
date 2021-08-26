@@ -62,4 +62,11 @@ class MovieMethod with _$MovieMethod {
   const factory MovieMethod.movieKeyword({
     required int movieId,
   }) = GetMovieKeyword;
+
+  /// Get Movie Lists belongs to
+  const factory MovieMethod.movieList({
+    required int movieId,
+    String? language,
+    int? page,
+  }) = GetMovieList;
 }

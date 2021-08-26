@@ -8,7 +8,8 @@ import 'package:movie_info/domain/model/movie/keywords.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
 import 'package:movie_info/domain/model/movie/movie_change.dart';
 import 'package:movie_info/domain/model/movie/movie_credit.dart';
-import 'package:movie_info/domain/model/result/api_result.dart';
+import 'package:movie_info/domain/model/movie/movie_list.dart';
+import 'package:movie_info/domain/model/page_result/page_result.dart';
 import 'package:movie_info/domain/model/title/title.dart';
 import 'package:retrofit/retrofit.dart';
 part 'remote_repository.g.dart';
@@ -24,7 +25,7 @@ abstract class RemoteRepository {
   Future<Configuration> configuration();
 
   @GET('/trending/{media_type}/{time_window}')
-  Future<ApiResult<Movie>> trending(
+  Future<PageResult<Movie>> trending(
       {@Path('media_type') required String mediaType,
       @Path('time_window') required String timeWindow});
 
@@ -32,7 +33,7 @@ abstract class RemoteRepository {
   @GET('$MoviePrefix')
   Future<Movie> movieDetail(
       {@Path(MovieId) required int movieId,
-      @Query('language') String? language,
+      @Query(Language) String? language,
       @Query('append_to_response') String? appendToResponse});
 
   @GET('$MoviePrefix/account_states')
@@ -49,12 +50,12 @@ abstract class RemoteRepository {
       {@Path(MovieId) required String movieId,
       @Query('start_date') String? startDate,
       @Query('end_date') String? endDate,
-      @Query('page') int? page});
+      @Query(Page) int? page});
 
   @GET('$MoviePrefix/credits')
   Future<MovieCredit> movieCredit(
       {@Path(MovieId) required int movieId,
-      @Query('language') String? language});
+      @Query(Language) String? language});
 
   @GET('$MoviePrefix/external_ids')
   Future<ExternalId> movieExternalId({
@@ -64,14 +65,23 @@ abstract class RemoteRepository {
   @GET('$MoviePrefix/images')
   Future<MovieImage> movieImage({
     @Path(MovieId) required int movieId,
-    @Query('language') String? language,
+    @Query(Language) String? language,
   });
 
   @GET('$MoviePrefix/keywords')
   Future<KeywordList> movieKeyword({
     @Path(MovieId) required int movieId,
   });
+
+  @GET('$MoviePrefix/lists')
+  Future<PageResult<MovieList>> movieList({
+    @Path(MovieId) required int movieId,
+    @Query(Language) String? language,
+    @Query(Page) int? page,
+  });
 }
 
 const MoviePrefix = '/movie/{$MovieId}';
 const MovieId = 'movie_id';
+const Language = 'language';
+const Page = 'page';

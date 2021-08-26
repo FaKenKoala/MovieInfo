@@ -4,10 +4,10 @@ import 'package:movie_info/application/get_it/get_it_main.dart';
 import 'package:movie_info/application/route/movie_router.gr.dart';
 import 'package:movie_info/application/util/image_global_config.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
-import 'package:movie_info/domain/model/result/api_result.dart';
+import 'package:movie_info/domain/model/page_result/page_result.dart';
 
 class MoviePage extends StatefulWidget {
-  final ApiResult<Movie> movies;
+  final PageResult<Movie> movies;
   const MoviePage({Key? key, required this.movies}) : super(key: key);
 
   @override

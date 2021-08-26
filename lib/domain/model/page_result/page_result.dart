@@ -1,23 +1,23 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:movie_info/domain/model/generic_converter/generic_converter.dart';
-part 'api_result.g.dart';
+part 'page_result.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class ApiResult<T> {
+class PageResult<T> {
   final int page;
   @GenericConverter()
   final List<T> results;
   final int totalPages;
   final int totalResults;
 
-  ApiResult(
+  PageResult(
       {required this.page,
       this.results = const [],
       required this.totalPages,
       required this.totalResults});
 
-  factory ApiResult.fromJson(Map<String, dynamic> json) => _$ApiResultFromJson(json);
-  Map<String, dynamic> toJson() => _$ApiResultToJson(this);
+  factory PageResult.fromJson(Map<String, dynamic> json) => _$PageResultFromJson(json);
+  Map<String, dynamic> toJson() => _$PageResultToJson(this);
 
   @override
   String toString() {
