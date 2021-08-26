@@ -1,6 +1,15 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:movie_info/infrastructure/util/constant.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'constant.dart';
+
+@module
+abstract class SharedPreferencesModule {
+  @singleton
+  @preResolve
+  Future<SharedPreferences> get sp => SharedPreferences.getInstance();
+}
 
 @module
 abstract class DioModule {
