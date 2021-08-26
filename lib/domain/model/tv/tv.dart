@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:movie_info/domain/model/enum_values/enum_values.dart';
 part 'tv.g.dart';
 
 @JsonSerializable()
@@ -16,7 +17,7 @@ class Tv {
   String overview;
   String backdropPath;
   double popularity;
-  String mediaType;
+  MediaType mediaType;
 
   Tv({
     this.firstAirDate,
@@ -32,7 +33,7 @@ class Tv {
     this.overview = '',
     this.backdropPath = '',
     this.popularity = 0.0,
-    required this.mediaType,
+    this.mediaType = MediaType.TV,
   });
 
   factory Tv.fromJson(Map<String, dynamic> json) => _$TvFromJson(json);

@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
 import 'package:movie_info/application/route/movie_router.gr.dart';
-import 'package:movie_info/application/util/image_global_config.dart';
+import 'package:movie_info/application/util/app_image_config.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
 import 'package:movie_info/domain/model/api_result/page_result.dart';
 
@@ -31,7 +31,7 @@ class _MoviePageState extends State<MoviePage> {
               getIt<MovieRouter>().navigate(MovieDetailRoute(movie: movie));
             },
             child: CachedNetworkImage(
-              imageUrl: ImageGlobalConfig.imageUrl(movie.posterPath),
+              imageUrl: AppImageConfig.imageUrl(movie.posterPath),
               fit: BoxFit.cover,
             ),
           ),

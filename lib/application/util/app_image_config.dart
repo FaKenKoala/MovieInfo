@@ -6,15 +6,15 @@ import 'package:movie_info/domain/model/configuration/configuration.dart';
 import 'package:movie_info/domain/service/i_movie_service.dart';
 import 'package:movie_info/infrastructure/movie_method/movie_method.dart';
 
-class ImageGlobalConfig {
-  static ImageGlobalConfig? _instance;
+class AppImageConfig {
+  static AppImageConfig? _instance;
 
   Configuration? _remoteConfig;
   late Configuration _assetConfig;
 
-  ImageGlobalConfig._();
+  AppImageConfig._();
 
-  static ImageGlobalConfig get instance {
+  static AppImageConfig get instance {
     if (_instance == null) {
       init();
     }
@@ -32,7 +32,7 @@ class ImageGlobalConfig {
   /// need to await this to confirm at least the assetConfig is loaded succesfully.
   static init() async {
     if (_instance == null) {
-      _instance = ImageGlobalConfig._();
+      _instance = AppImageConfig._();
     }
     final localData = await rootBundle.load('assets/json/movie_config.json');
     String dataJson = utf8.decode(localData.buffer
