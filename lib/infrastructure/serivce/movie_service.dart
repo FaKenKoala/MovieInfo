@@ -23,6 +23,7 @@ import 'package:movie_info/domain/model/release_date/release_date.dart';
 import 'package:movie_info/domain/model/review/review.dart';
 import 'package:movie_info/domain/model/title/title.dart';
 import 'package:movie_info/domain/model/translation/translatetion_list.dart';
+import 'package:movie_info/domain/model/watch_provider/watch_provider_list.dart';
 
 import 'package:movie_info/domain/service/i_movie_service.dart';
 import 'package:movie_info/infrastructure/movie_method/movie_method.dart';
@@ -79,7 +80,8 @@ class MovieService extends IMovieService {
         movieReview: getMovieReview,
         movieSimilar: getMovieSimilar,
         movieTranslation: getMovieTranslation,
-        movieVideo: getMovieVideo);
+        movieVideo: getMovieVideo,
+        movieWatchProvider: getMovieWatchProvider);
   }
 
   /// Configuration
@@ -209,6 +211,13 @@ class MovieService extends IMovieService {
     return await remoteRepository.movieVideo(
       movieId: video.movieId,
       language: video.language,
+    );
+  }
+
+  /// Movie Watch Provider
+  Future<WatchProviderList> getMovieWatchProvider(GetMovieWatchProvider video) async {
+    return await remoteRepository.movieWatchProvider(
+      movieId: video.movieId,
     );
   }
 }

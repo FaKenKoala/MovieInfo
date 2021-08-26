@@ -107,4 +107,9 @@ class MovieMethod with _$MovieMethod {
     required int movieId,
     String? language,
   }) = GetMovieVideo;
+
+  /// Get Watch Provider
+  const factory MovieMethod.movieWatchProvider({
+    required int movieId,
+  }) = GetMovieWatchProvider;
 }

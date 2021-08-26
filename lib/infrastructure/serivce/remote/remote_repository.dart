@@ -16,6 +16,7 @@ import 'package:movie_info/domain/model/release_date/release_date.dart';
 import 'package:movie_info/domain/model/review/review.dart';
 import 'package:movie_info/domain/model/title/title.dart';
 import 'package:movie_info/domain/model/translation/translatetion_list.dart';
+import 'package:movie_info/domain/model/watch_provider/watch_provider_list.dart';
 import 'package:retrofit/retrofit.dart';
 part 'remote_repository.g.dart';
 
@@ -119,6 +120,11 @@ abstract class RemoteRepository {
   Future<TranslationList> movieVideo({
     @Path(MovieId) required int movieId,
     @Query(Language) String? language,
+  });
+
+  @GET('$MoviePrefix/watch/providers')
+  Future<WatchProviderList> movieWatchProvider({
+    @Path(MovieId) required int movieId,
   });
 }
 
