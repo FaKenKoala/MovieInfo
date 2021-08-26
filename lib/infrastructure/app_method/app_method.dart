@@ -224,4 +224,11 @@ class AppMethod with _$AppMethod {
     @Default(MonetizationType.FlatRate)
         MonetizationType withWatchMonetizationTypes,
   }) = DiscoverTV;
+
+  /// Find By External ID
+  const factory AppMethod.findByExternalID({
+    required String externalId,
+    String? language,
+    required String externalSource
+  }) = FindByExternalID;
 }

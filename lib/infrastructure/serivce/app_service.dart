@@ -10,6 +10,7 @@ import 'package:movie_info/domain/model/code_response/code_response.dart';
 import 'package:movie_info/domain/model/configuration/configuration.dart';
 import 'package:movie_info/domain/model/enum_values/enum_values.dart';
 import 'package:movie_info/domain/model/code_response/app_exception.dart';
+import 'package:movie_info/domain/model/find/find_result.dart';
 import 'package:movie_info/domain/model/media/image.dart';
 import 'package:movie_info/domain/model/movie/external_id.dart';
 import 'package:movie_info/domain/model/movie/keyword.dart';
@@ -41,6 +42,7 @@ part 'app_service_part/discover_part.dart';
 part 'app_service_part/movie_part.dart';
 part 'app_service_part/trending_part.dart';
 part 'app_service_part/tv_part.dart';
+part 'app_service_part/find_part.dart';
 
 abstract class AppServicePart {
   final LocalRepository localRepository;
@@ -50,7 +52,7 @@ abstract class AppServicePart {
 
 @Singleton(as: IAppService)
 class AppService extends AppServicePart
-    with ConfigurationPart, DiscoverPart, MoviePart, TrendingPart, TVPart
+    with ConfigurationPart, DiscoverPart,FindPart, MoviePart, TrendingPart, TVPart
     implements IAppService {
   AppService(RemoteRepository remoteRepository, LocalRepository localRepository)
       : super._(remoteRepository, localRepository);
@@ -106,6 +108,7 @@ class AppService extends AppServicePart
         getUpcomingMovie: getUpcomingMovie,
         getTVDetail: getTVDetail,
         discoverMovie: discoverMovie,
-        discoverTV: discoverTV);
+        discoverTV: discoverTV,
+        findByExternalID: findByExternalID);
   }
 }

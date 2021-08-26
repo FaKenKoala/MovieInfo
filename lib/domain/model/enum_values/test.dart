@@ -1,11 +1,12 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:movie_info/domain/model/enum_values/monetization_type.dart';
+
+import 'external_source.dart';
 
 part 'test.g.dart';
 
 @JsonSerializable()
 class Test {
-  final MonetizationType monetizationType;
+  final ExternalSource monetizationType;
   Test(this.monetizationType);
 
   factory Test.fromJson(Map<String, dynamic> json) => _$TestFromJson(json);

@@ -4,6 +4,7 @@ import 'package:movie_info/domain/model/account_state/account_state.dart';
 import 'package:movie_info/domain/model/api_result/id_result.dart';
 import 'package:movie_info/domain/model/code_response/code_response.dart';
 import 'package:movie_info/domain/model/configuration/configuration.dart';
+import 'package:movie_info/domain/model/find/find_result.dart';
 import 'package:movie_info/domain/model/media/image.dart';
 import 'package:movie_info/domain/model/movie/external_id.dart';
 import 'package:movie_info/domain/model/movie/keyword.dart';
@@ -27,17 +28,18 @@ part './remote_repository_part/discover_part.dart';
 part './remote_repository_part/movie_part.dart';
 part './remote_repository_part/trending_part.dart';
 part './remote_repository_part/tv_part.dart';
+part './remote_repository_part/find_part.dart';
 
 part 'remote_repository.g.dart';
 
 @RestApi()
 @singleton
-abstract class RemoteRepository with DiscoverPart, MoviePart, TrendingPart, TVPart {
+abstract class RemoteRepository
+    with DiscoverPart, FindPart,MoviePart, TrendingPart, TVPart {
   @factoryMethod
   factory RemoteRepository(Dio dio, {@Named("baseUrl") String baseUrl}) =
       _RemoteRepository;
 
   @GET('/configuration')
   Future<Configuration> configuration();
-
 }
