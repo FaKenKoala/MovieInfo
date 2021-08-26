@@ -13,15 +13,15 @@ import 'package:movie_info/presentation/page/movie/movie_image_page.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:provider/provider.dart';
 
-class MovieDetail extends StatefulWidget {
+class MovieDetailPage extends StatefulWidget {
   final Movie movie;
-  const MovieDetail({Key? key, required this.movie}) : super(key: key);
+  const MovieDetailPage({Key? key, required this.movie}) : super(key: key);
 
   @override
-  _MovieDetailState createState() => _MovieDetailState();
+  _MovieDetailPageState createState() => _MovieDetailPageState();
 }
 
-class _MovieDetailState extends State<MovieDetail> {
+class _MovieDetailPageState extends State<MovieDetailPage> {
   late Movie movieDetail;
   AccountState? accountState;
   @override

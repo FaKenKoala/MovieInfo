@@ -23,34 +23,34 @@ class TVBloc extends Bloc<TVEvent, TVState> {
     TVEvent event,
   ) async* {
     yield await event.map(
-        detail: _getMovieDetail,
-        accountState: _getMovieAccountState,
-        image: _getMovieImage);
+        detail: _getTVDetail,
+        accountState: _getTVAccountState,
+        image: _getTVImage);
   }
 
-  Future<TVState> _getMovieDetail(_TVEventDetail detail) async {
-    final result = await movieService.execute(GetMovieDetail(
-      movieId: detail.movieId,
+  Future<TVState> _getTVDetail(_TVEventDetail detail) async {
+    final result = await movieService.execute(GetTVDetail(
+      tvId: detail.movieId,
       language: detail.appendToResponse,
       appendToResponse: detail.appendToResponse,
     ));
     return result.fold((l) => TVState.error(l), (r) => TVState.detail(r));
   }
 
-  Future<TVState> _getMovieAccountState(
-      _TVEventAccountState state) async {
-    final result = await movieService.execute(GetMovieAccountState(
-      movieId: state.movieId,
-    ));
-    return result.fold(
-        (l) => TVState.error(l), (r) => TVState.accountState(r));
+  Future<TVState> _getTVAccountState(_TVEventAccountState state) async {
+    // final result = await movieService.execute(GetTVAccountState(
+    //   movieId: state.movieId,
+    // ));
+    // return result.fold((l) => TVState.error(l), (r) => TVState.accountState(r));
+    throw Exception();
   }
 
-  Future<TVState> _getMovieImage(_TVEventImage state) async {
-    final result = await movieService.execute(GetMovieImage(
-      movieId: state.movieId,
-      language: state.language,
-    ));
-    return result.fold((l) => TVState.error(l), (r) => TVState.image(r));
+  Future<TVState> _getTVImage(_TVEventImage state) async {
+    throw Exception();
+    // final result = await movieService.execute(GetTVImage(
+    //   movieId: state.movieId,
+    //   language: state.language,
+    // ));
+    // return result.fold((l) => TVState.error(l), (r) => TVState.image(r));
   }
 }

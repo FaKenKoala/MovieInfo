@@ -14,7 +14,7 @@ mixin TrendingPart on AppServicePart {
         case MediaType.TV:
           return TV.fromJson(e);
         case MediaType.PERSON:
-          return Person.fromJson(e);
+          return Cast.fromJson(e);
         default:
           return e;
       }

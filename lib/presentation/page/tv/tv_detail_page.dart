@@ -6,20 +6,19 @@ import 'package:movie_info/application/get_it/get_it_main.dart';
 import 'package:movie_info/application/util/app_image_config.dart';
 import 'package:movie_info/domain/model/account_state/account_state.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
-import 'package:movie_info/domain/service/i_app_service.dart';
 import 'package:movie_info/infrastructure/util/dio_logger.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:provider/provider.dart';
 
-class TVDetail extends StatefulWidget {
+class TVDetailPage extends StatefulWidget {
   final TV tv;
-  const TVDetail({Key? key, required this.tv}) : super(key: key);
+  const TVDetailPage({Key? key, required this.tv}) : super(key: key);
 
   @override
-  _TVDetailState createState() => _TVDetailState();
+  _TVDetailPageState createState() => _TVDetailPageState();
 }
 
-class _TVDetailState extends State<TVDetail> {
+class _TVDetailPageState extends State<TVDetailPage> {
   late TV tvDetail;
   AccountState? accountState;
   @override
@@ -35,11 +34,11 @@ class _TVDetailState extends State<TVDetail> {
   Widget build(BuildContext context) {
     return BlocProvider(
         create: (_) => getIt<TVBloc>()
-        // ..add(
-        //   TVEvent.detail(
-        //     movieId: widget.movie.id,
-        //   ),
-        // )
+        ..add(
+          TVEvent.detail(
+            movieId: widget.tv.id,
+          ),
+        )
         ,
         child: BlocListener<TVBloc, TVState>(
           listenWhen: (previousState, state) {

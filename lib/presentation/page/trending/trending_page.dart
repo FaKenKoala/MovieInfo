@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_info/application/bloc/trending/trending_bloc.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
+import 'package:movie_info/application/route/app_router.gr.dart';
 import 'package:movie_info/application/util/app_image_config.dart';
 import 'package:movie_info/domain/model/api_result/page_result.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
@@ -36,7 +37,8 @@ class _TrendingPageState extends State<TrendingPage> {
 
 class _TrendingListWidget extends StatefulWidget {
   final PageResult trendings;
-  const _TrendingListWidget({Key? key, required this.trendings}) : super(key: key);
+  const _TrendingListWidget({Key? key, required this.trendings})
+      : super(key: key);
 
   @override
   _TrendingListWidgetState createState() => _TrendingListWidgetState();
@@ -61,6 +63,11 @@ class _TrendingListWidgetState extends State<_TrendingListWidget> {
         }
         return Material(
           child: InkWell(
+            onTap: () {
+              if (item is TV) {
+                getIt<AppRouter>().push(TVDetailPageRoute(tv: item));
+              }
+            },
             child: posterPath == null
                 ? Text('No image')
                 : CachedNetworkImage(

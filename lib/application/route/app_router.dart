@@ -4,17 +4,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_info/application/bloc/movie/movie_bloc.dart';
 import 'package:movie_info/presentation/page/home/home_page.dart';
 import 'package:movie_info/presentation/page/movie/movie_detail_page.dart';
+import 'package:movie_info/presentation/page/tv/tv_detail_page.dart';
 
-@MaterialAutoRouter(routes: <AutoRoute>[
-  AutoRoute(page: MyHomePage, initial: true),
-  AutoRoute(page: MovieDetail),
+@MaterialAutoRouter(
+  routes: <AutoRoute>[
+  AutoRoute(page: AppHomePage, initial: true),
+  AutoRoute(page: MovieDetailPage),
   // AutoRoute(page: MovieImagePage),
   // CustomRoute(
   //   page: MovieImagePage,
   //   customRouteBuilder: myCustomRouteBuilder,
   // ),
+  AutoRoute(page: TVDetailPage),
 ])
-class $MovieRouter {}
+class $AppRouter {}
 
 Route<T> myCustomRouteBuilder<T>(
     BuildContext context, Widget child, CustomPage<T> page) {
