@@ -25,7 +25,7 @@ void main() {
 
   test('Remote Url Test', () async {
     /// Get Trending
-    ExceptionEither<PageResult<Movie>> movies = await service.execute(
+    MovieExceptionEither<PageResult<Movie>> movies = await service.execute(
         GetTrending(mediaType: MediaType.MOVIE, timeWindow: TimeWindow.DAY));
     movies.toOption().flatMap<Movie>((movies) {
       if (movies.results.isNotEmpty) {

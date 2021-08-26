@@ -48,7 +48,7 @@ class ImageGlobalConfig {
       return;
     }
 
-    ExceptionEither<Configuration> result =
+    MovieExceptionEither<Configuration> result =
         await getIt<IMovieService>().execute(GetConfiguration());
 
     result.fold((_) {}, (r) {

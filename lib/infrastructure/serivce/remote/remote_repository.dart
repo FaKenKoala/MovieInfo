@@ -13,6 +13,7 @@ import 'package:movie_info/domain/model/movie/movie_list.dart';
 import 'package:movie_info/domain/model/api_result/page_result.dart';
 import 'package:movie_info/domain/model/recommendation/recommendation.dart';
 import 'package:movie_info/domain/model/release_date/release_date.dart';
+import 'package:movie_info/domain/model/review/review.dart';
 import 'package:movie_info/domain/model/title/title.dart';
 import 'package:retrofit/retrofit.dart';
 part 'remote_repository.g.dart';
@@ -93,6 +94,13 @@ abstract class RemoteRepository {
   @GET('$MoviePrefix/release_dates')
   Future<IDResult<ReleaseDateWithCountry>> movieReleaseDate({
     @Path(MovieId) required int movieId,
+  });
+
+  @GET('$MoviePrefix/reviews')
+  Future<PageResult<Review>> movieReview({
+    @Path(MovieId) required int movieId,
+    @Query(Language) String? language,
+    @Query(Page) int? page,
   });
 }
 

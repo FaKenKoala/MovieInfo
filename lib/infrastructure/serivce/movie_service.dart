@@ -8,6 +8,8 @@ import 'package:movie_info/domain/model/account_state/account_state.dart';
 import 'package:movie_info/domain/model/api_result/id_result.dart';
 import 'package:movie_info/domain/model/configuration/configuration.dart';
 import 'package:movie_info/domain/model/enum_values/enum_values.dart';
+import 'package:movie_info/domain/model/error_response/error_response.dart';
+import 'package:movie_info/domain/model/error_response/movie_exception.dart';
 import 'package:movie_info/domain/model/image/image.dart';
 import 'package:movie_info/domain/model/movie/external_id.dart';
 import 'package:movie_info/domain/model/movie/keyword.dart';
@@ -18,11 +20,13 @@ import 'package:movie_info/domain/model/api_result/page_result.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
 import 'package:movie_info/domain/model/recommendation/recommendation.dart';
 import 'package:movie_info/domain/model/release_date/release_date.dart';
+import 'package:movie_info/domain/model/review/review.dart';
 import 'package:movie_info/domain/model/title/title.dart';
 
 import 'package:movie_info/domain/service/i_movie_service.dart';
 import 'package:movie_info/infrastructure/movie_method/movie_method.dart';
 import 'package:movie_info/infrastructure/util/constant.dart';
+import 'package:movie_info/infrastructure/util/movie_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'local/local_repository.dart';
@@ -34,17 +38,25 @@ class MovieService extends IMovieService {
   final LocalRepository localRepository;
   MovieService(this.remoteRepository, this.localRepository);
 
-  Future<ExceptionEither<T>> execute<T>(MovieMethod method) async {
+  Future<MovieExceptionEither<T>> execute<T>(MovieMethod method) async {
     /// 这个_executeMethod方法应该用编译时注解自动生成代码，格式时根据method.map的参数名称 {name}，
     /// 生成 name: get{name.firstUppercase}的方法调用，如同现有的_executeMethod所展示的一样。
     ///
     /// 这个方法也可以自动生成，格式是： remoteRepository.{name},参数就根据method的所有参数依此赋值
     try {
       return right(await _executeMethod(method));
-    } on DioError catch (e) {
-      return left(e);
-    } on Exception catch (e) {
-      return left(e);
+    } catch (e) {
+      MovieException? movieException;
+      if (e is DioError) {
+        try {
+          ErrorResponse errorResponse =
+              ErrorResponse.fromJson(e.response?.data);
+          movieException = MovieException(errorResponse: errorResponse);
+        } catch (_) {}
+      }
+      movieException ??= MovieException(message: e);
+      MovieLog.print('$movieException');
+      return left(movieException);
     }
   }
 
@@ -62,7 +74,8 @@ class MovieService extends IMovieService {
         movieKeyword: getMovieKeyword,
         movieList: getMovieList,
         moveiRecommendation: getMovieRecommendation,
-        movieReleaseDate: getMovieReleaseDate);
+        movieReleaseDate: getMovieReleaseDate,
+        movieReview: getMovieReview);
   }
 
   /// Configuration
@@ -165,5 +178,11 @@ class MovieService extends IMovieService {
     return await remoteRepository.movieReleaseDate(
       movieId: date.movieId,
     );
+  }
+
+  /// Movie Lists belongs to
+  Future<PageResult<Review>> getMovieReview(GetMovieReview review) async {
+    return await remoteRepository.movieReview(
+        movieId: review.movieId, language: review.language, page: review.page);
   }
 }

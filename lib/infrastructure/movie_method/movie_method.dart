@@ -1,9 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:movie_info/domain/model/enum_values/enum_values.dart';
+import 'package:movie_info/domain/model/error_response/movie_exception.dart';
 part 'movie_method.freezed.dart';
 
-typedef ExceptionEither<T> = Either<Exception, T>;
+typedef MovieExceptionEither<T> = Either<MovieException, T>;
 
 @freezed
 class MovieMethod with _$MovieMethod {
@@ -81,4 +82,11 @@ class MovieMethod with _$MovieMethod {
   const factory MovieMethod.movieReleaseDate({
     required int movieId,
   }) = GetMovieReleaseDate;
+
+  /// Get Movie Review
+  const factory MovieMethod.movieReview({
+    required int movieId,
+    String? language,
+    int? page,
+  }) = GetMovieReview;
 }

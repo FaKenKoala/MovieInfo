@@ -48,7 +48,7 @@ void main() {
     expect(find.text('0'), findsNothing);
     expect(find.text('1'), findsOneWidget);
 
-    ExceptionEither<PageResult<Movie>> movies = await service.execute(
+    MovieExceptionEither<PageResult<Movie>> movies = await service.execute(
         GetTrending(mediaType: MediaType.MOVIE, timeWindow: TimeWindow.DAY));
     movies.toOption().flatMap<Movie>((movies) {
       if (movies.results.isNotEmpty) {
