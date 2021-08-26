@@ -21,3 +21,6 @@ const MediaTypeEnumMap = {
 extension MediaTypeX on MediaType {
   String get name => MediaTypeEnumMap[this]!;
 }
+
+
+

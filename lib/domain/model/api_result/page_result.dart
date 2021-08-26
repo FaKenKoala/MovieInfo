@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 part 'page_result.g.dart';
 
 @JsonSerializable(genericArgumentFactories: true)
@@ -21,6 +22,22 @@ class PageResult<T> {
       _$PageResultFromJson(json, fromJsonT);
   Map<String, dynamic> toJson(Object? Function(T value) toJsonT) =>
       _$PageResultToJson(this, toJsonT);
+
+  PageResult<T> copyWith({
+    int? page,
+    MovieDate? dates,
+    List<T>? results,
+    int? totalPages,
+    int? totalResults,
+  }) {
+    return PageResult(
+      page: page ?? this.page,
+      dates: dates ?? this.dates,
+      results: results ?? this.results,
+      totalPages: totalPages ?? this.totalPages,
+      totalResults: totalResults ?? this.totalResults,
+    );
+  }
 }
 
 @JsonSerializable()

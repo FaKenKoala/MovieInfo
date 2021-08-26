@@ -31,7 +31,7 @@ class _MoviePageState extends State<MoviePage> {
               getIt<MovieRouter>().navigate(MovieDetailRoute(movie: movie));
             },
             child: CachedNetworkImage(
-              imageUrl: AppImageConfig.imageUrl(movie.posterPath),
+              imageUrl: ImageGlobalConfig.imageUrl(movie.posterPath),
               fit: BoxFit.cover,
             ),
           ),

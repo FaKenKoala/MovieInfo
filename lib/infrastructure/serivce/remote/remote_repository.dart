@@ -8,6 +8,8 @@ import 'package:movie_info/domain/model/media/image.dart';
 import 'package:movie_info/domain/model/movie/external_id.dart';
 import 'package:movie_info/domain/model/movie/keyword.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
+import 'package:movie_info/domain/model/tv/tv.dart';
+
 import 'package:movie_info/domain/model/movie/movie_change.dart';
 import 'package:movie_info/domain/model/movie/movie_credit.dart';
 import 'package:movie_info/domain/model/movie/movie_list.dart';
@@ -23,16 +25,18 @@ import 'package:retrofit/retrofit.dart';
 
 part './repository_part/movie_part.dart';
 part './repository_part/trending_part.dart';
+part './repository_part/tv_part.dart';
 
 part 'remote_repository.g.dart';
 
 @RestApi()
 @singleton
-abstract class RemoteRepository with MoviePart, TrendingPart {
+abstract class RemoteRepository with MoviePart, TrendingPart, TVPart {
   @factoryMethod
   factory RemoteRepository(Dio dio, {@Named("baseUrl") String baseUrl}) =
       _RemoteRepository;
 
   @GET('/configuration')
   Future<Configuration> configuration();
+
 }

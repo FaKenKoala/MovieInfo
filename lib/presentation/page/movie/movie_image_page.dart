@@ -94,7 +94,7 @@ class GridViewWidget extends StatelessWidget {
           crossAxisCount: 2, mainAxisSpacing: 10, crossAxisSpacing: 10),
       itemBuilder: (_, index) {
         return CachedNetworkImage(
-            imageUrl: AppImageConfig.imageUrl(images[index].filePath),
+            imageUrl: ImageGlobalConfig.imageUrl(images[index].filePath),
             fit: BoxFit.cover);
       },
       itemCount: images.length,

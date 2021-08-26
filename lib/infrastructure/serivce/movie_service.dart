@@ -18,11 +18,13 @@ import 'package:movie_info/domain/model/movie/movie_credit.dart';
 import 'package:movie_info/domain/model/movie/movie_list.dart';
 import 'package:movie_info/domain/model/api_result/page_result.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
+import 'package:movie_info/domain/model/person/person.dart';
 import 'package:movie_info/domain/model/recommendation/recommendation.dart';
 import 'package:movie_info/domain/model/release_date/release_date.dart';
 import 'package:movie_info/domain/model/review/review.dart';
 import 'package:movie_info/domain/model/title/title.dart';
 import 'package:movie_info/domain/model/translation/translatetion_list.dart';
+import 'package:movie_info/domain/model/tv/tv.dart';
 import 'package:movie_info/domain/model/watch_provider/watch_provider_list.dart';
 
 import 'package:movie_info/domain/service/i_movie_service.dart';
@@ -102,10 +104,24 @@ class MovieService extends IMovieService {
   }
 
   /// Trending
-  Future<PageResult<Movie>> getTrending(GetTrending getTrending) async {
-    return await remoteRepository.getTrending(
+  Future<PageResult> getTrending(GetTrending getTrending) async {
+    PageResult pageResult = await remoteRepository.getTrending(
         mediaType: getTrending.mediaType.name,
         timeWindow: getTrending.timeWindow.name);
+    List<dynamic> results = pageResult.results.map((e) {
+      switch (enumDecodeNullable(MediaTypeEnumMap, e['media_type'],
+          unknownValue: MediaType.ALL)) {
+        case MediaType.MOVIE:
+          return Movie.fromJson(e);
+        case MediaType.TV:
+          return TV.fromJson(e);
+        case MediaType.PERSON:
+          return Person.fromJson(e);
+        default:
+          return e;
+      }
+    }).toList();
+    return pageResult.copyWith(results: results);
   }
 
   /// Movie Details

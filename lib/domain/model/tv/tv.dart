@@ -3,7 +3,7 @@ import 'package:movie_info/domain/model/enum_values/enum_values.dart';
 part 'tv.g.dart';
 
 @JsonSerializable()
-class Tv {
+class TV {
   DateTime? firstAirDate;
   List<int> genreIds;
   String originalLanguage;
@@ -19,7 +19,7 @@ class Tv {
   double popularity;
   MediaType mediaType;
 
-  Tv({
+  TV({
     this.firstAirDate,
     this.genreIds = const [],
     this.originalLanguage = '',
@@ -36,9 +36,9 @@ class Tv {
     this.mediaType = MediaType.TV,
   });
 
-  factory Tv.fromJson(Map<String, dynamic> json) => _$TvFromJson(json);
+  factory TV.fromJson(Map<String, dynamic> json) => _$TVFromJson(json);
 
-  Map<String, dynamic> toJson() => _$TvToJson(this);
+  Map<String, dynamic> toJson() => _$TVToJson(this);
 
   @override
   String toString() {

@@ -7,6 +7,6 @@ import 'presentation/page/app/app.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureGetIt();
-  await AppImageConfig.init();
+  await ImageGlobalConfig.init();
   runApp(MyApp());
 }

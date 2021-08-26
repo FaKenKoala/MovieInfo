@@ -119,7 +119,7 @@ class _MovieDetailState extends State<MovieDetail> {
                   }),
                   CachedNetworkImage(
                       imageUrl:
-                          AppImageConfig.imageUrl(movieDetail.posterPath)),
+                          ImageGlobalConfig.imageUrl(movieDetail.posterPath)),
                   SizedBox(height: 10),
                   Center(
                     child: Text(
