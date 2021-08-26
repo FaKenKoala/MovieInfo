@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:movie_info/domain/model/watch_provider/watch_provider.dart';
-import 'package:provider/provider.dart';
 
 part 'watch_provider_list.g.dart';
 

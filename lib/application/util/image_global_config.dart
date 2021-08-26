@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:dartz/dartz.dart';
 import 'package:flutter/services.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
 import 'package:movie_info/domain/model/configuration/configuration.dart';

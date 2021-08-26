@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_info/application/bloc/movie/movie_bloc.dart';
 import 'package:movie_info/presentation/page/home/home_page.dart';
 import 'package:movie_info/presentation/page/movie/movie_detail_page.dart';
-import 'package:movie_info/presentation/page/movie/movie_image_page.dart';
 
 @MaterialAutoRouter(routes: <AutoRoute>[
   AutoRoute(page: MyHomePage, initial: true),

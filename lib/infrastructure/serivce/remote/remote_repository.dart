@@ -33,88 +33,89 @@ abstract class RemoteRepository {
   Future<Configuration> configuration();
 
   @GET('/trending/{media_type}/{time_window}')
-  Future<PageResult<Movie>> trending(
+  Future<PageResult<Movie>> getTrending(
       {@Path('media_type') required String mediaType,
       @Path('time_window') required String timeWindow});
 
   /// Movie
   @GET('$MoviePrefix')
-  Future<Movie> movieDetail(
+  Future<Movie> getMovieDetail(
       {@Path(MovieId) required int movieId,
-      @Query(Language) String? language,
-      @Query('append_to_response') String? appendToResponse});
+      @Query(Language) required String? language,
+      @Query('append_to_response') required String? appendToResponse});
 
   @GET('$MoviePrefix/account_states')
-  Future<AccountState> movieAccountState({@Path(MovieId) required int movieId});
+  Future<AccountState> getMovieAccountState(
+      {@Path(MovieId) required int movieId});
 
   @GET('$MoviePrefix/alternative_titles')
-  Future<IDResult<Title>> movieAlternativeTitles({
+  Future<IDResult<Title>> getMovieAlternativeTitles({
     @Path(MovieId) required int movieId,
     @Query('country') String? country,
   });
 
   @GET('$MoviePrefix/changes')
-  Future<ChangeList> movieChanges(
+  Future<ChangeList> getMovieChanges(
       {@Path(MovieId) required String movieId,
       @Query('start_date') String? startDate,
       @Query('end_date') String? endDate,
       @Query(Page) int? page});
 
   @GET('$MoviePrefix/credits')
-  Future<MovieCredit> movieCredit(
+  Future<MovieCredit> getMovieCredit(
       {@Path(MovieId) required int movieId, @Query(Language) String? language});
 
   @GET('$MoviePrefix/external_ids')
-  Future<ExternalId> movieExternalId({
+  Future<ExternalId> getMovieExternalId({
     @Path(MovieId) required int movieId,
   });
 
   @GET('$MoviePrefix/images')
-  Future<MovieImage> movieImage({
+  Future<MovieImage> getMovieImage({
     @Path(MovieId) required int movieId,
     @Query(Language) String? language,
   });
 
   @GET('$MoviePrefix/keywords')
-  Future<IDResult<Keyword>> movieKeyword({
+  Future<IDResult<Keyword>> getMovieKeyword({
     @Path(MovieId) required int movieId,
   });
 
   @GET('$MoviePrefix/lists')
-  Future<PageResult<MovieList>> movieList({
+  Future<PageResult<MovieList>> getMovieBelongList({
     @Path(MovieId) required int movieId,
     @Query(Language) String? language,
     @Query(Page) int? page,
   });
 
   @GET('$MoviePrefix/recommendations')
-  Future<PageResult<Recommendation>> movieRecommendation({
+  Future<PageResult<Recommendation>> getMovieRecommendation({
     @Path(MovieId) required int movieId,
     @Query(Language) String? language,
     @Query(Page) int? page,
   });
 
   @GET('$MoviePrefix/release_dates')
-  Future<IDResult<ReleaseDateWithCountry>> movieReleaseDate({
+  Future<IDResult<ReleaseDateWithCountry>> getMovieReleaseDate({
     @Path(MovieId) required int movieId,
   });
 
   @GET('$MoviePrefix/reviews')
-  Future<PageResult<Review>> movieReview({
+  Future<PageResult<Review>> getMovieReview({
     @Path(MovieId) required int movieId,
     @Query(Language) String? language,
     @Query(Page) int? page,
   });
 
   @GET('$MoviePrefix/similar')
-  Future<PageResult<Movie>> movieSimilar({
+  Future<PageResult<Movie>> getSimilarMovie({
     @Path(MovieId) required int movieId,
     @Query(Language) String? language,
     @Query(Page) int? page,
   });
 
   @GET('$MoviePrefix/translations')
-  Future<TranslationList> movieTranslation({
+  Future<TranslationList> getMovieTranslation({
     @Path(MovieId) required int movieId,
   });
 
@@ -125,7 +126,7 @@ abstract class RemoteRepository {
   });
 
   @GET('$MoviePrefix/watch/providers')
-  Future<WatchProviderList> movieWatchProvider({
+  Future<WatchProviderList> getMovieWatchProvider({
     @Path(MovieId) required int movieId,
   });
 
@@ -133,6 +134,42 @@ abstract class RemoteRepository {
   Future<CodeResponse> rateMovie({
     @Path(MovieId) required int movieId,
     @Body() required RateContent content,
+  });
+
+  @DELETE('$MoviePrefix/rating')
+  Future<CodeResponse> deleteMovieRate({
+    @Path(MovieId) required int movieId,
+  });
+
+  @GET('/movie/latest')
+  Future<Movie> getLatestMovie();
+
+  @GET('/movie/now_playing')
+  Future<PageResult<Movie>> getNowPlayingMovie({
+    @Query(Language) String? language,
+    @Query(Page) int? page,
+    @Query('region') String? region,
+  });
+
+  @GET('/movie/popular')
+  Future<PageResult<Movie>> getPopularMovie({
+    @Query(Language) String? language,
+    @Query(Page) int? page,
+    @Query('region') String? region,
+  });
+
+  @GET('/movie/top_rated')
+  Future<PageResult<Movie>> getTopRatedMovie({
+    @Query(Language) String? language,
+    @Query(Page) int? page,
+    @Query('region') String? region,
+  });
+
+  @GET('/movie/upcoming')
+  Future<PageResult<Movie>> getUpcomingMovie({
+    @Query(Language) String? language,
+    @Query(Page) int? page,
+    @Query('region') String? region,
   });
 }
 

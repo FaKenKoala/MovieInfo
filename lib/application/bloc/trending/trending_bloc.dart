@@ -28,7 +28,7 @@ class TrendingBloc extends Bloc<TrendingEvent, TrendingState> {
   }
 
   Future<TrendingState> getTrending(_Trending event) async {
-    final result = await movieService.execute(MovieMethod.trending(
+    final result = await movieService.execute(MovieMethod.getTrending(
         mediaType: event.mediaType ?? MediaType.ALL,
         timeWindow: event.timeWindow ?? TimeWindow.DAY));
 

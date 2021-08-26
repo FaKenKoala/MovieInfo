@@ -18,7 +18,6 @@ import 'package:movie_info/domain/model/movie/movie_credit.dart';
 import 'package:movie_info/domain/model/movie/movie_list.dart';
 import 'package:movie_info/domain/model/api_result/page_result.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
-import 'package:movie_info/domain/model/movie/rate_content.dart';
 import 'package:movie_info/domain/model/recommendation/recommendation.dart';
 import 'package:movie_info/domain/model/release_date/release_date.dart';
 import 'package:movie_info/domain/model/review/review.dart';
@@ -64,25 +63,31 @@ class MovieService extends IMovieService {
 
   Future _executeMethod(MovieMethod method) async {
     return method.map(
-        configuration: getConfiguration,
-        trending: getTrending,
-        movieDetail: getMovieDetail,
-        movieAccountState: getMovieAccountState,
-        movieAlternativeTitles: getMovieAlterNativeTiles,
-        movieChanges: getMovieChanges,
-        movieCredit: getMovieCredit,
-        movieExternalId: getMovieExternalId,
-        movieImage: getMovieImage,
-        movieKeyword: getMovieKeyword,
-        movieList: getMovieList,
-        moveiRecommendation: getMovieRecommendation,
-        movieReleaseDate: getMovieReleaseDate,
-        movieReview: getMovieReview,
-        movieSimilar: getMovieSimilar,
-        movieTranslation: getMovieTranslation,
-        movieVideo: getMovieVideo,
-        movieWatchProvider: getMovieWatchProvider,
-        rateMovie: rateMovie);
+        getConfiguration: getConfiguration,
+        getTrending: getTrending,
+        getMovieDetail: getMovieDetail,
+        getMovieAccountState: getMovieAccountState,
+        getMovieAlternativeTitles: getMovieAlterNativeTiles,
+        getMovieChanges: getMovieChanges,
+        getMovieCredit: getMovieCredit,
+        getMovieExternalId: getMovieExternalId,
+        getMovieImage: getMovieImage,
+        getMovieKeyword: getMovieKeyword,
+        getMovieList: getMovieBelongList,
+        getMoveiRecommendation: getMovieRecommendation,
+        getMovieReleaseDate: getMovieReleaseDate,
+        getMovieReview: getMovieReview,
+        getMovieSimilar: getMovieSimilar,
+        getMovieTranslation: getMovieTranslation,
+        getMovieVideo: getMovieVideo,
+        getMovieWatchProvider: getMovieWatchProvider,
+        rateMovie: rateMovie,
+        deleteMovieRate: delteMovieRate,
+        getLatestMovie: getLatestMovie,
+        getNowPlayingMovie: getNowPlayingMovie,
+        getPopularMovie: getPopularMovie,
+        getTopRatedMovie: getTopRatedMovie,
+        getUpcomingMovie: getUpcomingMovie);
   }
 
   /// Configuration
@@ -98,14 +103,14 @@ class MovieService extends IMovieService {
 
   /// Trending
   Future<PageResult<Movie>> getTrending(GetTrending getTrending) async {
-    return await remoteRepository.trending(
+    return await remoteRepository.getTrending(
         mediaType: getTrending.mediaType.name,
         timeWindow: getTrending.timeWindow.name);
   }
 
   /// Movie Details
   Future<Movie> getMovieDetail(GetMovieDetail getMovieDetail) async {
-    return await remoteRepository.movieDetail(
+    return await remoteRepository.getMovieDetail(
         movieId: getMovieDetail.movieId,
         language: getMovieDetail.language,
         appendToResponse: getMovieDetail.appendToResponse);
@@ -114,7 +119,7 @@ class MovieService extends IMovieService {
   /// Movie Account State
   Future<AccountState> getMovieAccountState(
       GetMovieAccountState getMovieAccountState) async {
-    return await remoteRepository.movieAccountState(
+    return await remoteRepository.getMovieAccountState(
       movieId: getMovieAccountState.movieId,
     );
   }
@@ -122,7 +127,7 @@ class MovieService extends IMovieService {
   /// Movie Alternative Titles
   Future<IDResult<Title>> getMovieAlterNativeTiles(
       GetMovieAlternativeTitles titles) async {
-    return await remoteRepository.movieAlternativeTitles(
+    return await remoteRepository.getMovieAlternativeTitles(
       movieId: titles.movieId,
       country: titles.country,
     );
@@ -132,7 +137,7 @@ class MovieService extends IMovieService {
   Future<ChangeList> getMovieChanges(
     GetMovieChanges changes,
   ) async {
-    return await remoteRepository.movieChanges(
+    return await remoteRepository.getMovieChanges(
       movieId: changes.movieId,
       startDate: changes.startDate,
       endDate: changes.endDate,
@@ -142,7 +147,7 @@ class MovieService extends IMovieService {
 
   /// Movie Credits
   Future<MovieCredit> getMovieCredit(GetMovieCredit credit) async {
-    return await remoteRepository.movieCredit(
+    return await remoteRepository.getMovieCredit(
       movieId: credit.movieId,
       language: credit.language,
     );
@@ -150,50 +155,51 @@ class MovieService extends IMovieService {
 
   /// Movie External Ids
   Future<ExternalId> getMovieExternalId(GetMovieExternalId id) async {
-    return await remoteRepository.movieExternalId(movieId: id.movieId);
+    return await remoteRepository.getMovieExternalId(movieId: id.movieId);
   }
 
   /// Movie Images
   Future<MovieImage> getMovieImage(GetMovieImage image) async {
-    return await remoteRepository.movieImage(
+    return await remoteRepository.getMovieImage(
         movieId: image.movieId, language: image.language);
   }
 
   /// Movie Changes
   Future<IDResult<Keyword>> getMovieKeyword(GetMovieKeyword change) async {
-    return await remoteRepository.movieKeyword(movieId: change.movieId);
+    return await remoteRepository.getMovieKeyword(movieId: change.movieId);
   }
 
   /// Movie Lists belongs to
-  Future<PageResult<MovieList>> getMovieList(GetMovieList list) async {
-    return await remoteRepository.movieList(
+  Future<PageResult<MovieList>> getMovieBelongList(
+      GetMovieBelongList list) async {
+    return await remoteRepository.getMovieBelongList(
         movieId: list.movieId, language: list.language, page: list.page);
   }
 
   /// Movie Lists belongs to
   Future<PageResult<Recommendation>> getMovieRecommendation(
       GetMovieRecommendation list) async {
-    return await remoteRepository.movieRecommendation(
+    return await remoteRepository.getMovieRecommendation(
         movieId: list.movieId, language: list.language, page: list.page);
   }
 
   /// Movie Release Dates
   Future<IDResult<ReleaseDateWithCountry>> getMovieReleaseDate(
       GetMovieReleaseDate date) async {
-    return await remoteRepository.movieReleaseDate(
+    return await remoteRepository.getMovieReleaseDate(
       movieId: date.movieId,
     );
   }
 
   /// Movie Lists belongs to
   Future<PageResult<Review>> getMovieReview(GetMovieReview review) async {
-    return await remoteRepository.movieReview(
+    return await remoteRepository.getMovieReview(
         movieId: review.movieId, language: review.language, page: review.page);
   }
 
   /// Movie Lists belongs to
-  Future<PageResult<Movie>> getMovieSimilar(GetMovieSimilar similar) async {
-    return await remoteRepository.movieSimilar(
+  Future<PageResult<Movie>> getMovieSimilar(GetSimilarMovie similar) async {
+    return await remoteRepository.getSimilarMovie(
         movieId: similar.movieId,
         language: similar.language,
         page: similar.page);
@@ -202,7 +208,7 @@ class MovieService extends IMovieService {
   /// Movie Translations
   Future<TranslationList> getMovieTranslation(
       GetMovieTranslation translation) async {
-    return await remoteRepository.movieTranslation(
+    return await remoteRepository.getMovieTranslation(
       movieId: translation.movieId,
     );
   }
@@ -218,7 +224,7 @@ class MovieService extends IMovieService {
   /// Movie Watch Provider
   Future<WatchProviderList> getMovieWatchProvider(
       GetMovieWatchProvider video) async {
-    return await remoteRepository.movieWatchProvider(
+    return await remoteRepository.getMovieWatchProvider(
       movieId: video.movieId,
     );
   }
@@ -227,5 +233,39 @@ class MovieService extends IMovieService {
   Future<CodeResponse> rateMovie(RateMovie rateMovie) async {
     return await remoteRepository.rateMovie(
         movieId: rateMovie.movieId, content: rateMovie.rateContent);
+  }
+
+  /// Delete Rate Movie
+  Future<CodeResponse> delteMovieRate(DeleteMovieRate rate) async {
+    return await remoteRepository.deleteMovieRate(movieId: rate.movieId);
+  }
+
+  /// Get Latest Movie
+  Future<Movie> getLatestMovie(GetLatestMovie movie) async {
+    return await remoteRepository.getLatestMovie();
+  }
+
+  /// Get Now Playing Movie
+  Future<PageResult<Movie>> getNowPlayingMovie(GetNowPlayingMovie movie) async {
+    return await remoteRepository.getNowPlayingMovie(
+        language: movie.language, page: movie.page, region: movie.region);
+  }
+
+  /// Get Popular Movie
+  Future<PageResult<Movie>> getPopularMovie(GetPopularMovie movie) async {
+    return await remoteRepository.getPopularMovie(
+        language: movie.language, page: movie.page, region: movie.region);
+  }
+
+  /// Get Top Rated Movie
+  Future<PageResult<Movie>> getTopRatedMovie(GetTopRatedMovie movie) async {
+    return await remoteRepository.getTopRatedMovie(
+        language: movie.language, page: movie.page, region: movie.region);
+  }
+
+  /// Get Upcoming Movie
+  Future<PageResult<Movie>> getUpcomingMovie(GetUpcomingMovie movie) async {
+    return await remoteRepository.getUpcomingMovie(
+        language: movie.language, page: movie.page, region: movie.region);
   }
 }

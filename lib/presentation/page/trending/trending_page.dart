@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_info/application/bloc/trending/trending_bloc.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
-import 'package:movie_info/application/util/image_global_config.dart';
-import 'package:movie_info/infrastructure/util/movie_logger.dart';
 import 'package:movie_info/presentation/page/movie/movie_page.dart';
 import 'package:movie_info/presentation/widget/loading_widget.dart';
 import 'package:movie_info/presentation/widget/movie_error_widget.dart';
