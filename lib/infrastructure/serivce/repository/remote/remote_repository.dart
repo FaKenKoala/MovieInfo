@@ -23,9 +23,9 @@ import 'package:movie_info/domain/model/translation/translatetion_list.dart';
 import 'package:movie_info/domain/model/watch_provider/watch_provider_list.dart';
 import 'package:retrofit/retrofit.dart';
 
-part './repository_part/movie_part.dart';
-part './repository_part/trending_part.dart';
-part './repository_part/tv_part.dart';
+part './remote_repository_part/movie_part.dart';
+part './remote_repository_part/trending_part.dart';
+part './remote_repository_part/tv_part.dart';
 
 part 'remote_repository.g.dart';
 

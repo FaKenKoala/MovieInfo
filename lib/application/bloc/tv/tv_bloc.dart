@@ -5,22 +5,22 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movie_info/domain/model/account_state/account_state.dart';
 import 'package:movie_info/domain/model/media/image.dart';
-import 'package:movie_info/domain/model/movie/movie.dart';
+import 'package:movie_info/domain/model/tv/tv.dart';
 import 'package:movie_info/domain/service/i_app_service.dart';
 import 'package:movie_info/infrastructure/app_method/app_method.dart';
 
-part 'movie_event.dart';
-part 'movie_state.dart';
-part 'movie_bloc.freezed.dart';
+part 'tv_event.dart';
+part 'tv_state.dart';
+part 'tv_bloc.freezed.dart';
 
 @injectable
-class MovieBloc extends Bloc<MovieEvent, MovieState> {
+class TVBloc extends Bloc<TVEvent, TVState> {
   final IAppService movieService;
-  MovieBloc(this.movieService) : super(MovieStateInitial());
+  TVBloc(this.movieService) : super(TVStateInitial());
 
   @override
-  Stream<MovieState> mapEventToState(
-    MovieEvent event,
+  Stream<TVState> mapEventToState(
+    TVEvent event,
   ) async* {
     yield await event.map(
         detail: _getMovieDetail,
@@ -28,29 +28,29 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
         image: _getMovieImage);
   }
 
-  Future<MovieState> _getMovieDetail(_MovieEventDetail detail) async {
+  Future<TVState> _getMovieDetail(_TVEventDetail detail) async {
     final result = await movieService.execute(GetMovieDetail(
       movieId: detail.movieId,
       language: detail.appendToResponse,
       appendToResponse: detail.appendToResponse,
     ));
-    return result.fold((l) => MovieState.error(l), (r) => MovieState.detail(r));
+    return result.fold((l) => TVState.error(l), (r) => TVState.detail(r));
   }
 
-  Future<MovieState> _getMovieAccountState(
-      _MovieEventAccountState state) async {
+  Future<TVState> _getMovieAccountState(
+      _TVEventAccountState state) async {
     final result = await movieService.execute(GetMovieAccountState(
       movieId: state.movieId,
     ));
     return result.fold(
-        (l) => MovieState.error(l), (r) => MovieState.accountState(r));
+        (l) => TVState.error(l), (r) => TVState.accountState(r));
   }
 
-  Future<MovieState> _getMovieImage(_MovieEventImage state) async {
+  Future<TVState> _getMovieImage(_TVEventImage state) async {
     final result = await movieService.execute(GetMovieImage(
       movieId: state.movieId,
       language: state.language,
     ));
-    return result.fold((l) => MovieState.error(l), (r) => MovieState.image(r));
+    return result.fold((l) => TVState.error(l), (r) => TVState.image(r));
   }
 }

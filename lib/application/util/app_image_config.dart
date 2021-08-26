@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
 import 'package:movie_info/domain/model/configuration/configuration.dart';
-import 'package:movie_info/domain/service/i_movie_service.dart';
-import 'package:movie_info/infrastructure/movie_method/movie_method.dart';
+import 'package:movie_info/domain/service/i_app_service.dart';
+import 'package:movie_info/infrastructure/app_method/app_method.dart';
 
 class ImageGlobalConfig {
   static ImageGlobalConfig? _instance;
@@ -47,8 +47,8 @@ class ImageGlobalConfig {
       return;
     }
 
-    MovieExceptionEither<Configuration> result =
-        await getIt<IMovieService>().execute(GetConfiguration());
+    AppExceptionEither<Configuration> result =
+        await getIt<IAppService>().execute(GetConfiguration());
 
     result.fold((_) {}, (r) {
       _instance!._remoteConfig = r;

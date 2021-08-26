@@ -1,65 +1,63 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_info/application/bloc/movie/movie_bloc.dart';
+import 'package:movie_info/application/bloc/tv/tv_bloc.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
 import 'package:movie_info/application/util/app_image_config.dart';
 import 'package:movie_info/domain/model/account_state/account_state.dart';
-import 'package:movie_info/domain/model/movie/movie.dart';
+import 'package:movie_info/domain/model/tv/tv.dart';
 import 'package:movie_info/domain/service/i_app_service.dart';
-import 'package:movie_info/infrastructure/app_method/app_method.dart';
 import 'package:movie_info/infrastructure/util/dio_logger.dart';
-import 'package:movie_info/presentation/page/movie/movie_image_page.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:provider/provider.dart';
 
-class MovieDetail extends StatefulWidget {
-  final Movie movie;
-  const MovieDetail({Key? key, required this.movie}) : super(key: key);
+class TVDetail extends StatefulWidget {
+  final TV tv;
+  const TVDetail({Key? key, required this.tv}) : super(key: key);
 
   @override
-  _MovieDetailState createState() => _MovieDetailState();
+  _TVDetailState createState() => _TVDetailState();
 }
 
-class _MovieDetailState extends State<MovieDetail> {
-  late Movie movieDetail;
+class _TVDetailState extends State<TVDetail> {
+  late TV tvDetail;
   AccountState? accountState;
   @override
   void initState() {
     super.initState();
-    movieDetail = widget.movie;
+    tvDetail = widget.tv;
     addDioLogger(
         PrettyDioLogger(requestHeader: true, requestBody: true, error: false));
-    getIt<IAppService>().execute(GetUpcomingMovie());
+    // getIt<IAppService>().execute(GetUpcomingTV());
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => getIt<MovieBloc>()
+        create: (_) => getIt<TVBloc>()
         // ..add(
-        //   MovieEvent.detail(
+        //   TVEvent.detail(
         //     movieId: widget.movie.id,
         //   ),
         // )
         ,
-        child: BlocListener<MovieBloc, MovieState>(
+        child: BlocListener<TVBloc, TVState>(
           listenWhen: (previousState, state) {
             return state.maybeMap(detail: (_) => true, orElse: () => false);
           },
           listener: (context, state) {
             state.mapOrNull(detail: (detail) {
-              movieDetail = detail.movie;
+              tvDetail = detail.tv;
             });
           },
           child: Scaffold(
             appBar: AppBar(
-              title: Text('${movieDetail.title}'),
+              title: Text('${tvDetail.name}'),
             ),
             body: SingleChildScrollView(
               child: Column(
                 children: [
-                  BlocBuilder<MovieBloc, MovieState>(
+                  BlocBuilder<TVBloc, TVState>(
                     buildWhen: (previousState, state) {
                       return state.maybeWhen(
                           orElse: () => false,
@@ -75,9 +73,9 @@ class _MovieDetailState extends State<MovieDetail> {
                             visible: accountState == null,
                             child: TextButton(
                                 onPressed: () {
-                                  context.read<MovieBloc>().add(
-                                      MovieEvent.accountState(
-                                          movieId: movieDetail.id));
+                                  context.read<TVBloc>().add(
+                                      TVEvent.accountState(
+                                          movieId: tvDetail.id));
                                 },
                                 child: Text('Get Account State')),
                           ),
@@ -95,38 +93,9 @@ class _MovieDetailState extends State<MovieDetail> {
                       );
                     },
                   ),
-                  Builder(builder: (context) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextButton(
-                          onPressed: () {
-                            // getIt<MovieRouter>()
-                            //     .push(MovieImagePageRoute(movie: movieDetail));
-                            MovieBloc bloc = context.read<MovieBloc>();
-                            Navigator.of(context)
-                                .push(MaterialPageRoute(builder: (context) {
-                              return BlocProvider.value(
-                                value: bloc,
-                                child: MovieImagePage(movie: movieDetail),
-                              );
-                            }));
-                          },
-                          child: Text(
-                            'Movie Images',
-                            style: Theme.of(context).textTheme.headline4,
-                          )),
-                    );
-                  }),
                   CachedNetworkImage(
                       imageUrl:
-                          ImageGlobalConfig.imageUrl(movieDetail.posterPath)),
-                  SizedBox(height: 10),
-                  Center(
-                    child: Text(
-                      movieDetail.title,
-                      style: Theme.of(context).textTheme.headline1,
-                    ),
-                  ),
+                          ImageGlobalConfig.imageUrl(tvDetail.posterPath)),
                 ],
               ),
             ),

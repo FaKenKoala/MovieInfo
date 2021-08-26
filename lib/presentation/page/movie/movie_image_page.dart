@@ -5,8 +5,8 @@ import 'package:movie_info/application/get_it/get_it_main.dart';
 import 'package:movie_info/application/util/app_image_config.dart';
 import 'package:movie_info/domain/model/media/image.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
-import 'package:movie_info/domain/service/i_movie_service.dart';
-import 'package:movie_info/infrastructure/movie_method/movie_method.dart';
+import 'package:movie_info/domain/service/i_app_service.dart';
+import 'package:movie_info/infrastructure/app_method/app_method.dart';
 import 'package:movie_info/presentation/widget/loading_widget.dart';
 import 'package:movie_info/presentation/widget/movie_error_widget.dart';
 
@@ -24,7 +24,7 @@ class _MovieImagePageState extends State<MovieImagePage> {
   void initState() {
     super.initState();
     future =
-        getIt<IMovieService>().execute(GetMovieImage(movieId: widget.movie.id));
+        getIt<IAppService>().execute(GetMovieImage(movieId: widget.movie.id));
   }
 
   @override

@@ -7,7 +7,6 @@ import 'package:movie_info/application/util/app_image_config.dart';
 import 'package:movie_info/domain/model/api_result/page_result.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
-import 'package:movie_info/presentation/page/movie/movie_page.dart';
 import 'package:movie_info/presentation/widget/loading_widget.dart';
 import 'package:movie_info/presentation/widget/movie_error_widget.dart';
 
@@ -27,15 +26,7 @@ class _TrendingPageState extends State<TrendingPage> {
         builder: (_, state) {
           return state.when(
               initial: () => LoadingWidget(),
-              all: (apiResult) {
-                return AllTrendingPage(trendings: apiResult);
-              },
-              movie: (apiResult) {
-                return MoviePage(movies: apiResult);
-              },
-              tv: (apiResult) {
-                return Text('');
-              },
+              data: (apiResult) => _TrendingListWidget(trendings: apiResult),
               error: (error) => MovieErroWidget());
         },
       ),
@@ -43,15 +34,15 @@ class _TrendingPageState extends State<TrendingPage> {
   }
 }
 
-class AllTrendingPage extends StatefulWidget {
+class _TrendingListWidget extends StatefulWidget {
   final PageResult trendings;
-  const AllTrendingPage({Key? key, required this.trendings}) : super(key: key);
+  const _TrendingListWidget({Key? key, required this.trendings}) : super(key: key);
 
   @override
-  _AllTrendingPageState createState() => _AllTrendingPageState();
+  _TrendingListWidgetState createState() => _TrendingListWidgetState();
 }
 
-class _AllTrendingPageState extends State<AllTrendingPage> {
+class _TrendingListWidgetState extends State<_TrendingListWidget> {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
@@ -68,7 +59,6 @@ class _AllTrendingPageState extends State<AllTrendingPage> {
         } else if (item is TV) {
           posterPath = item.posterPath;
         }
-        print('索引$index: ${item.runtimeType}');
         return Material(
           child: InkWell(
             child: posterPath == null
