@@ -89,4 +89,11 @@ class MovieMethod with _$MovieMethod {
     String? language,
     int? page,
   }) = GetMovieReview;
+
+  /// Get Movie Similar
+  const factory MovieMethod.movieSimilar({
+    required int movieId,
+    String? language,
+    int? page,
+  }) = GetMovieSimilar;
 }

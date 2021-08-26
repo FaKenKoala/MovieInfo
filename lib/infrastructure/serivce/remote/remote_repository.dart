@@ -102,6 +102,13 @@ abstract class RemoteRepository {
     @Query(Language) String? language,
     @Query(Page) int? page,
   });
+
+  @GET('$MoviePrefix/similar')
+  Future<PageResult<Movie>> movieSimilar({
+    @Path(MovieId) required int movieId,
+    @Query(Language) String? language,
+    @Query(Page) int? page,
+  });
 }
 
 const MoviePrefix = '/movie/{$MovieId}';

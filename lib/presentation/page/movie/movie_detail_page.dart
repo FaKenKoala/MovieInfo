@@ -30,7 +30,7 @@ class _MovieDetailState extends State<MovieDetail> {
     super.initState();
     movieDetail = widget.movie;
     addDioLogger();
-    getIt<IMovieService>().execute(GetMovieReview(movieId: movieDetail.id));
+    getIt<IMovieService>().execute(GetMovieSimilar(movieId: movieDetail.id));
   }
 
   @override

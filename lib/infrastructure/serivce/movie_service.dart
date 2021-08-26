@@ -75,7 +75,8 @@ class MovieService extends IMovieService {
         movieList: getMovieList,
         moveiRecommendation: getMovieRecommendation,
         movieReleaseDate: getMovieReleaseDate,
-        movieReview: getMovieReview);
+        movieReview: getMovieReview,
+        movieSimilar: getMovieSimilar);
   }
 
   /// Configuration
@@ -184,5 +185,11 @@ class MovieService extends IMovieService {
   Future<PageResult<Review>> getMovieReview(GetMovieReview review) async {
     return await remoteRepository.movieReview(
         movieId: review.movieId, language: review.language, page: review.page);
+  }
+
+  /// Movie Lists belongs to
+  Future<PageResult<Movie>> getMovieSimilar(GetMovieSimilar similar) async {
+    return await remoteRepository.movieSimilar(
+        movieId: similar.movieId, language: similar.language, page: similar.page);
   }
 }
