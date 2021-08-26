@@ -51,4 +51,10 @@ class MovieMethod with _$MovieMethod {
   const factory MovieMethod.movieExternalId({
     required int movieId,
   }) = GetMovieExternalId;
+
+  /// Get Movie Images
+  const factory MovieMethod.movieImage({
+    required int movieId,
+    String? language,
+  }) = GetMovieImage;
 }

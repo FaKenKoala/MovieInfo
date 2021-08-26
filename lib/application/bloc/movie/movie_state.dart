@@ -7,4 +7,5 @@ class MovieState with _$MovieState {
   const factory MovieState.accountState(AccountState accountState) =
       MovieStateAccountState;
   const factory MovieState.error(Exception e) = MovieStateError;
+  const factory MovieState.image(MovieImage image) = MovieStateImage;
 }

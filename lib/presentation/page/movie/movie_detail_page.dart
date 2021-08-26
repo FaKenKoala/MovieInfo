@@ -3,13 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_info/application/bloc/movie/movie_bloc.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
+import 'package:movie_info/application/route/movie_router.gr.dart';
 import 'package:movie_info/application/util/image_global_config.dart';
 import 'package:movie_info/domain/model/account_state/account_state.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
 import 'package:movie_info/domain/service/i_movie_service.dart';
 import 'package:movie_info/infrastructure/movie_method/movie_method.dart';
 import 'package:movie_info/infrastructure/util/dio_logger.dart';
+import 'package:movie_info/presentation/page/movie/movie_image_page.dart';
 import 'package:provider/provider.dart';
+import 'package:auto_route/auto_route.dart';
 
 class MovieDetail extends StatefulWidget {
   final Movie movie;
@@ -27,7 +30,7 @@ class _MovieDetailState extends State<MovieDetail> {
     super.initState();
     movieDetail = widget.movie;
     addDioLogger();
-    getIt<IMovieService>().execute(GetMovieExternalId(movieId: movieDetail.id));
+    getIt<IMovieService>().execute(GetMovieImage(movieId: movieDetail.id));
   }
 
   @override
@@ -91,6 +94,31 @@ class _MovieDetailState extends State<MovieDetail> {
                       );
                     },
                   ),
+                  Hah(),
+                  Builder(builder: (context) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextButton(
+                          onPressed: () {
+                            // getIt<MovieRouter>()
+                            //     .push(MovieImagePageRoute(movie: movieDetail));
+                            print(
+                                'currentPage context 哈希值: ${context.read<MovieBloc>()}');
+                            MovieBloc bloc = context.read<MovieBloc>();
+                            Navigator.of(context)
+                                .push(MaterialPageRoute(builder: (context) {
+                              return BlocProvider.value(
+                                value: bloc,
+                                child: MovieImagePage(movie: movieDetail),
+                              );
+                            }));
+                          },
+                          child: Text(
+                            'Movie Images',
+                            style: Theme.of(context).textTheme.headline4,
+                          )),
+                    );
+                  }),
                   CachedNetworkImage(
                       imageUrl:
                           ImageGlobalConfig.imageUrl(movieDetail.posterPath)),
@@ -106,5 +134,14 @@ class _MovieDetailState extends State<MovieDetail> {
             ),
           ),
         ));
+  }
+}
+
+class Hah extends StatelessWidget {
+  const Hah({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text('hahah: ${context.read<MovieBloc>().hashCode}');
   }
 }

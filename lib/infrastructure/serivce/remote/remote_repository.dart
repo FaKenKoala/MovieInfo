@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movie_info/domain/model/account_state/account_state.dart';
 import 'package:movie_info/domain/model/configuration/configuration.dart';
+import 'package:movie_info/domain/model/image/image.dart';
 import 'package:movie_info/domain/model/movie/external_id.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
 import 'package:movie_info/domain/model/movie/movie_change.dart';
@@ -59,6 +60,11 @@ abstract class RemoteRepository {
     @Path(MovieId) required int movieId,
   });
 
+  @GET('$MoviePrefix/images')
+  Future<MovieImage> movieImage({
+    @Path(MovieId) required int movieId,
+    @Query('language') String? language,
+  });
 }
 
 const MoviePrefix = '/movie/{$MovieId}';

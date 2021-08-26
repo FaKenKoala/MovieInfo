@@ -7,6 +7,7 @@ import 'package:movie_info/application/get_it/get_it_main.dart';
 import 'package:movie_info/domain/model/account_state/account_state.dart';
 import 'package:movie_info/domain/model/configuration/configuration.dart';
 import 'package:movie_info/domain/model/enum_values/enum_values.dart';
+import 'package:movie_info/domain/model/image/image.dart';
 import 'package:movie_info/domain/model/movie/external_id.dart';
 import 'package:movie_info/domain/model/movie/movie_change.dart';
 import 'package:movie_info/domain/model/movie/movie_credit.dart';
@@ -52,6 +53,7 @@ class MovieService extends IMovieService {
       movieChanges: getMovieChanges,
       movieCredit: getMovieCredit,
       movieExternalId: getMovieExternalId,
+      movieImage: getMovieImage
     );
   }
 
@@ -125,4 +127,8 @@ class MovieService extends IMovieService {
     return await remoteRepository.movieExternalId(movieId: id.movieId);
   }
 
+  /// Movie Images
+  Future<MovieImage> getMovieImage(GetMovieImage image) async {
+    return await remoteRepository.movieImage(movieId: image.movieId, language: image.language);
+  }
 }

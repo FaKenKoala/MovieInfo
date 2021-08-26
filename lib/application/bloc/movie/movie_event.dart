@@ -10,4 +10,9 @@ class MovieEvent with _$MovieEvent {
   const factory MovieEvent.accountState({
     required int movieId,
   }) = _MovieEventAccountState;
+
+  const factory MovieEvent.image({
+    required int movieId,
+    String? language,
+  }) = _MovieEventImage;
 }

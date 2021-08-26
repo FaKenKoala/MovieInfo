@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movie_info/domain/model/account_state/account_state.dart';
+import 'package:movie_info/domain/model/image/image.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
 import 'package:movie_info/domain/service/i_movie_service.dart';
 import 'package:movie_info/infrastructure/movie_method/movie_method.dart';
@@ -21,8 +22,8 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
   Stream<MovieState> mapEventToState(
     MovieEvent event,
   ) async* {
-    yield await event.map(
-        detail: _getMovieDetail, accountState: _getMovieAccountState);
+    yield await  event.map(
+        detail: _getMovieDetail, accountState: _getMovieAccountState, image: _getMovieImage);
   }
 
   Future<MovieState> _getMovieDetail(_MovieEventDetail detail) async {
@@ -41,5 +42,14 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
     ));
     return result.fold(
         (l) => MovieState.error(l), (r) => MovieState.accountState(r));
+  }
+
+Future<MovieState> _getMovieImage(
+      _MovieEventImage state) async {
+    final result = await movieService.execute(GetMovieImage(movieId: state.movieId,
+      language: state.language,
+    ));
+    return result.fold(
+        (l) => MovieState.error(l), (r) => MovieState.image(r));
   }
 }
