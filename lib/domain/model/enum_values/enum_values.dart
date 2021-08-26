@@ -1,5 +1,7 @@
 export 'media_type.dart';
 export 'time_window.dart';
+export 'sort_by.dart';
+export 'monetization_type.dart';
 
 K _enumDecode<K, V>(
   Map<K, V> enumValues,

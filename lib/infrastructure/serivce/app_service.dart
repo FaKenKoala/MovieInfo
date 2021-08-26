@@ -19,7 +19,6 @@ import 'package:movie_info/domain/model/movie/movie_list.dart';
 import 'package:movie_info/domain/model/api_result/page_result.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
 import 'package:movie_info/domain/model/person/cast.dart';
-import 'package:movie_info/domain/model/person/person.dart';
 import 'package:movie_info/domain/model/recommendation/recommendation.dart';
 import 'package:movie_info/domain/model/release_date/release_date.dart';
 import 'package:movie_info/domain/model/review/review.dart';
@@ -38,6 +37,7 @@ import 'repository/local/local_repository.dart';
 import 'repository/remote/remote_repository.dart';
 
 part 'app_service_part/configuration_part.dart';
+part 'app_service_part/discover_part.dart';
 part 'app_service_part/movie_part.dart';
 part 'app_service_part/trending_part.dart';
 part 'app_service_part/tv_part.dart';
@@ -50,7 +50,7 @@ abstract class AppServicePart {
 
 @Singleton(as: IAppService)
 class AppService extends AppServicePart
-    with ConfigurationPart, MoviePart, TrendingPart, TVPart
+    with ConfigurationPart, DiscoverPart, MoviePart, TrendingPart, TVPart
     implements IAppService {
   AppService(RemoteRepository remoteRepository, LocalRepository localRepository)
       : super._(remoteRepository, localRepository);
@@ -104,6 +104,8 @@ class AppService extends AppServicePart
         getPopularMovie: getPopularMovie,
         getTopRatedMovie: getTopRatedMovie,
         getUpcomingMovie: getUpcomingMovie,
-        getTVDetail: getTVDetail);
+        getTVDetail: getTVDetail,
+        discoverMovie: discoverMovie,
+        discoverTV: discoverTV);
   }
 }
