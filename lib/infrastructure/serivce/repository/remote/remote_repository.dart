@@ -10,6 +10,7 @@ import 'package:movie_info/domain/model/media/image.dart';
 import 'package:movie_info/domain/model/movie/external_id.dart';
 import 'package:movie_info/domain/model/movie/keyword.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
+import 'package:movie_info/domain/model/tv/episode_group.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
 
 import 'package:movie_info/domain/model/change/change.dart';

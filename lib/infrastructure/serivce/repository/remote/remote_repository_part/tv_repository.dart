@@ -33,5 +33,11 @@ mixin TVRepository {
 
   @GET('$TVPrefix/credits')
   Future<MediaCredit> getTVCredit(
-      @Path(TVId) int tvId,);
+    @Path(TVId) int tvId,
+  );
+
+  @GET('$TVPrefix/episode_groups')
+  Future<IDResult<EpisodeGroup>> getTVEpisodeGroups(
+    @Path(TVId) int tvId,
+  );
 }

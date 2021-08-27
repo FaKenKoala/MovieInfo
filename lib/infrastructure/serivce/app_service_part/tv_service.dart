@@ -18,4 +18,6 @@ mixin TVService on AppServicePart {
   get getTVContentRating => remoteRepository.getTVContentRating;
 
   get getTVCredit => remoteRepository.getTVCredit;
+
+  get getTVEpisodeGroups => remoteRepository.getTVEpisodeGroups;
 }

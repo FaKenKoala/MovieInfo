@@ -25,7 +25,8 @@ class ApiTest {
     // _service.execute(GetTVAlternativeTitles(tvId: tv.id));
     // _service.execute(GetTVChanges(tvId: tv.id));
     // _service.execute(GetTVContentRating(tvId: tv.id));
-    _service.execute(GetTVCredit(tvId: tv.id));
+    // _service.execute(GetTVCredit(tvId: tv.id));
+    _service.execute(GetTVEpisodeGroups(tvId: tv.id));
 
 
   }

@@ -38,4 +38,8 @@ class TVMethod with _$TVMethod implements AppMethod {
   const factory TVMethod.getTVCredit({
     required int tvId,
   }) = GetTVCredit;
+
+  const factory TVMethod.getTVEpisodeGroups({
+    required int tvId,
+  }) = GetTVEpisodeGroups;
 }
