@@ -126,7 +126,8 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: () {
-                ApiTest.instance.companyTest();
+                // ApiTest.instance.companyTest();
+                ApiTest.instance.collectionTest();
               },
               child: Icon(Icons.upload),
             ),

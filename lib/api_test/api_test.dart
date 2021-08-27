@@ -92,6 +92,12 @@ class ApiTest {
     _service.execute(GetCompanyLogos(companyId: 7493));
   }
 
+  collectionTest() {
+    // _service.execute(GetCollectionDetail(collectionId: 98580));
+    // _service.execute(GetCollectionImages(collectionId: 98580));
+    _service.execute(GetCollectionTranslations(collectionId: 98580));
+  }
+
   ApiTest._() {
     addDioLogger(PrettyDioLogger(
         requestHeader: true,

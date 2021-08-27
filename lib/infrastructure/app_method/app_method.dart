@@ -1,18 +1,20 @@
-import 'package:dartz/dartz.dart';
-import 'package:movie_info/domain/model/code_response/app_exception.dart';
-import 'package:movie_info/infrastructure/app_method/app_method_part/genre_method.dart';
+import 'app_method_part/collection_method.dart';
 import 'app_method_part/company_method.dart';
 import 'app_method_part/configuration_method.dart';
 import 'app_method_part/discover_method.dart';
 import 'app_method_part/find_method.dart';
+import 'app_method_part/keyword_method.dart';
 import 'app_method_part/movie_method.dart';
+import 'app_method_part/network_method.dart';
 import 'app_method_part/trending_method.dart';
 import 'app_method_part/tv_episode_group_method.dart';
 import 'app_method_part/tv_method.dart';
 import 'app_method_part/watch_provider_method.dart';
-import 'app_method_part/network_method.dart';
-import 'app_method_part/keyword_method.dart';
+import 'package:dartz/dartz.dart';
+import 'package:movie_info/domain/model/code_response/app_exception.dart';
+import 'package:movie_info/infrastructure/app_method/app_method_part/genre_method.dart';
 
+export 'app_method_part/collection_method.dart';
 export 'app_method_part/company_method.dart';
 export 'app_method_part/configuration_method.dart';
 export 'app_method_part/discover_method.dart';
@@ -31,6 +33,8 @@ class AppMethod {}
 
 extension AppMethodX on AppMethod {
   AppMethodType get methodType {
+    if (this is CollectionMethod) return AppMethodType.Collection;
+
     if (this is CompanyMethod) return AppMethodType.Company;
 
     if (this is ConfigurationMethod) return AppMethodType.Configuration;
@@ -60,6 +64,7 @@ extension AppMethodX on AppMethod {
 }
 
 enum AppMethodType {
+  Collection,
   Company,
   Configuration,
   Discover,

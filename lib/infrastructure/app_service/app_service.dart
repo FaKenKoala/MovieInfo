@@ -64,6 +64,12 @@ class AppService extends AppServicePart
 
   Future _executeMethod(AppMethod method) async {
     switch (method.methodType) {
+      case AppMethodType.Collection:
+        return (method as CollectionMethod).when(
+          getCollectionDetail: remote.getCollectionDetail,
+          getCollectionImages: remote.getCollectionImages,
+          getCollectionTranslations: remote.getCollectionTranslation,
+        );
       case AppMethodType.Company:
         return (method as CompanyMethod).when(
             getCompanyDetail: remote.getCompanyDetail,

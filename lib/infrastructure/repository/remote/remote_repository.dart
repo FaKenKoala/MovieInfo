@@ -64,6 +64,7 @@ part 'remote_repository.g.dart';
 abstract class RemoteRepository
     with
         CompanyRepository,
+        CollectionRepository,
         ConfigurationRepository,
         DiscoverRepository,
         FindRepository,
