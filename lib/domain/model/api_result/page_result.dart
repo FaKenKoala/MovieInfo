@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'page_result.g.dart';
@@ -38,6 +40,11 @@ class PageResult<T> {
       totalResults: totalResults ?? this.totalResults,
     );
   }
+
+  @override
+  String toString() {
+    return json.encode(toJson((T t) => json.decode(t.toString())));
+  }
 }
 
 @JsonSerializable()
@@ -52,4 +59,9 @@ class MovieDate {
   factory MovieDate.fromJson(Map<String, dynamic> json) =>
       _$MovieDateFromJson(json);
   Map<String, dynamic> toJson() => _$MovieDateToJson(this);
+
+  @override
+  String toString() {
+    return json.encode(toJson());
+  }
 }

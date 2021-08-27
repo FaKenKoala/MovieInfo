@@ -60,8 +60,11 @@ mixin TVService on AppServicePart {
   /// Get Latest TV
   get getLatestTV => remoteRepository.getLatestTV;
 
-  /// Get Now Playing TV
-  get getNowPlayingTV => remoteRepository.getNowPlayingTV;
+  /// Get Airing Today TV
+  get getAiringTodayTV => remoteRepository.getAiringTodayTV;
+
+  /// Get On The Air TV
+  get getOnTheAirTV => remoteRepository.getOnTheAirTV;
 
   /// Get Popular TV
   get getPopularTV => remoteRepository.getPopularTV;
@@ -69,6 +72,4 @@ mixin TVService on AppServicePart {
   /// Get Top Rated TV
   get getTopRatedTV => remoteRepository.getTopRatedTV;
 
-  /// Get Upcoming TV
-  get getUpcomingTV => remoteRepository.getUpcomingTV;
 }

@@ -109,19 +109,20 @@ class TVMethod with _$TVMethod implements AppMethod {
   /// Get Latest TV
   const factory TVMethod.getLatestTV() = GetLatestTV;
 
-  /// Get now playing TV
-  const factory TVMethod.getNowPlayingTV({int? page, String? region}) =
-      GetNowPlayingTV;
+  /// Get airing today TV
+  const factory TVMethod.getAiringTodayTV({int? page}) =
+      GetAiringTodayTV;
 
-  /// Get Now playing TV
-  const factory TVMethod.getPopularTV({int? page, String? region}) =
+      /// Get on the air TV
+  const factory TVMethod.getOnTheAirTV({int? page}) =
+      GetOnTheAirTV;
+
+  /// Get Popular TV
+  const factory TVMethod.getPopularTV({int? page}) =
       GetPopularTV;
 
   /// Get Top Rated TV
-  const factory TVMethod.getTopRatedTV({int? page, String? region}) =
+  const factory TVMethod.getTopRatedTV({int? page}) =
       GetTopRatedTV;
 
-  /// Get Upcoming TV
-  const factory TVMethod.getUpcomingTV({int? page, String? region}) =
-      GetUpcomingTV;
 }

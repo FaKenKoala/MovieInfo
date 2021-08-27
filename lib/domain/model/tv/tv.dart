@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:movie_info/domain/model/country/country.dart';
 import 'package:movie_info/domain/model/enum_values/enum_values.dart';
@@ -89,6 +91,6 @@ class TV {
 
   @override
   String toString() {
-    return '${this.toJson()}';
+    return json.encode(toJson());
   }
 }

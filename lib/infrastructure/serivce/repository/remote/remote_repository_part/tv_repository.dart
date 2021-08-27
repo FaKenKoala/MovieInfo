@@ -108,27 +108,24 @@ mixin TVRepository {
   @GET('/tv/latest')
   Future<TV> getLatestTV();
 
-  @GET('/tv/now_playing')
-  Future<PageResult<TV>> getNowPlayingTV(
+  @GET('/tv/airing_today')
+  Future<PageResult<TV>> getAiringTodayTV(
     @Query(Page) int? page,
-    @Query('region') String? region,
+  );
+
+  @GET('/tv/on_the_air')
+  Future<PageResult<TV>> getOnTheAirTV(
+    @Query(Page) int? page,
   );
 
   @GET('/tv/popular')
   Future<PageResult<TV>> getPopularTV(
     @Query(Page) int? page,
-    @Query('region') String? region,
   );
 
   @GET('/tv/top_rated')
   Future<PageResult<TV>> getTopRatedTV(
     @Query(Page) int? page,
-    @Query('region') String? region,
   );
 
-  @GET('/tv/upcoming')
-  Future<PageResult<TV>> getUpcomingTV(
-    @Query(Page) int? page,
-    @Query('region') String? region,
-  );
 }

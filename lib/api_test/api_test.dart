@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
 import 'package:movie_info/domain/model/api_result/id_result.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
+import 'package:movie_info/domain/model/movie/rate_content.dart';
 import 'package:movie_info/domain/model/tv/episode_group.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
 import 'package:movie_info/domain/service/i_app_service.dart';
@@ -47,7 +48,15 @@ class ApiTest {
     // _service.execute(GetScreenedThreatricallyTV(tvId: tv.id));
     // _service.execute(GetSimilarTV(tvId: tv.id));
     // _service.execute(GetTVTranslation(tvId: tv.id));
-    _service.execute(GetTVVideo(tvId: tv.id));
+    // _service.execute(GetTVVideo(tvId: tv.id));
+    // _service.execute(GetTVWatchProvider(tvId: tv.id));
+    // _service.execute(RateTV(tvId: tv.id,rateContent: RateContent(value: 10)));
+    // _service.execute(DeleteTVRate(tvId: tv.id));
+    // _service.execute(GetLatestTV());
+    // _service.execute(GetAiringTodayTV());
+    // _service.execute(GetOnTheAirTV());
+    // _service.execute(GetPopularTV());
+    // _service.execute(GetTopRatedTV());
   }
 
   ApiTest._() {

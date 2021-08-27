@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'episode.g.dart';
@@ -35,4 +37,9 @@ class Episode {
   factory Episode.fromJson(Map<String, dynamic> json) =>
       _$EpisodeFromJson(json);
   Map<String, dynamic> toJson() => _$EpisodeToJson(this);
+
+  @override
+  String toString() {
+    return json.encode(toJson());
+  }
 }

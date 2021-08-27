@@ -78,7 +78,7 @@ class AppService extends AppServicePart
     try {
       return right(await _executeMethod(method))
         ..fold((l) => null, (r) {
-          MovieLog.printJson('${r.toString()}');
+          catching(() => MovieLog.printJson('${r.toString()}'));
         });
     } catch (e) {
       AppException? movieException;
@@ -154,10 +154,10 @@ class AppService extends AppServicePart
             rateTV: rateTV,
             deleteTVRate: deleteTVRate,
             getLatestTV: getLatestTV,
-            getNowPlayingTV: getNowPlayingTV,
+            getAiringTodayTV: getAiringTodayTV,
+            getOnTheAirTV: getOnTheAirTV,
             getPopularTV: getPopularTV,
-            getTopRatedTV: getTopRatedTV,
-            getUpcomingTV: getUpcomingTV);
+            getTopRatedTV: getTopRatedTV);
       case AppMethodType.TVEpisodeGroup:
         return (method as TVEpisodeGroupMethod)
             .when(getTVEpisodeGroupDetail: getTVEpisodeGroupDetail);

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:json_annotation/json_annotation.dart';
 import 'package:movie_info/domain/model/watch_provider/watch_provider.dart';
 
@@ -15,4 +17,9 @@ class WatchProviderList {
   factory WatchProviderList.fromJson(Map<String, dynamic> json) =>
       _$WatchProviderListFromJson(json);
   Map<String, dynamic> toJson() => _$WatchProviderListToJson(this);
+
+  @override
+  String toString() {
+    return json.encode(toJson());
+  }
 }
