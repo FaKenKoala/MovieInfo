@@ -36,6 +36,9 @@ mixin TVService on AppServicePart {
   /// TV Lists belongs to
   get getTVReview => remoteRepository.getTVReview;
 
+  /// Get Screened Theatrically
+  get getScreenedThreatricallyTV => remoteRepository.getTVScreenedTheatrically;
+
   /// TV Lists belongs to
   get getSimilarTV => remoteRepository.getSimilarTV;
 
@@ -68,7 +71,4 @@ mixin TVService on AppServicePart {
 
   /// Get Upcoming TV
   get getUpcomingTV => remoteRepository.getUpcomingTV;
-
-  /// Get Screened Theatrically
-  get getScreenedThreatricallyTV => remoteRepository.getTVScreenedTheatrically;
 }
