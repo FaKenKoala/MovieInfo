@@ -77,9 +77,6 @@ class AppService extends AppServicePart
       return right(await _executeMethod(method))
         ..fold((l) => null, (r) {
           MovieLog.printJson('${r.toString()}');
-          if (r is MediaCredit) {
-            MovieLog.printS(r.cast.first.toJson());
-          }
         });
     } catch (e) {
       AppException? movieException;
@@ -139,7 +136,7 @@ class AppService extends AppServicePart
             getTVAggregateCredit: getTVAggregateCredit,
             getTVAlternativeTitles: getTVAlternativeTitles,
             getTVChanges: getTVChanges,
-            getTVContentRating: getTVContentRating);
+            getTVContentRating: getTVContentRating,getTVCredit: getTVCredit);
       case AppMethodType.Unknow:
         throw 'Unknown Method Type: $method';
     }

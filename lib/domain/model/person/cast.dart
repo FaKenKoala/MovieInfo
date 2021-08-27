@@ -14,23 +14,26 @@ class Cast {
     this.originalName = '',
     this.popularity = 0.0,
     this.profilePath = '',
+    this.character = '',
+    this.creditId = '',
     this.order = 0,
     this.roles = const [],
     this.totalEpisodeCount = 0,
   });
 
   final bool adult;
-    final int gender;
-    final int id;
-    final String knownForDepartment;
-    final String name;
-    final String originalName;
-    final double popularity;
-    final String profilePath;
-    final List<Role> roles;
-    final int totalEpisodeCount;
-    final int order;
-
+  final int gender;
+  final int id;
+  final String knownForDepartment;
+  final String name;
+  final String originalName;
+  final double popularity;
+  final String profilePath;
+  final String character;
+  final String creditId;
+  final List<Role> roles;
+  final int totalEpisodeCount;
+  final int order;
 
   factory Cast.fromJson(Map<String, dynamic> json) => _$CastFromJson(json);
   Map<String, dynamic> toJson() => _$CastToJson(this);
@@ -60,5 +63,3 @@ class Role {
     return json.encode(toJson());
   }
 }
-
-

@@ -16,4 +16,6 @@ mixin TVService on AppServicePart {
   get getTVChanges => remoteRepository.getTVChanges;
 
   get getTVContentRating => remoteRepository.getTVContentRating;
+
+  get getTVCredit => remoteRepository.getTVCredit;
 }

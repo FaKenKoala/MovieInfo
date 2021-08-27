@@ -12,7 +12,9 @@ class Crew {
     this.name = '',
     this.originalName = '',
     this.popularity = 0.0,
-    this.profilePath = '',
+    this.profilePath,
+    this.creditId = '',
+    this.job = '',
     this.jobs = const [],
     this.department = '',
     this.totalEpisodeCount = 0,
@@ -25,7 +27,9 @@ class Crew {
   final String name;
   final String originalName;
   final double popularity;
-  final dynamic profilePath;
+  final String? profilePath;
+  final String creditId;
+  final String job;
   final List<Job> jobs;
   final String department;
   final int totalEpisodeCount;

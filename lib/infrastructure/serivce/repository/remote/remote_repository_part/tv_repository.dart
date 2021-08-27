@@ -30,4 +30,8 @@ mixin TVRepository {
   Future<IDResult<ContentRating>> getTVContentRating(
     @Path(TVId) int tvId,
   );
+
+  @GET('$TVPrefix/credits')
+  Future<MediaCredit> getTVCredit(
+      @Path(TVId) int tvId,);
 }
