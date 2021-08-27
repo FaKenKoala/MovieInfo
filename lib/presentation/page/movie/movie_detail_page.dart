@@ -1,16 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_info/api_test/api_test.dart';
 import 'package:movie_info/application/bloc/movie/movie_bloc.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
 import 'package:movie_info/application/util/app_image_config.dart';
 import 'package:movie_info/domain/model/account_state/account_state.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
-import 'package:movie_info/domain/service/i_app_service.dart';
-import 'package:movie_info/infrastructure/app_method/app_method.dart';
-import 'package:movie_info/infrastructure/util/dio_logger.dart';
 import 'package:movie_info/presentation/page/movie/movie_image_page.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:provider/provider.dart';
 
 class MovieDetailPage extends StatefulWidget {
@@ -27,6 +24,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   @override
   void initState() {
     super.initState();
+    ApiTest.instance;
     movieDetail = widget.movie;
   }
 
@@ -34,12 +32,11 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   Widget build(BuildContext context) {
     return BlocProvider(
         create: (_) => getIt<MovieBloc>()
-        // ..add(
-        //   MovieEvent.detail(
-        //     movieId: widget.movie.id,
-        //   ),
-        // )
-        ,
+          ..add(
+            MovieEvent.detail(
+              movieId: widget.movie.id,
+            ),
+          ),
         child: BlocListener<MovieBloc, MovieState>(
           listenWhen: (previousState, state) {
             return state.maybeMap(detail: (_) => true, orElse: () => false);
@@ -126,6 +123,12 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                   ),
                 ],
               ),
+            ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                ApiTest.instance.companyTest();
+              },
+              child: Icon(Icons.upload),
             ),
           ),
         ));

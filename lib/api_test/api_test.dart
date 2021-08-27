@@ -86,6 +86,12 @@ class ApiTest {
     _service.execute(GetTVGenreList());
   }
 
+  companyTest() {
+    // _service.execute(GetCompanyDetail(companyId: 7493));
+    // _service.execute(GetCompanyAlternativeNames(companyId: 7493));
+    _service.execute(GetCompanyLogos(companyId: 7493));
+  }
+
   ApiTest._() {
     addDioLogger(PrettyDioLogger(
         requestHeader: true,

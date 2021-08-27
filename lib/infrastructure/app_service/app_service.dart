@@ -64,6 +64,11 @@ class AppService extends AppServicePart
 
   Future _executeMethod(AppMethod method) async {
     switch (method.methodType) {
+      case AppMethodType.Company:
+        return (method as CompanyMethod).when(
+            getCompanyDetail: remote.getCompanyDetail,
+            getCompanyAlternativeNames: remote.getCompanyAlternativeNames,
+            getCompanyLogos: remote.getCompanyLogos);
       case AppMethodType.Configuration:
         return (method as ConfigurationMethod)
             .map(getConfiguration: getConfiguration);

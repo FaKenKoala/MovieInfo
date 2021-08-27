@@ -7,20 +7,20 @@ part 'network.g.dart';
 @JsonSerializable()
 class Network {
   Network({
-    this.name = '',
+    this.headquarters = '',
+    this.homepage = '',
     this.id = 0,
     this.logoPath = '',
+    this.name = '',
     this.originCountry = '',
-    this.homepage = '',
-    this.headquarters = '',
   });
 
-  final String name;
+  final String headquarters;
+  final String homepage;
   final int id;
   final String logoPath;
+  final String name;
   final String originCountry;
-  final String homepage;
-  final String headquarters;
 
   factory Network.fromJson(Map<String, dynamic> json) =>
       _$NetworkFromJson(json);

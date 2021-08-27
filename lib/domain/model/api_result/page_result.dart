@@ -13,7 +13,7 @@ class PageResult<T> {
   final int totalResults;
 
   PageResult(
-      {required this.page,
+      { this.page = 1,
       this.dates,
       this.results = const [],
       required this.totalPages,

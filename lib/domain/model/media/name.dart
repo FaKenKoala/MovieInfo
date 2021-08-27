@@ -2,20 +2,20 @@ import 'dart:convert';
 
 import 'package:json_annotation/json_annotation.dart';
 
-part 'network_name.g.dart';
+part 'name.g.dart';
 
 @JsonSerializable()
-class NetworkName {
+class MediaName {
   final String name;
   final String type;
-  NetworkName({
+  MediaName({
     this.name = '',
     this.type = '',
   });
 
-  factory NetworkName.fromJson(Map<String, dynamic> json) =>
-      _$NetworkNameFromJson(json);
-  Map<String, dynamic> toJson() => _$NetworkNameToJson(this);
+  factory MediaName.fromJson(Map<String, dynamic> json) =>
+      _$MediaNameFromJson(json);
+  Map<String, dynamic> toJson() => _$MediaNameToJson(this);
   @override
   String toString() {
     return json.encode(toJson());

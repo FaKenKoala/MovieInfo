@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:movie_info/domain/model/code_response/app_exception.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/genre_method.dart';
+import 'app_method_part/company_method.dart';
 import 'app_method_part/configuration_method.dart';
 import 'app_method_part/discover_method.dart';
 import 'app_method_part/find_method.dart';
@@ -12,6 +13,7 @@ import 'app_method_part/watch_provider_method.dart';
 import 'app_method_part/network_method.dart';
 import 'app_method_part/keyword_method.dart';
 
+export 'app_method_part/company_method.dart';
 export 'app_method_part/configuration_method.dart';
 export 'app_method_part/discover_method.dart';
 export 'app_method_part/find_method.dart';
@@ -29,6 +31,8 @@ class AppMethod {}
 
 extension AppMethodX on AppMethod {
   AppMethodType get methodType {
+    if (this is CompanyMethod) return AppMethodType.Company;
+
     if (this is ConfigurationMethod) return AppMethodType.Configuration;
 
     if (this is DiscoverMethod) return AppMethodType.Discover;
@@ -56,6 +60,7 @@ extension AppMethodX on AppMethod {
 }
 
 enum AppMethodType {
+  Company,
   Configuration,
   Discover,
   Find,

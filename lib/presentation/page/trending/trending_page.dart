@@ -66,6 +66,8 @@ class _TrendingListWidgetState extends State<_TrendingListWidget> {
             onTap: () {
               if (item is TV) {
                 getIt<AppRouter>().push(TVDetailPageRoute(tv: item));
+              } else if (item is Movie) {
+                getIt<AppRouter>().push(MovieDetailPageRoute(movie: item));
               }
             },
             child: posterPath == null
