@@ -98,6 +98,12 @@ class ApiTest {
     _service.execute(GetCollectionTranslations(collectionId: 98580));
   }
 
+  changeTest() {
+    // _service.execute(GetChangeMovies());
+    // _service.execute(GetChangeTVs());
+    _service.execute(GetChangePersons());
+  }
+
   ApiTest._() {
     addDioLogger(PrettyDioLogger(
         requestHeader: true,

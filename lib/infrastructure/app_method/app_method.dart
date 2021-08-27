@@ -1,3 +1,4 @@
+import 'app_method_part/change_method.dart';
 import 'app_method_part/collection_method.dart';
 import 'app_method_part/company_method.dart';
 import 'app_method_part/configuration_method.dart';
@@ -14,6 +15,7 @@ import 'package:dartz/dartz.dart';
 import 'package:movie_info/domain/model/code_response/app_exception.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/genre_method.dart';
 
+export 'app_method_part/change_method.dart';
 export 'app_method_part/collection_method.dart';
 export 'app_method_part/company_method.dart';
 export 'app_method_part/configuration_method.dart';
@@ -33,6 +35,8 @@ class AppMethod {}
 
 extension AppMethodX on AppMethod {
   AppMethodType get methodType {
+    if (this is ChangeMethod) return AppMethodType.Change;
+
     if (this is CollectionMethod) return AppMethodType.Collection;
 
     if (this is CompanyMethod) return AppMethodType.Company;
@@ -64,6 +68,7 @@ extension AppMethodX on AppMethod {
 }
 
 enum AppMethodType {
+  Change,
   Collection,
   Company,
   Configuration,

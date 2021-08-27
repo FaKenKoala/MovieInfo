@@ -13,6 +13,7 @@ import 'package:movie_info/domain/model/person/cast.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
 import 'package:movie_info/domain/service/i_app_service.dart';
 import 'package:movie_info/infrastructure/app_method/app_method.dart';
+import 'package:movie_info/infrastructure/app_method/app_method_part/change_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/genre_method.dart';
 import 'package:movie_info/infrastructure/util/constant.dart';
 import 'package:movie_info/infrastructure/util/movie_logger.dart';
@@ -46,7 +47,8 @@ class AppService extends AppServicePart
     try {
       return right(await _executeMethod(method))
         ..fold((l) => null, (r) {
-          catching(() => MovieLog.printJson('${r.toString()}'));
+          // catching(() => MovieLog.printJson('${r.toString()}'));
+          MovieLog.printJson('${r.toString()}');
         });
     } catch (e) {
       AppException? movieException;
@@ -64,6 +66,11 @@ class AppService extends AppServicePart
 
   Future _executeMethod(AppMethod method) async {
     switch (method.methodType) {
+      case AppMethodType.Change:
+        return (method as ChangeMethod).when(
+            getChangeMovies: remote.getChangeMovies,
+            getChangeTVs: remote.getChangeTVs,
+            getChangePersons: remote.getChangePersons);
       case AppMethodType.Collection:
         return (method as CollectionMethod).when(
           getCollectionDetail: remote.getCollectionDetail,

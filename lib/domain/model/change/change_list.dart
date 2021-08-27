@@ -6,7 +6,7 @@ part 'change.g.dart';
 
 @JsonSerializable(genericArgumentFactories: true)
 class ChangeList {
-  List<Change> changes;
+  List<ChangeItem> changes;
 
   ChangeList({
     this.changes = const [],
@@ -22,18 +22,18 @@ class ChangeList {
   }
 }
 
-@JsonSerializable(genericArgumentFactories: true)
-class Change {
+@JsonSerializable()
+class ChangeItem {
   String key;
-  List items;
+  List<ChangeContent> items;
 
-  Change({
+  ChangeItem({
     this.key = '',
     this.items = const [],
   });
 
-  factory Change.fromJson(Map<String, dynamic> json) => _$ChangeFromJson(json);
-  Map<String, dynamic> toJson() => _$ChangeToJson(this);
+  factory ChangeItem.fromJson(Map<String, dynamic> json) => _$ChangeItemFromJson(json);
+  Map<String, dynamic> toJson() => _$ChangeItemToJson(this);
 
   @override
   String toString() {
@@ -42,8 +42,9 @@ class Change {
 }
 
 @JsonSerializable()
-class ChangeItem {
+class ChangeContent {
   final String id;
+  final bool adult;
   final String action;
   final String? time;
   @JsonKey(name: 'iso_639_1')
@@ -53,8 +54,9 @@ class ChangeItem {
   final dynamic value;
   final String originalValue;
 
-  ChangeItem({
+  ChangeContent({
     this.id = '',
+    this.adult = false,
     this.action = '',
     this.time,
     this.iso6391 = '',
@@ -63,9 +65,9 @@ class ChangeItem {
     this.originalValue = '',
   });
 
-  factory ChangeItem.fromJson(Map<String, dynamic> json) =>
-      _$ChangeItemFromJson(json);
-  Map<String, dynamic> toJson() => _$ChangeItemToJson(this);
+  factory ChangeContent.fromJson(Map<String, dynamic> json) =>
+      _$ChangeContentFromJson(json);
+  Map<String, dynamic> toJson() => _$ChangeContentToJson(this);
 
   @override
   String toString() {

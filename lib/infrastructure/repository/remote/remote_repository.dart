@@ -4,7 +4,7 @@ import 'package:movie_info/domain/model/account_state/account_state.dart';
 import 'package:movie_info/domain/model/api_result/id_result.dart';
 import 'package:movie_info/domain/model/api_result/list_result.dart';
 import 'package:movie_info/domain/model/api_result/page_result.dart';
-import 'package:movie_info/domain/model/change/change.dart';
+import 'package:movie_info/domain/model/change/change_list.dart';
 import 'package:movie_info/domain/model/code_response/code_response.dart';
 import 'package:movie_info/domain/model/company/company.dart';
 import 'package:movie_info/domain/model/configuration/configuration.dart';
@@ -21,6 +21,7 @@ import 'package:movie_info/domain/model/movie/movie.dart';
 import 'package:movie_info/domain/model/movie/rate_content.dart';
 import 'package:movie_info/domain/model/media/name.dart';
 import 'package:movie_info/domain/model/network/network.dart';
+import 'package:movie_info/domain/model/person/person.dart';
 import 'package:movie_info/domain/model/release_date/release_date.dart';
 import 'package:movie_info/domain/model/review/review.dart';
 import 'package:movie_info/domain/model/title/title.dart';
@@ -63,6 +64,7 @@ part 'remote_repository.g.dart';
 @singleton
 abstract class RemoteRepository
     with
+        ChangeRepository,
         CompanyRepository,
         CollectionRepository,
         ConfigurationRepository,

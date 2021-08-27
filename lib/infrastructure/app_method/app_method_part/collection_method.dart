@@ -15,6 +15,4 @@ class CollectionMethod with _$CollectionMethod implements AppMethod {
   const factory CollectionMethod.getCollectionTranslations({
     required int collectionId,
   }) = GetCollectionTranslations;
-
-  
 }
