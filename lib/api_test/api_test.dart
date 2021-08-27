@@ -23,7 +23,8 @@ class ApiTest {
     // service.execute(GetTVAccountState(tvId: tv.id));
     // _service.execute(GetTVAggregateCredit(tvId: tv.id));
     // _service.execute(GetTVAlternativeTitles(tvId: tv.id));
-    _service.execute(GetTVChanges(tvId: tv.id));
+    // _service.execute(GetTVChanges(tvId: tv.id));
+    _service.execute(GetTVContentRating(tvId: tv.id));
 
   }
 

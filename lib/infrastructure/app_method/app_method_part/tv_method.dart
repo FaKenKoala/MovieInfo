@@ -29,4 +29,8 @@ class TVMethod with _$TVMethod implements AppMethod {
     String? endDate,
     int? page,
   }) = GetTVChanges;
+
+  const factory TVMethod.getTVContentRating({
+    required int tvId,
+  }) = GetTVContentRating;
 }

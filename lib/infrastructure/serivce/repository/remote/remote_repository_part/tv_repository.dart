@@ -25,4 +25,9 @@ mixin TVRepository {
       @Query('start_date') String? startDate,
       @Query('end_date') String? endDate,
       @Query(Page) int? page);
+
+  @GET('$TVPrefix/content_ratings')
+  Future<IDResult<ContentRating>> getTVContentRating(
+    @Path(TVId) int tvId,
+  );
 }

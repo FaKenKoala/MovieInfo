@@ -138,7 +138,8 @@ class AppService extends AppServicePart
             getTVAccountState: getTVAccountState,
             getTVAggregateCredit: getTVAggregateCredit,
             getTVAlternativeTitles: getTVAlternativeTitles,
-            getTVChanges: getTVChanges);
+            getTVChanges: getTVChanges,
+            getTVContentRating: getTVContentRating);
       case AppMethodType.Unknow:
         throw 'Unknown Method Type: $method';
     }
