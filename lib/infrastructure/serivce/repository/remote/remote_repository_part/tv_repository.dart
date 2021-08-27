@@ -62,11 +62,6 @@ mixin TVRepository {
     @Query(Page) int? page,
   );
 
-  @GET('$TVPrefix/release_dates')
-  Future<IDResult<ReleaseDateWithCountry>> getTVReleaseDate(
-    @Path(TVId) int tvId,
-  );
-
   @GET('$TVPrefix/reviews')
   Future<PageResult<Review>> getTVReview(
     @Path(TVId) int tvId,

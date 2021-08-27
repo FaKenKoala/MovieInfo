@@ -33,9 +33,6 @@ mixin TVService on AppServicePart {
   /// TV Lists belongs to
   get getTVRecommendation => remoteRepository.getTVRecommendation;
 
-  /// TV Release Dates
-  get getTVReleaseDate => remoteRepository.getTVReleaseDate;
-
   /// TV Lists belongs to
   get getTVReview => remoteRepository.getTVReview;
 

@@ -59,13 +59,6 @@ class TVMethod with _$TVMethod implements AppMethod {
     required int tvId,
   }) = GetTVKeyword;
 
-  // /// Get TV Lists belongs to
-  // const factory TVMethod.getTVBelongList({
-  //   required int tvId,
-  //   int? page,
-  // }) = GetTVBelongList;
-
-  /// Get TV Recommendation
   const factory TVMethod.getTVRecommendation({
     required int tvId,
     int? page,

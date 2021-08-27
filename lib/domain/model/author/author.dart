@@ -8,13 +8,13 @@ class Author {
     this.name = '',
     this.username = '',
     this.avatarPath = '',
-    this.rating,
+    this.rating = 0.0,
   });
 
   final String name;
   final String username;
   final String avatarPath;
-  final int? rating;
+  final double rating;
 
   factory Author.fromJson(Map<String, dynamic> json) => _$AuthorFromJson(json);
   Map<String, dynamic> toJson() => _$AuthorToJson(this);
