@@ -31,7 +31,6 @@ class TVBloc extends Bloc<TVEvent, TVState> {
   Future<TVState> _getTVDetail(_TVEventDetail detail) async {
     final result = await movieService.execute(GetTVDetail(
       tvId: detail.movieId,
-      language: detail.appendToResponse,
       appendToResponse: detail.appendToResponse,
     ));
     return result.fold((l) => TVState.error(l), (r) => TVState.detail(r));
@@ -49,7 +48,6 @@ class TVBloc extends Bloc<TVEvent, TVState> {
     throw Exception();
     // final result = await movieService.execute(GetTVImage(
     //   movieId: state.movieId,
-    //   language: state.language,
     // ));
     // return result.fold((l) => TVState.error(l), (r) => TVState.image(r));
   }

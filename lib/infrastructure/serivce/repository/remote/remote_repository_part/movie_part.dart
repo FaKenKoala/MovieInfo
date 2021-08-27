@@ -2,7 +2,6 @@ part of '../remote_repository.dart';
 
 const MoviePrefix = '/movie/{$MovieId}';
 const MovieId = 'movie_id';
-const Language = 'language';
 const Page = 'page';
 
 /// Movie
@@ -10,7 +9,6 @@ mixin MoviePart {
   @GET('$MoviePrefix')
   Future<Movie> getMovieDetail(
       {@Path(MovieId) required int movieId,
-      @Query(Language) required String? language,
       @Query('append_to_response') required String? appendToResponse});
 
   @GET('$MoviePrefix/account_states')
@@ -32,7 +30,7 @@ mixin MoviePart {
 
   @GET('$MoviePrefix/credits')
   Future<MovieCredit> getMovieCredit(
-      {@Path(MovieId) required int movieId, @Query(Language) String? language});
+      {@Path(MovieId) required int movieId,});
 
   @GET('$MoviePrefix/external_ids')
   Future<ExternalId> getMovieExternalId({
@@ -42,7 +40,7 @@ mixin MoviePart {
   @GET('$MoviePrefix/images')
   Future<MovieImage> getMovieImage({
     @Path(MovieId) required int movieId,
-    @Query(Language) String? language,
+    
   });
 
   @GET('$MoviePrefix/keywords')
@@ -53,14 +51,14 @@ mixin MoviePart {
   @GET('$MoviePrefix/lists')
   Future<PageResult<MovieList>> getMovieBelongList({
     @Path(MovieId) required int movieId,
-    @Query(Language) String? language,
+    
     @Query(Page) int? page,
   });
 
   @GET('$MoviePrefix/recommendations')
   Future<PageResult<Recommendation>> getMovieRecommendation({
     @Path(MovieId) required int movieId,
-    @Query(Language) String? language,
+    
     @Query(Page) int? page,
   });
 
@@ -72,14 +70,14 @@ mixin MoviePart {
   @GET('$MoviePrefix/reviews')
   Future<PageResult<Review>> getMovieReview({
     @Path(MovieId) required int movieId,
-    @Query(Language) String? language,
+    
     @Query(Page) int? page,
   });
 
   @GET('$MoviePrefix/similar')
   Future<PageResult<Movie>> getSimilarMovie({
     @Path(MovieId) required int movieId,
-    @Query(Language) String? language,
+    
     @Query(Page) int? page,
   });
 
@@ -91,7 +89,7 @@ mixin MoviePart {
   @GET('$MoviePrefix/videos')
   Future<TranslationList> movieVideo({
     @Path(MovieId) required int movieId,
-    @Query(Language) String? language,
+    
   });
 
   @GET('$MoviePrefix/watch/providers')
@@ -115,28 +113,28 @@ mixin MoviePart {
 
   @GET('/movie/now_playing')
   Future<PageResult<Movie>> getNowPlayingMovie({
-    @Query(Language) String? language,
+    
     @Query(Page) int? page,
     @Query('region') String? region,
   });
 
   @GET('/movie/popular')
   Future<PageResult<Movie>> getPopularMovie({
-    @Query(Language) String? language,
+    
     @Query(Page) int? page,
     @Query('region') String? region,
   });
 
   @GET('/movie/top_rated')
   Future<PageResult<Movie>> getTopRatedMovie({
-    @Query(Language) String? language,
+    
     @Query(Page) int? page,
     @Query('region') String? region,
   });
 
   @GET('/movie/upcoming')
   Future<PageResult<Movie>> getUpcomingMovie({
-    @Query(Language) String? language,
+    
     @Query(Page) int? page,
     @Query('region') String? region,
   });

@@ -22,7 +22,6 @@ class AppMethod with _$AppMethod {
   /// Get Movie Detail
   const factory AppMethod.getMovieDetail(
       {required int movieId,
-      String? language,
       String? appendToResponse}) = GetMovieDetail;
 
   /// Get Account State
@@ -47,7 +46,6 @@ class AppMethod with _$AppMethod {
   /// Get Movie Credits
   const factory AppMethod.getMovieCredit({
     required int movieId,
-    String? language,
   }) = GetMovieCredit;
 
   /// Get Movie External Ids
@@ -58,7 +56,6 @@ class AppMethod with _$AppMethod {
   /// Get Movie Images
   const factory AppMethod.getMovieImage({
     required int movieId,
-    String? language,
   }) = GetMovieImage;
 
   /// Get Movie keyword
@@ -69,14 +66,12 @@ class AppMethod with _$AppMethod {
   /// Get Movie Lists belongs to
   const factory AppMethod.getMovieList({
     required int movieId,
-    String? language,
     int? page,
   }) = GetMovieBelongList;
 
   /// Get Movie Recommendation
   const factory AppMethod.getMoveiRecommendation({
     required int movieId,
-    String? language,
     int? page,
   }) = GetMovieRecommendation;
 
@@ -88,14 +83,12 @@ class AppMethod with _$AppMethod {
   /// Get Movie Review
   const factory AppMethod.getMovieReview({
     required int movieId,
-    String? language,
     int? page,
   }) = GetMovieReview;
 
   /// Get Movie Similar
   const factory AppMethod.getMovieSimilar({
     required int movieId,
-    String? language,
     int? page,
   }) = GetSimilarMovie;
 
@@ -107,7 +100,6 @@ class AppMethod with _$AppMethod {
   /// Get Movie Video
   const factory AppMethod.getMovieVideo({
     required int movieId,
-    String? language,
   }) = GetMovieVideo;
 
   /// Get Watch Provider
@@ -131,29 +123,29 @@ class AppMethod with _$AppMethod {
 
   /// Get now playing Movie
   const factory AppMethod.getNowPlayingMovie(
-      {String? language, int? page, String? region}) = GetNowPlayingMovie;
+      { int? page, String? region}) = GetNowPlayingMovie;
 
   /// Get Now playing Movie
   const factory AppMethod.getPopularMovie(
-      {String? language, int? page, String? region}) = GetPopularMovie;
+      {int? page, String? region}) = GetPopularMovie;
 
   /// Get Top Rated Movie
   const factory AppMethod.getTopRatedMovie(
-      {String? language, int? page, String? region}) = GetTopRatedMovie;
+      { int? page, String? region}) = GetTopRatedMovie;
 
   /// Get Upcoming Movie
   const factory AppMethod.getUpcomingMovie(
-      {String? language, int? page, String? region}) = GetUpcomingMovie;
+      { int? page, String? region}) = GetUpcomingMovie;
 
   /// Get TV Detail
   const factory AppMethod.getTVDetail(
       {required int tvId,
-      String? language,
+      
       String? appendToResponse}) = GetTVDetail;
 
   /// Discover Movie
   const factory AppMethod.discoverMovie({
-    String? language,
+    
     String? region,
     // String? sortBy,
     @Default(SortByKeyword.Popularity) SortByKeyword sortByKeyword,
@@ -195,7 +187,7 @@ class AppMethod with _$AppMethod {
 
   /// Discover TV
   const factory AppMethod.discoverTV({
-    String? language,
+    
     // String? sortBy,
     @Default(SortByKeyword.Popularity) SortByKeyword sortByKeyword,
     @Default(SortByDirection.DESC) SortByDirection sortByDirection,
@@ -228,7 +220,7 @@ class AppMethod with _$AppMethod {
   /// Find By External ID
   const factory AppMethod.findByExternalID({
     required String externalId,
-    String? language,
+    
     required String externalSource
   }) = FindByExternalID;
 }

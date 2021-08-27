@@ -3,7 +3,6 @@ part of '../app_service.dart';
 mixin DiscoverPart on AppServicePart {
   Future<PageResult<Movie>> discoverMovie(DiscoverMovie movie) async {
     return await remoteRepository.discoverMovie(
-      language: movie.language,
       region: movie.region,
       sortBy: '${movie.sortByKeyword.name}.${movie.sortByDirection.name}',
       certificationCountry: movie.certificationCountry,
@@ -43,7 +42,6 @@ mixin DiscoverPart on AppServicePart {
 
   Future<PageResult<TV>> discoverTV(DiscoverTV tv) async {
     return await remoteRepository.discoverTV(
-      language: tv.language,
       sortBy: '${tv.sortByKeyword.name}.${tv.sortByDirection.name}',
       airDateGte: tv.airDateGte,
       airDateLte: tv.airDateLte,

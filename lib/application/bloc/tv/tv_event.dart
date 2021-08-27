@@ -4,7 +4,6 @@ part of 'tv_bloc.dart';
 class TVEvent with _$TVEvent {
   const factory TVEvent.detail(
       {required int movieId,
-      String? language,
       String? appendToResponse}) = _TVEventDetail;
 
   const factory TVEvent.accountState({
@@ -13,6 +12,5 @@ class TVEvent with _$TVEvent {
 
   const factory TVEvent.image({
     required int movieId,
-    String? language,
   }) = _TVEventImage;
 }

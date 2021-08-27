@@ -4,7 +4,6 @@ part of 'movie_bloc.dart';
 class MovieEvent with _$MovieEvent {
   const factory MovieEvent.detail(
       {required int movieId,
-      String? language,
       String? appendToResponse}) = _MovieEventDetail;
 
   const factory MovieEvent.accountState({
@@ -13,6 +12,5 @@ class MovieEvent with _$MovieEvent {
 
   const factory MovieEvent.image({
     required int movieId,
-    String? language,
   }) = _MovieEventImage;
 }

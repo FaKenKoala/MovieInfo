@@ -5,7 +5,6 @@ mixin TVPart on AppServicePart {
   Future<TV> getTVDetail(GetTVDetail detail) async {
     return await remoteRepository.getTVDetail(
         tvId: detail.tvId,
-        language: detail.language,
         appendToResponse: detail.appendToResponse);
   }
 }

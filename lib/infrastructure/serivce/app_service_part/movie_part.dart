@@ -5,7 +5,6 @@ mixin MoviePart on AppServicePart {
   Future<Movie> getMovieDetail(GetMovieDetail getMovieDetail) async {
     return await remoteRepository.getMovieDetail(
         movieId: getMovieDetail.movieId,
-        language: getMovieDetail.language,
         appendToResponse: getMovieDetail.appendToResponse);
   }
 
@@ -42,7 +41,6 @@ mixin MoviePart on AppServicePart {
   Future<MovieCredit> getMovieCredit(GetMovieCredit credit) async {
     return await remoteRepository.getMovieCredit(
       movieId: credit.movieId,
-      language: credit.language,
     );
   }
 
@@ -54,7 +52,7 @@ mixin MoviePart on AppServicePart {
   /// Movie Images
   Future<MovieImage> getMovieImage(GetMovieImage image) async {
     return await remoteRepository.getMovieImage(
-        movieId: image.movieId, language: image.language);
+        movieId: image.movieId, );
   }
 
   /// Movie Changes
@@ -66,14 +64,14 @@ mixin MoviePart on AppServicePart {
   Future<PageResult<MovieList>> getMovieBelongList(
       GetMovieBelongList list) async {
     return await remoteRepository.getMovieBelongList(
-        movieId: list.movieId, language: list.language, page: list.page);
+        movieId: list.movieId, page: list.page);
   }
 
   /// Movie Lists belongs to
   Future<PageResult<Recommendation>> getMovieRecommendation(
       GetMovieRecommendation list) async {
     return await remoteRepository.getMovieRecommendation(
-        movieId: list.movieId, language: list.language, page: list.page);
+        movieId: list.movieId, page: list.page);
   }
 
   /// Movie Release Dates
@@ -87,14 +85,14 @@ mixin MoviePart on AppServicePart {
   /// Movie Lists belongs to
   Future<PageResult<Review>> getMovieReview(GetMovieReview review) async {
     return await remoteRepository.getMovieReview(
-        movieId: review.movieId, language: review.language, page: review.page);
+        movieId: review.movieId, page: review.page);
   }
 
   /// Movie Lists belongs to
   Future<PageResult<Movie>> getMovieSimilar(GetSimilarMovie similar) async {
     return await remoteRepository.getSimilarMovie(
         movieId: similar.movieId,
-        language: similar.language,
+        
         page: similar.page);
   }
 
@@ -110,7 +108,7 @@ mixin MoviePart on AppServicePart {
   Future<TranslationList> getMovieVideo(GetMovieVideo video) async {
     return await remoteRepository.movieVideo(
       movieId: video.movieId,
-      language: video.language,
+      
     );
   }
 
@@ -141,24 +139,24 @@ mixin MoviePart on AppServicePart {
   /// Get Now Playing Movie
   Future<PageResult<Movie>> getNowPlayingMovie(GetNowPlayingMovie movie) async {
     return await remoteRepository.getNowPlayingMovie(
-        language: movie.language, page: movie.page, region: movie.region);
+         page: movie.page, region: movie.region);
   }
 
   /// Get Popular Movie
   Future<PageResult<Movie>> getPopularMovie(GetPopularMovie movie) async {
     return await remoteRepository.getPopularMovie(
-        language: movie.language, page: movie.page, region: movie.region);
+         page: movie.page, region: movie.region);
   }
 
   /// Get Top Rated Movie
   Future<PageResult<Movie>> getTopRatedMovie(GetTopRatedMovie movie) async {
     return await remoteRepository.getTopRatedMovie(
-        language: movie.language, page: movie.page, region: movie.region);
+         page: movie.page, region: movie.region);
   }
 
   /// Get Upcoming Movie
   Future<PageResult<Movie>> getUpcomingMovie(GetUpcomingMovie movie) async {
     return await remoteRepository.getUpcomingMovie(
-        language: movie.language, page: movie.page, region: movie.region);
+         page: movie.page, region: movie.region);
   }
 }

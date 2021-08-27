@@ -17,9 +17,13 @@ abstract class DioModule {
   String get baseUrl => Constants.TMDB_BASE_URL;
   @singleton
   Dio get dio {
+    /// TODO:If change locale， need change language query param.
     BaseOptions options = BaseOptions(
         baseUrl: baseUrl,
-        queryParameters: {'api_key': Constants.TMDB_V3_API_KEY},
+        queryParameters: {
+          'api_key': Constants.TMDB_V3_API_KEY,
+          'language': 'en',
+        },
         connectTimeout: 6000,
         receiveTimeout: 6000,
         sendTimeout: 6000);

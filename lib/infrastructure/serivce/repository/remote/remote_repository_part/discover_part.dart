@@ -3,7 +3,6 @@ part of '../remote_repository.dart';
 mixin DiscoverPart {
   @GET('/discover/movie')
   Future<PageResult<Movie>> discoverMovie({
-    @Query('language') String? language,
     @Query('region') String? region,
     @Query('sort_by') String? sortBy,
     @Query('certification_country') String? certificationCountry,
@@ -42,7 +41,6 @@ mixin DiscoverPart {
 
   @GET('/discover/tv')
   Future<PageResult<TV>> discoverTV({
-    @Query('language') String? language,
     @Query('sort_by') String? sortBy,
     @Query('air_date.gte') String? airDateGte,
     @Query('air_date.lte') String? airDateLte,
