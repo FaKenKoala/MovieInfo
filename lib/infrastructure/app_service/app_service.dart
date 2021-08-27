@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+import 'package:intl/intl.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
 import 'package:movie_info/domain/model/api_result/page_result.dart';
 import 'package:movie_info/domain/model/code_response/app_exception.dart';
@@ -10,13 +11,13 @@ import 'package:movie_info/domain/model/configuration/configuration.dart';
 import 'package:movie_info/domain/model/enum_values/enum_values.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
 import 'package:movie_info/domain/model/person/credit.dart';
-import 'package:movie_info/domain/model/person/person.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
 import 'package:movie_info/domain/service/i_app_service.dart';
 import 'package:movie_info/infrastructure/app_method/app_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/change_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/genre_method.dart';
 import 'package:movie_info/infrastructure/util/constant.dart';
+import 'package:movie_info/infrastructure/util/date_util.dart';
 import 'package:movie_info/infrastructure/util/movie_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:movie_info/infrastructure/repository/local/local_repository.dart';
@@ -25,6 +26,7 @@ import 'package:movie_info/infrastructure/repository/remote/remote_repository.da
 part 'app_service_part/configuration_service.dart';
 part 'app_service_part/credit_service.dart';
 part 'app_service_part/discover_service.dart';
+part 'app_service_part/person_service.dart';
 part 'app_service_part/trending_service.dart';
 
 abstract class AppServicePart {
@@ -35,7 +37,12 @@ abstract class AppServicePart {
 
 @Singleton(as: IAppService)
 class AppService extends AppServicePart
-    with ConfigurationService, CreditService, DiscoverService, TrendingService
+    with
+        ConfigurationService,
+        CreditService,
+        DiscoverService,
+        PersonService,
+        TrendingService
     implements IAppService {
   AppService(RemoteRepository remote, LocalRepository localRepository)
       : super._(remote, localRepository);
@@ -73,36 +80,44 @@ class AppService extends AppServicePart
             getChangeMovies: remote.getChangeMovies,
             getChangeTVs: remote.getChangeTVs,
             getChangePersons: remote.getChangePersons);
+
       case AppMethodType.Collection:
         return (method as CollectionMethod).when(
-          getCollectionDetail: remote.getCollectionDetail,
-          getCollectionImages: remote.getCollectionImages,
-          getCollectionTranslations: remote.getCollectionTranslation,
-        );
+            getCollectionDetail: remote.getCollectionDetail,
+            getCollectionImages: remote.getCollectionImages,
+            getCollectionTranslations: remote.getCollectionTranslation);
+
       case AppMethodType.Company:
         return (method as CompanyMethod).when(
             getCompanyDetail: remote.getCompanyDetail,
             getCompanyAlternativeNames: remote.getCompanyAlternativeNames,
             getCompanyLogos: remote.getCompanyLogos);
+
       case AppMethodType.Configuration:
         return (method as ConfigurationMethod)
             .map(getConfiguration: getConfiguration);
+
       case AppMethodType.Credit:
         return (method as CreditMethod).map(getCreditDetail: getCreditDetail);
+
       case AppMethodType.Discover:
         return (method as DiscoverMethod)
             .map(discoverMovie: discoverMovie, discoverTV: discoverTV);
+
       case AppMethodType.Find:
         return (method as FindMethod)
             .when(findByExternalID: remote.findByExternalID);
+
       case AppMethodType.Genre:
         return (method as GenreMethod).when(
             getMovieGenreList: remote.getMovieGenreList,
             getTVGenreList: remote.getTVGenreList);
+
       case AppMethodType.Keyword:
         return (method as KeywordMethod).when(
             getKeywordDetail: remote.getKeywordDetail,
             getKeywordMovies: remote.getKeywordMovies);
+
       case AppMethodType.Movie:
         return (method as MovieMethod).when(
             getMovieDetail: remote.getMovieDetail,
@@ -134,8 +149,24 @@ class AppService extends AppServicePart
             getNetworkDetail: remote.getNetworkDetail,
             getNetworkAlternativeNames: remote.getNetworkAlternativeNames,
             getNetworkLogos: remote.getNetworkLogos);
+
+      case AppMethodType.Person:
+        return (method as PersonMethod).when(
+            getPersonDetail: remote.getPersonDetail,
+            getPersonChanges: getPersonChanges,
+            getPersonMovieCredits: remote.getPersonMovieCredits,
+            getPersonTVCredits: remote.getPersonTVCredits,
+            getPersonCombinedCredits: remote.getPersonCombinedCredits,
+            getPersonExternalIds: remote.getPersonExternalIds,
+            getPersonImages: remote.getPersonImages,
+            getPersonTaggedImages: remote.getPersonTaggedImages,
+            getPersonTranslations: remote.getPersonTranslations,
+            getLatestPerson: remote.getLatestPerson,
+            getPopularPerson: remote.getPopularPerson);
+
       case AppMethodType.Trending:
         return (method as TrendingMethod).map(getTrending: getTrending);
+
       case AppMethodType.TV:
         return (method as TVMethod).when(
             getTVDetail: remote.getTVDetail,
@@ -163,14 +194,17 @@ class AppService extends AppServicePart
             getOnTheAirTV: remote.getOnTheAirTV,
             getPopularTV: remote.getPopularTV,
             getTopRatedTV: remote.getTopRatedTV);
+
       case AppMethodType.TVEpisodeGroup:
         return (method as TVEpisodeGroupMethod)
             .when(getTVEpisodeGroupDetail: remote.getTVEpisodeGroupDetail);
+
       case AppMethodType.WatchProvider:
         return (method as WatchProviderMethod).when(
             getAvailableRegions: remote.getAvailableRegions,
             getMovieProviders: remote.getMovieProviders,
             getTVProviders: remote.getTVProviders);
+
       case AppMethodType.Unknow:
         throw 'Unknown Method Type: $method';
     }

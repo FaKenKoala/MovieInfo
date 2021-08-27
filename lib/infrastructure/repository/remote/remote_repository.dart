@@ -49,7 +49,7 @@ part 'remote_repository_part/keyword_repository.dart';
 part 'remote_repository_part/lists_repository.dart';
 part 'remote_repository_part/movie_repository.dart';
 part 'remote_repository_part/network_repository.dart';
-part 'remote_repository_part/people_repository.dart';
+part 'remote_repository_part/person_repository.dart';
 part 'remote_repository_part/reviews_repository.dart';
 part 'remote_repository_part/search_repository.dart';
 part 'remote_repository_part/trending_repository.dart';
@@ -76,6 +76,7 @@ abstract class RemoteRepository
         KeywordRepository,
         MovieRepository,
         NetworkRepository,
+        PersonRepository,
         TrendingRepository,
         TVEpisodeGroupsRepository,
         TVRepository,

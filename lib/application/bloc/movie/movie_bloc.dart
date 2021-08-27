@@ -31,7 +31,7 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
   Future<MovieState> _getMovieDetail(_MovieEventDetail detail) async {
     final result = await movieService.execute(GetMovieDetail(
       movieId: detail.movieId,
-      appendToResponse: detail.appendToResponse,
+      
     ));
     return result.fold((l) => MovieState.error(l), (r) => MovieState.detail(r));
   }

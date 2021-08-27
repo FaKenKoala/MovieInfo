@@ -6,8 +6,9 @@ part 'tv_method.freezed.dart';
 @freezed
 class TVMethod with _$TVMethod implements AppMethod {
   /// Get TV Detail
-  const factory TVMethod.getTVDetail(
-      {required int tvId, String? appendToResponse}) = GetTVDetail;
+  const factory TVMethod.getTVDetail({
+    required int tvId,
+  }) = GetTVDetail;
 
   /// Get TV Account State
   const factory TVMethod.getTVAccountState({
@@ -110,19 +111,14 @@ class TVMethod with _$TVMethod implements AppMethod {
   const factory TVMethod.getLatestTV() = GetLatestTV;
 
   /// Get airing today TV
-  const factory TVMethod.getAiringTodayTV({int? page}) =
-      GetAiringTodayTV;
+  const factory TVMethod.getAiringTodayTV({int? page}) = GetAiringTodayTV;
 
-      /// Get on the air TV
-  const factory TVMethod.getOnTheAirTV({int? page}) =
-      GetOnTheAirTV;
+  /// Get on the air TV
+  const factory TVMethod.getOnTheAirTV({int? page}) = GetOnTheAirTV;
 
   /// Get Popular TV
-  const factory TVMethod.getPopularTV({int? page}) =
-      GetPopularTV;
+  const factory TVMethod.getPopularTV({int? page}) = GetPopularTV;
 
   /// Get Top Rated TV
-  const factory TVMethod.getTopRatedTV({int? page}) =
-      GetTopRatedTV;
-
+  const factory TVMethod.getTopRatedTV({int? page}) = GetTopRatedTV;
 }

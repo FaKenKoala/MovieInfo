@@ -23,8 +23,9 @@ abstract class DioModule {
         queryParameters: {
           'api_key': Constants.TMDB_V3_API_KEY,
           'language': 'en',
-          'session_id':null,
-          'guest_session_id':null,
+          'session_id': null,
+          'guest_session_id': null,
+          'append_to_response': null,
         },
         connectTimeout: 6000,
         receiveTimeout: 6000,

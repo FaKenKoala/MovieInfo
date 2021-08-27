@@ -5,8 +5,9 @@ const TVPrefix = '/tv/{$TVId}';
 
 mixin TVRepository {
   @GET('$TVPrefix')
-  Future<TV> getTVDetail(@Path(TVId) int tvId,
-      @Query('append_to_response') String? appendToResponse);
+  Future<TV> getTVDetail(
+    @Path(TVId) int tvId,
+  );
 
   @GET('$TVPrefix/account_states')
   Future<AccountState> getTVAccountState(@Path(TVId) int tvId);
@@ -127,5 +128,4 @@ mixin TVRepository {
   Future<PageResult<TV>> getTopRatedTV(
     @Query(Page) int? page,
   );
-
 }

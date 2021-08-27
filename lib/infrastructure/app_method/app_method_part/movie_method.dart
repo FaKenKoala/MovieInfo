@@ -4,12 +4,12 @@ import 'package:movie_info/infrastructure/app_method/app_method.dart';
 part 'movie_method.freezed.dart';
 
 @freezed
-class MovieMethod with _$MovieMethod  implements AppMethod{
+class MovieMethod with _$MovieMethod implements AppMethod {
   /// Movies
   /// Get Movie Detail
-  const factory MovieMethod.getMovieDetail(
-      {required int movieId,
-      String? appendToResponse}) = GetMovieDetail;
+  const factory MovieMethod.getMovieDetail({
+    required int movieId,
+  }) = GetMovieDetail;
 
   /// Get Account State
   const factory MovieMethod.getMovieAccountState({
@@ -109,18 +109,18 @@ class MovieMethod with _$MovieMethod  implements AppMethod{
   const factory MovieMethod.getLatestMovie() = GetLatestMovie;
 
   /// Get now playing Movie
-  const factory MovieMethod.getNowPlayingMovie(
-      { int? page, String? region}) = GetNowPlayingMovie;
+  const factory MovieMethod.getNowPlayingMovie({int? page, String? region}) =
+      GetNowPlayingMovie;
 
   /// Get Now playing Movie
-  const factory MovieMethod.getPopularMovie(
-      {int? page, String? region}) = GetPopularMovie;
+  const factory MovieMethod.getPopularMovie({int? page, String? region}) =
+      GetPopularMovie;
 
   /// Get Top Rated Movie
-  const factory MovieMethod.getTopRatedMovie(
-      { int? page, String? region}) = GetTopRatedMovie;
+  const factory MovieMethod.getTopRatedMovie({int? page, String? region}) =
+      GetTopRatedMovie;
 
   /// Get Upcoming Movie
-  const factory MovieMethod.getUpcomingMovie(
-      { int? page, String? region}) = GetUpcomingMovie;
+  const factory MovieMethod.getUpcomingMovie({int? page, String? region}) =
+      GetUpcomingMovie;
 }

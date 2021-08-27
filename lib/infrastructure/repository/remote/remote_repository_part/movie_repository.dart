@@ -7,8 +7,9 @@ const Page = 'page';
 /// Movie
 mixin MovieRepository {
   @GET('$MoviePrefix')
-  Future<Movie> getMovieDetail(@Path(MovieId) int movieId,
-      @Query('append_to_response') String? appendToResponse);
+  Future<Movie> getMovieDetail(
+    @Path(MovieId) int movieId,
+  );
 
   @GET('$MoviePrefix/account_states')
   Future<AccountState> getMovieAccountState(@Path(MovieId) int movieId);

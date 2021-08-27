@@ -4,7 +4,7 @@ part of 'movie_bloc.dart';
 class MovieEvent with _$MovieEvent {
   const factory MovieEvent.detail(
       {required int movieId,
-      String? appendToResponse}) = _MovieEventDetail;
+     }) = _MovieEventDetail;
 
   const factory MovieEvent.accountState({
     required int movieId,
