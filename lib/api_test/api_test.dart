@@ -8,6 +8,7 @@ import 'package:movie_info/domain/model/tv/episode_group.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
 import 'package:movie_info/domain/service/i_app_service.dart';
 import 'package:movie_info/infrastructure/app_method/app_method.dart';
+import 'package:movie_info/infrastructure/app_method/app_method_part/genre_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/movie_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/tv_episode_group_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/tv_method.dart';
@@ -78,6 +79,11 @@ class ApiTest {
   keywordTest() {
     // _service.execute(GetKeywordDetail(keywordId: 13084));
     _service.execute(GetKeywordMovies(keywordId: 13084));
+  }
+
+  genreTest() {
+    // _service.execute(GetMovieGenreList());
+    _service.execute(GetTVGenreList());
   }
 
   ApiTest._() {

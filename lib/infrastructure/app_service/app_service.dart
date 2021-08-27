@@ -13,36 +13,16 @@ import 'package:movie_info/domain/model/person/cast.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
 import 'package:movie_info/domain/service/i_app_service.dart';
 import 'package:movie_info/infrastructure/app_method/app_method.dart';
+import 'package:movie_info/infrastructure/app_method/app_method_part/genre_method.dart';
 import 'package:movie_info/infrastructure/util/constant.dart';
 import 'package:movie_info/infrastructure/util/movie_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'repository/local/local_repository.dart';
-import 'repository/remote/remote_repository.dart';
+import '../repository/local/local_repository.dart';
+import '../repository/remote/remote_repository.dart';
 
-part 'app_service_part/authentication_service.dart';
-part 'app_service_part/certifications_service.dart';
-part 'app_service_part/changes_service.dart';
-part 'app_service_part/collections_service.dart';
-part 'app_service_part/companies_service.dart';
 part 'app_service_part/configuration_service.dart';
-part 'app_service_part/credits_service.dart';
 part 'app_service_part/discover_service.dart';
-part 'app_service_part/find_service.dart';
-part 'app_service_part/genres_service.dart';
-part 'app_service_part/guest_sessions_service.dart';
-part 'app_service_part/keyword_service.dart';
-part 'app_service_part/lists_service.dart';
-part 'app_service_part/movie_service.dart';
-part 'app_service_part/networks_service.dart';
-part 'app_service_part/people_service.dart';
-part 'app_service_part/reviews_service.dart';
-part 'app_service_part/search_service.dart';
 part 'app_service_part/trending_service.dart';
-part 'app_service_part/tv_episode_groups_service.dart';
-part 'app_service_part/tv_episodes_service.dart';
-part 'app_service_part/tv_seasons_service.dart';
-part 'app_service_part/tv_service.dart';
-part 'app_service_part/watch_providers_service.dart';
 
 abstract class AppServicePart {
   final LocalRepository localRepository;
@@ -52,19 +32,8 @@ abstract class AppServicePart {
 
 @Singleton(as: IAppService)
 class AppService extends AppServicePart
-    with
-        ConfigurationService,
-        DiscoverService,
-        // FindService,
-        // KeywordService,
-        // MovieService,
-        // NetworkService,
-        TrendingService
-    // TVService,
-    // TVEpisodeGroupService,
-    // WatchProviderService
-    implements
-        IAppService {
+    with ConfigurationService, DiscoverService, TrendingService
+    implements IAppService {
   AppService(RemoteRepository remote, LocalRepository localRepository)
       : super._(remote, localRepository);
 
@@ -104,6 +73,10 @@ class AppService extends AppServicePart
       case AppMethodType.Find:
         return (method as FindMethod)
             .when(findByExternalID: remote.findByExternalID);
+      case AppMethodType.Genre:
+        return (method as GenreMethod).when(
+            getMovieGenreList: remote.getMovieGenreList,
+            getTVGenreList: remote.getTVGenreList);
       case AppMethodType.Keyword:
         return (method as KeywordMethod).when(
             getKeywordDetail: remote.getKeywordDetail,

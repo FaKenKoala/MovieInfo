@@ -9,6 +9,7 @@ import 'package:movie_info/domain/model/code_response/code_response.dart';
 import 'package:movie_info/domain/model/configuration/configuration.dart';
 import 'package:movie_info/domain/model/content_rating/content_rating.dart';
 import 'package:movie_info/domain/model/find/find_result.dart';
+import 'package:movie_info/domain/model/genre/genre_list.dart';
 import 'package:movie_info/domain/model/media/credit.dart';
 import 'package:movie_info/domain/model/media/image.dart';
 import 'package:movie_info/domain/model/media/keyword.dart';
@@ -39,7 +40,7 @@ part 'remote_repository_part/configuration_repository.dart';
 part 'remote_repository_part/credits_repository.dart';
 part 'remote_repository_part/discover_repository.dart';
 part 'remote_repository_part/find_repository.dart';
-part 'remote_repository_part/genres_repository.dart';
+part 'remote_repository_part/genre_repository.dart';
 part 'remote_repository_part/guest_sessions_repository.dart';
 part 'remote_repository_part/keyword_repository.dart';
 part 'remote_repository_part/lists_repository.dart';
@@ -64,6 +65,7 @@ abstract class RemoteRepository
         ConfigurationRepository,
         DiscoverRepository,
         FindRepository,
+        GenreRepository,
         KeywordRepository,
         MovieRepository,
         NetworkRepository,
