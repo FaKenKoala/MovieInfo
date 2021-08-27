@@ -6,8 +6,6 @@ import 'package:movie_info/application/get_it/get_it_main.dart';
 import 'package:movie_info/application/util/app_image_config.dart';
 import 'package:movie_info/domain/model/account_state/account_state.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
-import 'package:movie_info/domain/service/i_app_service.dart';
-import 'package:movie_info/infrastructure/app_method/app_method.dart';
 import 'package:movie_info/infrastructure/util/dio_logger.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:provider/provider.dart';

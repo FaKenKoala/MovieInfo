@@ -41,7 +41,7 @@ part 'remote_repository_part/collections_repository.dart';
 
 part 'remote_repository_part/people_repository.dart';
 part 'remote_repository_part/certifications_repository.dart';
-
+part 'remote_repository_part/configuration_repository.dart';
 part 'remote_repository_part/lists_repository.dart';
 part 'remote_repository_part/changes_repository.dart';
 part 'remote_repository_part/credits_repository.dart';
@@ -55,11 +55,14 @@ part 'remote_repository.g.dart';
 @RestApi()
 @singleton
 abstract class RemoteRepository
-    with DiscoverRepository, FindRepository, MovieRepository, TrendingRepository, TVRepository {
+    with
+        ConfigurationRepository,
+        DiscoverRepository,
+        FindRepository,
+        MovieRepository,
+        TrendingRepository,
+        TVRepository {
   @factoryMethod
   factory RemoteRepository(Dio dio, {@Named("baseUrl") String baseUrl}) =
       _RemoteRepository;
-
-  @GET('/configuration')
-  Future<Configuration> configuration();
 }

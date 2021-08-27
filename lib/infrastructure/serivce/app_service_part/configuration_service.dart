@@ -5,7 +5,7 @@ mixin ConfigurationService on AppServicePart{
   Future<Configuration> getConfiguration(
       GetConfiguration getConfiguration) async {
     return localRepository.getConfiguration().fold(() async {
-      Configuration remoteConfig = await remoteRepository.configuration();
+      Configuration remoteConfig = await remoteRepository.getApiConfiguration();
       getIt<SharedPreferences>().setString(
           Constants.ImageGlobalConfig, json.encode(remoteConfig.toJson()));
       return remoteConfig;

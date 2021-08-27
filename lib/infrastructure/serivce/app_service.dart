@@ -4,29 +4,14 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
-import 'package:movie_info/domain/model/account_state/account_state.dart';
-import 'package:movie_info/domain/model/api_result/id_result.dart';
 import 'package:movie_info/domain/model/code_response/code_response.dart';
 import 'package:movie_info/domain/model/configuration/configuration.dart';
 import 'package:movie_info/domain/model/enum_values/enum_values.dart';
 import 'package:movie_info/domain/model/code_response/app_exception.dart';
-import 'package:movie_info/domain/model/find/find_result.dart';
-import 'package:movie_info/domain/model/media/image.dart';
-import 'package:movie_info/domain/model/movie/external_id.dart';
-import 'package:movie_info/domain/model/movie/keyword.dart';
-import 'package:movie_info/domain/model/movie/movie_change.dart';
-import 'package:movie_info/domain/model/movie/movie_credit.dart';
-import 'package:movie_info/domain/model/movie/movie_list.dart';
 import 'package:movie_info/domain/model/api_result/page_result.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
 import 'package:movie_info/domain/model/person/cast.dart';
-import 'package:movie_info/domain/model/recommendation/recommendation.dart';
-import 'package:movie_info/domain/model/release_date/release_date.dart';
-import 'package:movie_info/domain/model/review/review.dart';
-import 'package:movie_info/domain/model/title/title.dart';
-import 'package:movie_info/domain/model/translation/translatetion_list.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
-import 'package:movie_info/domain/model/watch_provider/watch_provider_list.dart';
 
 import 'package:movie_info/domain/service/i_app_service.dart';
 import 'package:movie_info/infrastructure/app_method/app_method.dart';
@@ -127,7 +112,7 @@ class AppService extends AppServicePart
             getMovieRecommendation: getMovieRecommendation,
             getMovieReleaseDate: getMovieReleaseDate,
             getMovieReview: getMovieReview,
-            getMovieSimilar: getMovieSimilar,
+            getMovieSimilar: getSimilarMovie,
             getMovieTranslation: getMovieTranslation,
             getMovieVideo: getMovieVideo,
             getMovieWatchProvider: getMovieWatchProvider,
@@ -141,7 +126,7 @@ class AppService extends AppServicePart
       case AppMethodType.Trending:
         return (method as TrendingMethod).map(getTrending: getTrending);
       case AppMethodType.TV:
-        return (method as TVMethod).map(getTVDetail: getTVDetail);
+        return (method as TVMethod).when(getTVDetail: getTVDetail, getTVAccountState: getTVAccountState);
       case AppMethodType.Unknow:
         throw 'Unknown Method Type: $method';
     }

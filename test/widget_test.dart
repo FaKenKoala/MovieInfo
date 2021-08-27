@@ -5,15 +5,11 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
-import 'package:movie_info/domain/model/enum_values/enum_values.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
-import 'package:movie_info/domain/model/api_result/page_result.dart';
 import 'package:movie_info/domain/service/i_app_service.dart';
-import 'package:movie_info/infrastructure/app_method/app_method.dart';
 import 'package:movie_info/presentation/page/app/app.dart';
 
 void main() {

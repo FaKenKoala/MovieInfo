@@ -7,4 +7,8 @@ class TVMethod with _$TVMethod implements AppMethod {
   /// Get TV Detail
   const factory TVMethod.getTVDetail(
       {required int tvId, String? appendToResponse}) = GetTVDetail;
+  /// Get TV Account State
+  const factory TVMethod.getTVAccountState({
+    required int tvId,
+  }) = GetTVAccountState;
 }

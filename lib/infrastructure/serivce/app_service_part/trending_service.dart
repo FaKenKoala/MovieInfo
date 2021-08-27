@@ -4,8 +4,7 @@ mixin TrendingService on AppServicePart {
   /// Trending
   Future<PageResult> getTrending(GetTrending getTrending) async {
     PageResult pageResult = await remoteRepository.getTrending(
-        mediaType: getTrending.mediaType.name,
-        timeWindow: getTrending.timeWindow.name);
+        getTrending.mediaType.name, getTrending.timeWindow.name);
     List<dynamic> results = pageResult.results.map((e) {
       switch (enumDecodeNullable(MediaTypeEnumMap, e['media_type'],
           unknownValue: MediaType.ALL)) {
