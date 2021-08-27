@@ -10,8 +10,8 @@ class Language {
   final String iso6391;
   @JsonKey(name: 'iso_3166_1')
   final String iso31661;
-  String name;
-  ContentData? data;
+  final String name;
+  final ContentData? data;
 
   Language({
     this.englishName = '',

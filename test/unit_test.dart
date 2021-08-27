@@ -15,30 +15,5 @@ void main() {
     service = getIt<IAppService>();
   });
 
-  _getMovieDetail() async {
-    await service.execute(GetMovieDetail(movieId: globalMovie.id));
-  }
 
-  _getAlternativeTitles() async {
-    await service.execute(GetMovieAlternativeTitles(movieId: globalMovie.id));
-  }
-
-  test('Remote Url Test', () async {
-    /// Get Trending
-    AppExceptionEither<PageResult<Movie>> movies = await service.execute(
-        GetTrending(mediaType: MediaType.MOVIE, timeWindow: TimeWindow.DAY));
-    movies.toOption().flatMap<Movie>((movies) {
-      if (movies.results.isNotEmpty) {
-        return some(movies.results.first);
-      }
-      return none();
-    }).flatMap((movie) {
-      globalMovie = movie;
-      _getMovieDetail();
-
-      _getAlternativeTitles();
-
-      return some(movie);
-    });
-  });
 }

@@ -29,7 +29,7 @@ class _TVDetailPageState extends State<TVDetailPage> {
     tvDetail = widget.tv;
     addDioLogger(
         PrettyDioLogger(requestHeader: true, requestBody: true, error: false));
-    getIt<IAppService>().execute(DiscoverMovie());
+    // getIt<IAppService>().execute(GetTVDetail(tvId: tvDetail.id));
   }
 
   @override

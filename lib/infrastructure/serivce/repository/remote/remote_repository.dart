@@ -24,18 +24,38 @@ import 'package:movie_info/domain/model/translation/translatetion_list.dart';
 import 'package:movie_info/domain/model/watch_provider/watch_provider_list.dart';
 import 'package:retrofit/retrofit.dart';
 
-part './remote_repository_part/discover_part.dart';
-part './remote_repository_part/movie_part.dart';
-part './remote_repository_part/trending_part.dart';
-part './remote_repository_part/tv_part.dart';
-part './remote_repository_part/find_part.dart';
+part 'remote_repository_part/watch_providers_repository.dart';
+part 'remote_repository_part/movie_repository.dart';
+part 'remote_repository_part/discover_repository.dart';
+part 'remote_repository_part/genres_repository.dart';
+part 'remote_repository_part/tv_repository.dart';
+part 'remote_repository_part/tv_episode_groups_repository.dart';
+part 'remote_repository_part/companies_repository.dart';
+
+part 'remote_repository_part/networks_repository.dart';
+part 'remote_repository_part/tv_episodes_repository.dart';
+part 'remote_repository_part/tv_seasons_repository.dart';
+
+part 'remote_repository_part/search_repository.dart';
+part 'remote_repository_part/collections_repository.dart';
+
+part 'remote_repository_part/people_repository.dart';
+part 'remote_repository_part/certifications_repository.dart';
+
+part 'remote_repository_part/lists_repository.dart';
+part 'remote_repository_part/changes_repository.dart';
+part 'remote_repository_part/credits_repository.dart';
+part 'remote_repository_part/find_repository.dart';
+part 'remote_repository_part/guest_sessions_repository.dart';
+part 'remote_repository_part/reviews_repository.dart';
+part 'remote_repository_part/trending_repository.dart';
 
 part 'remote_repository.g.dart';
 
 @RestApi()
 @singleton
 abstract class RemoteRepository
-    with DiscoverPart, FindPart,MoviePart, TrendingPart, TVPart {
+    with DiscoverRepository, FindRepository, MovieRepository, TrendingRepository, TVRepository {
   @factoryMethod
   factory RemoteRepository(Dio dio, {@Named("baseUrl") String baseUrl}) =
       _RemoteRepository;

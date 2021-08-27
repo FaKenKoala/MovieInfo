@@ -37,12 +37,30 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'repository/local/local_repository.dart';
 import 'repository/remote/remote_repository.dart';
 
-part 'app_service_part/configuration_part.dart';
-part 'app_service_part/discover_part.dart';
-part 'app_service_part/movie_part.dart';
-part 'app_service_part/trending_part.dart';
-part 'app_service_part/tv_part.dart';
-part 'app_service_part/find_part.dart';
+part 'app_service_part/certifications_service.dart';
+part 'app_service_part/keywords_service.dart';
+part 'app_service_part/tv_service.dart';
+part 'app_service_part/movie_service.dart';
+part 'app_service_part/tv_episodes_service.dart';
+part 'app_service_part/tv_seasons_service.dart';
+part 'app_service_part/guest_sessions_service.dart';
+part 'app_service_part/people_service.dart';
+part 'app_service_part/genres_service.dart';
+part 'app_service_part/companies_service.dart';
+part 'app_service_part/trending_service.dart';
+part 'app_service_part/lists_service.dart';
+part 'app_service_part/search_service.dart';
+part 'app_service_part/configuration_service.dart';
+part 'app_service_part/collections_service.dart';
+part 'app_service_part/discover_service.dart';
+part 'app_service_part/find_service.dart';
+part 'app_service_part/changes_service.dart';
+part 'app_service_part/reviews_service.dart';
+part 'app_service_part/authentication_service.dart';
+part 'app_service_part/watch_providers_service.dart';
+part 'app_service_part/networks_service.dart';
+part 'app_service_part/tv_episode_groups_service.dart';
+part 'app_service_part/credits_service.dart';
 
 abstract class AppServicePart {
   final LocalRepository localRepository;
@@ -52,7 +70,13 @@ abstract class AppServicePart {
 
 @Singleton(as: IAppService)
 class AppService extends AppServicePart
-    with ConfigurationPart, DiscoverPart,FindPart, MoviePart, TrendingPart, TVPart
+    with
+        ConfigurationService,
+        DiscoverService,
+        FindService,
+        MovieService,
+        TrendingService,
+        TVService
     implements IAppService {
   AppService(RemoteRepository remoteRepository, LocalRepository localRepository)
       : super._(remoteRepository, localRepository);
@@ -80,35 +104,46 @@ class AppService extends AppServicePart
   }
 
   Future _executeMethod(AppMethod method) async {
-    return method.map(
-        getConfiguration: getConfiguration,
-        getTrending: getTrending,
-        getMovieDetail: getMovieDetail,
-        getMovieAccountState: getMovieAccountState,
-        getMovieAlternativeTitles: getMovieAlterNativeTiles,
-        getMovieChanges: getMovieChanges,
-        getMovieCredit: getMovieCredit,
-        getMovieExternalId: getMovieExternalId,
-        getMovieImage: getMovieImage,
-        getMovieKeyword: getMovieKeyword,
-        getMovieList: getMovieBelongList,
-        getMoveiRecommendation: getMovieRecommendation,
-        getMovieReleaseDate: getMovieReleaseDate,
-        getMovieReview: getMovieReview,
-        getMovieSimilar: getMovieSimilar,
-        getMovieTranslation: getMovieTranslation,
-        getMovieVideo: getMovieVideo,
-        getMovieWatchProvider: getMovieWatchProvider,
-        rateMovie: rateMovie,
-        deleteMovieRate: delteMovieRate,
-        getLatestMovie: getLatestMovie,
-        getNowPlayingMovie: getNowPlayingMovie,
-        getPopularMovie: getPopularMovie,
-        getTopRatedMovie: getTopRatedMovie,
-        getUpcomingMovie: getUpcomingMovie,
-        getTVDetail: getTVDetail,
-        discoverMovie: discoverMovie,
-        discoverTV: discoverTV,
-        findByExternalID: findByExternalID);
+    switch (method.methodType) {
+      case AppMethodType.Configuration:
+        return (method as ConfigurationMethod)
+            .map(getConfiguration: getConfiguration);
+      case AppMethodType.Discover:
+        return (method as DiscoverMethod)
+            .map(discoverMovie: discoverMovie, discoverTV: discoverTV);
+      case AppMethodType.Find:
+        return (method as FindMethod).map(findByExternalID: findByExternalID);
+      case AppMethodType.Movie:
+        return (method as MovieMethod).map(
+            getMovieDetail: getMovieDetail,
+            getMovieAccountState: getMovieAccountState,
+            getMovieAlternativeTitles: getMovieAlternativeTitles,
+            getMovieChanges: getMovieChanges,
+            getMovieCredit: getMovieCredit,
+            getMovieExternalId: getMovieExternalId,
+            getMovieImage: getMovieImage,
+            getMovieKeyword: getMovieKeyword,
+            getMovieBelongList: getMovieBelongList,
+            getMovieRecommendation: getMovieRecommendation,
+            getMovieReleaseDate: getMovieReleaseDate,
+            getMovieReview: getMovieReview,
+            getMovieSimilar: getMovieSimilar,
+            getMovieTranslation: getMovieTranslation,
+            getMovieVideo: getMovieVideo,
+            getMovieWatchProvider: getMovieWatchProvider,
+            rateMovie: rateMovie,
+            deleteMovieRate: deleteMovieRate,
+            getLatestMovie: getLatestMovie,
+            getNowPlayingMovie: getNowPlayingMovie,
+            getPopularMovie: getPopularMovie,
+            getTopRatedMovie: getTopRatedMovie,
+            getUpcomingMovie: getUpcomingMovie);
+      case AppMethodType.Trending:
+        return (method as TrendingMethod).map(getTrending: getTrending);
+      case AppMethodType.TV:
+        // return (method as TVMethod).map(getTVDetail: getTVDetail);
+      case AppMethodType.Unknow:
+        throw 'Unknown Method Type: $method';
+    }
   }
 }

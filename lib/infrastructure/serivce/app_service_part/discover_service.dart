@@ -1,0 +1,71 @@
+part of '../app_service.dart';
+
+mixin DiscoverService on AppServicePart {
+  Future<PageResult<Movie>> discoverMovie(DiscoverMovie movie) async {
+    return await remoteRepository.discoverMovie(
+      region: movie.region,
+      sortBy: '${movie.sortByKeyword.name}.${movie.sortByDirection.name}',
+      certificationCountry: movie.certificationCountry,
+      certification: movie.certification,
+      certificationLte: movie.certificationLte,
+      certificationGte: movie.certificationGte,
+      includeAdult: movie.includeAdult,
+      includeVideo: movie.includeVideo,
+      page: movie.page,
+      primaryReleaseYear: movie.primaryReleaseYear,
+      primaryReleaseDateGte: movie.primaryReleaseDateGte,
+      primaryReleaseDateLte: movie.primaryReleaseDateLte,
+      releaseDateGte: movie.releaseDateGte,
+      releaseDateLte: movie.releaseDateLte,
+      withReleaseType: movie.withReleaseType,
+      year: movie.year,
+      voteCountGte: movie.voteCountGte,
+      voteCountLte: movie.voteCountLte,
+      voteAverageGte: movie.voteAverageGte,
+      voteAverageLte: movie.voteAverageLte,
+      withCast: movie.withCast,
+      withCrew: movie.withCrew,
+      withPeople: movie.withPeople,
+      withCompanies: movie.withCompanies,
+      withGenres: movie.withGenres,
+      withoutGenres: movie.withoutGenres,
+      withKeywords: movie.withKeywords,
+      withoutKeywords: movie.withoutKeywords,
+      withRuntimeGte: movie.withRuntimeGte,
+      withRuntimeLte: movie.withRuntimeLte,
+      withOriginalLanguage: movie.withOriginalLanguage,
+      withWatchProviders: movie.withWatchProviders,
+      watchRegion: movie.watchRegion,
+      withWatchMonetizationTypes: movie.withWatchMonetizationTypes.name,
+    );
+  }
+
+  Future<PageResult<TV>> discoverTV(DiscoverTV tv) async {
+    return await remoteRepository.discoverTV(
+      sortBy: '${tv.sortByKeyword.name}.${tv.sortByDirection.name}',
+      airDateGte: tv.airDateGte,
+      airDateLte: tv.airDateLte,
+      firstAirDateGte: tv.firstAirDateGte,
+      firstAirDateLte: tv.firstAirDateLte,
+      firstAirDateYear: tv.firstAirDateYear,
+      page: tv.page,
+      timezone: tv.timezone,
+      voteAverageGte: tv.voteAverageGte,
+      voteCountGte: tv.voteCountGte,
+      withGenres: tv.withGenres,
+      withNetworks: tv.withNetworks,
+      withoutGenres: tv.withoutGenres,
+      withRuntimeGte: tv.withRuntimeGte,
+      withRuntimeLte: tv.withRuntimeLte,
+      includeNullFirstAirDates: tv.includeNullFirstAirDates,
+      withOriginalLanguage: tv.withOriginalLanguage,
+      withoutKeywords: tv.withoutKeywords,
+      screenedTheatrically: tv.screenedTheatrically,
+      withCompanies: tv.withCompanies,
+      withKeywords: tv.withKeywords,
+      withWatchProviders: tv.withWatchProviders,
+      watchRegion: tv.watchRegion,
+      withWatchMonetizationTypes: tv.withWatchMonetizationTypes.name,
+    );
+  }
+}

@@ -7,7 +7,10 @@ addDioLogger([PrettyDioLogger? logger]) {
       (element) => element is PrettyDioLogger || element is LogInterceptor)) {
     return;
   }
-  getIt<Dio>().interceptors..add(logger ?? PrettyDioLogger(responseBody: true));
+  getIt<Dio>().interceptors..add(logger ?? PrettyDioLogger(
+    requestHeader: true,
+    requestBody: true,
+    responseBody: true));
 }
 
 removeDioLogger() {
