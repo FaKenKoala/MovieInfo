@@ -20,4 +20,7 @@ mixin TVService on AppServicePart {
   get getTVCredit => remoteRepository.getTVCredit;
 
   get getTVEpisodeGroups => remoteRepository.getTVEpisodeGroups;
+
+  /// TV External Ids
+  get getTVExternalId => remoteRepository.getTVExternalId;
 }

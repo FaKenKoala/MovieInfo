@@ -42,4 +42,9 @@ class TVMethod with _$TVMethod implements AppMethod {
   const factory TVMethod.getTVEpisodeGroups({
     required int tvId,
   }) = GetTVEpisodeGroups;
+
+  /// Get TV External Ids
+  const factory TVMethod.getTVExternalId({
+    required int tvId,
+  }) = GetTVExternalId;
 }

@@ -31,14 +31,16 @@ class ApiTest {
     // _service.execute(GetTVChanges(tvId: tv.id));
     // _service.execute(GetTVContentRating(tvId: tv.id));
     // _service.execute(GetTVCredit(tvId: tv.id));
-    _service.execute(GetTVEpisodeGroups(tvId: tv.id)).then((value) {
-      value.fold((l) => null, (r) {
-        if (r is IDResult<EpisodeGroup>) {
-          catching(() => r.results.first).toOption().flatMap(
-              (a) => some(_service.execute(GetTVEpisodeGroupDetail(id: a.id))));
-        }
-      });
-    });
+    // _service.execute(GetTVEpisodeGroups(tvId: tv.id)).then((value) {
+    //   value.fold((l) => null, (r) {
+    //     if (r is IDResult<EpisodeGroup>) {
+    //       catching(() => r.results.first).toOption().flatMap(
+    //           (a) => some(_service.execute(GetTVEpisodeGroupDetail(id: a.id))));
+    //     }
+    //   });
+    // });
+    _service.execute(GetTVExternalId(tvId: tv.id));
+
   }
 
   ApiTest._() {

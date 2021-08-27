@@ -140,7 +140,8 @@ class AppService extends AppServicePart
             getTVChanges: getTVChanges,
             getTVContentRating: getTVContentRating,
             getTVCredit: getTVCredit,
-            getTVEpisodeGroups: getTVEpisodeGroups);
+            getTVEpisodeGroups: getTVEpisodeGroups,
+            getTVExternalId: getTVExternalId);
       case AppMethodType.TVEpisodeGroup:
         return (method as TVEpisodeGroupMethod)
             .when(getTVEpisodeGroupDetail: getTVEpisodeGroupDetail);

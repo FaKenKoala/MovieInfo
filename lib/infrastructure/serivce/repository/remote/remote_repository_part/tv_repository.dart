@@ -40,4 +40,9 @@ mixin TVRepository {
   Future<IDResult<EpisodeGroup>> getTVEpisodeGroups(
     @Path(TVId) int tvId,
   );
+
+  @GET('$TVPrefix/external_ids')
+  Future<ExternalId> getTVExternalId(
+    @Path(TVId) int tvId,
+  );
 }
