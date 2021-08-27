@@ -118,7 +118,7 @@ class AppService extends AppServicePart
             getMovieRecommendation: getMovieRecommendation,
             getMovieReleaseDate: getMovieReleaseDate,
             getMovieReview: getMovieReview,
-            getMovieSimilar: getSimilarMovie,
+            getSimilarMovie: getSimilarMovie,
             getMovieTranslation: getMovieTranslation,
             getMovieVideo: getMovieVideo,
             getMovieWatchProvider: getMovieWatchProvider,
@@ -141,7 +141,22 @@ class AppService extends AppServicePart
             getTVContentRating: getTVContentRating,
             getTVCredit: getTVCredit,
             getTVEpisodeGroups: getTVEpisodeGroups,
-            getTVExternalId: getTVExternalId);
+            getTVExternalId: getTVExternalId,
+            getTVImage: getTVImage,
+            getTVKeyword: getTVKeyword,
+            getTVRecommendation: getTVRecommendation,
+            getTVReview: getTVReview,
+            getSimilarTV: getSimilarTV,
+            getTVTranslation: getTVTranslation,
+            getTVVideo: getTVVideo,
+            getTVWatchProvider: getTVWatchProvider,
+            rateTV: rateTV,
+            deleteTVRate: deleteTVRate,
+            getLatestTV: getLatestTV,
+            getNowPlayingTV: getNowPlayingTV,
+            getPopularTV: getPopularTV,
+            getTopRatedTV: getTopRatedTV,
+            getUpcomingTV: getUpcomingTV);
       case AppMethodType.TVEpisodeGroup:
         return (method as TVEpisodeGroupMethod)
             .when(getTVEpisodeGroupDetail: getTVEpisodeGroupDetail);

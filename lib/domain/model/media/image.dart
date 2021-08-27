@@ -1,26 +1,32 @@
+import 'dart:convert';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'image.g.dart';
 
 @JsonSerializable()
-class MovieImage {
+class MediaImageList {
   final int id;
-  final List<AppImage> backdrops;
-  final List<AppImage> logos;
-  final List<AppImage> posters;
-  MovieImage(
+  final List<MediaImageItem> backdrops;
+  final List<MediaImageItem> logos;
+  final List<MediaImageItem> posters;
+  MediaImageList(
       {this.id = 0,
       this.backdrops = const [],
       this.logos = const [],
       this.posters = const []});
 
-  factory MovieImage.fromJson(Map<String, dynamic> json) =>
-      _$MovieImageFromJson(json);
-  Map<String, dynamic> toJson() => _$MovieImageToJson(this);
+  factory MediaImageList.fromJson(Map<String, dynamic> json) =>
+      _$MediaImageListFromJson(json);
+  Map<String, dynamic> toJson() => _$MediaImageListToJson(this);
+  @override
+  String toString() {
+    return json.encode(toJson());
+  }
 }
 
 @JsonSerializable()
-class AppImage {
+class MediaImageItem {
   final double aspectRatio;
   final int height;
   @JsonKey(name: 'iso_639_1')
@@ -29,7 +35,7 @@ class AppImage {
   final double voteAverage;
   final int voteCount;
   final int width;
-  AppImage({
+  MediaImageItem({
     this.aspectRatio = 0.0,
     this.height = 0,
     this.iso6391 = '',
@@ -39,7 +45,12 @@ class AppImage {
     this.width = 0,
   });
 
-  factory AppImage.fromJson(Map<String, dynamic> json) =>
-      _$AppImageFromJson(json);
-  Map<String, dynamic> toJson() => _$AppImageToJson(this);
+  factory MediaImageItem.fromJson(Map<String, dynamic> json) =>
+      _$MediaImageItemFromJson(json);
+  Map<String, dynamic> toJson() => _$MediaImageItemToJson(this);
+
+  @override
+  String toString() {
+    return json.encode(toJson());
+  }
 }

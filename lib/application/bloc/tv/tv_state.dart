@@ -7,5 +7,5 @@ class TVState with _$TVState {
   const factory TVState.accountState(AccountState accountState) =
       TVStateAccountState;
   const factory TVState.error(Exception e) = TVStateError;
-  const factory TVState.image(MovieImage image) = TVStateImage;
+  const factory TVState.image(MediaImageList image) = TVStateImage;
 }

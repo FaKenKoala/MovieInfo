@@ -19,7 +19,7 @@ class MovieImagePage extends StatefulWidget {
 }
 
 class _MovieImagePageState extends State<MovieImagePage> {
-  Future<Either<Exception, MovieImage>>? future;
+  Future<Either<Exception, MediaImageList>>? future;
   @override
   void initState() {
     super.initState();
@@ -33,7 +33,7 @@ class _MovieImagePageState extends State<MovieImagePage> {
       appBar: AppBar(
         title: Text('${widget.movie.title}'),
       ),
-      body: FutureBuilder<Either<Exception, MovieImage>>(
+      body: FutureBuilder<Either<Exception, MediaImageList>>(
         future: future,
         builder: (_, snapshot) {
           if (!snapshot.hasData) {
@@ -81,7 +81,7 @@ class TextWidget extends StatelessWidget {
 }
 
 class GridViewWidget extends StatelessWidget {
-  final List<AppImage> images;
+  final List<MediaImageItem> images;
   const GridViewWidget({Key? key, required this.images}) : super(key: key);
 
   @override

@@ -23,4 +23,52 @@ mixin TVService on AppServicePart {
 
   /// TV External Ids
   get getTVExternalId => remoteRepository.getTVExternalId;
+
+  /// TV Images
+  get getTVImage => remoteRepository.getTVImage;
+
+  /// TV Changes
+  get getTVKeyword => remoteRepository.getTVKeyword;
+
+  /// TV Lists belongs to
+  get getTVRecommendation => remoteRepository.getTVRecommendation;
+
+  /// TV Release Dates
+  get getTVReleaseDate => remoteRepository.getTVReleaseDate;
+
+  /// TV Lists belongs to
+  get getTVReview => remoteRepository.getTVReview;
+
+  /// TV Lists belongs to
+  get getSimilarTV => remoteRepository.getSimilarTV;
+
+  /// TV Translations
+  get getTVTranslation => remoteRepository.getTVTranslation;
+
+  /// TV Videos
+  get getTVVideo => remoteRepository.getTVVideo;
+
+  /// TV Watch Provider
+  get getTVWatchProvider => remoteRepository.getTVWatchProvider;
+
+  /// Rate TV
+  get rateTV => remoteRepository.rateTV;
+
+  /// Delete Rate TV
+  get deleteTVRate => remoteRepository.deleteTVRate;
+
+  /// Get Latest TV
+  get getLatestTV => remoteRepository.getLatestTV;
+
+  /// Get Now Playing TV
+  get getNowPlayingTV => remoteRepository.getNowPlayingTV;
+
+  /// Get Popular TV
+  get getPopularTV => remoteRepository.getPopularTV;
+
+  /// Get Top Rated TV
+  get getTopRatedTV => remoteRepository.getTopRatedTV;
+
+  /// Get Upcoming TV
+  get getUpcomingTV => remoteRepository.getUpcomingTV;
 }

@@ -39,7 +39,8 @@ class ApiTest {
     //     }
     //   });
     // });
-    _service.execute(GetTVExternalId(tvId: tv.id));
+    // _service.execute(GetTVExternalId(tvId: tv.id));
+    _service.execute(GetTVImage(tvId: tv.id));
 
   }
 

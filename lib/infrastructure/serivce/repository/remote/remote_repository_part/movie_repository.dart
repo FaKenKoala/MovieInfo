@@ -7,13 +7,11 @@ const Page = 'page';
 /// Movie
 mixin MovieRepository {
   @GET('$MoviePrefix')
-  Future<Movie> getMovieDetail(
-      @Path(MovieId) int movieId,
+  Future<Movie> getMovieDetail(@Path(MovieId) int movieId,
       @Query('append_to_response') String? appendToResponse);
 
   @GET('$MoviePrefix/account_states')
-  Future<AccountState> getMovieAccountState(
-      @Path(MovieId) int movieId);
+  Future<AccountState> getMovieAccountState(@Path(MovieId) int movieId);
 
   @GET('$MoviePrefix/alternative_titles')
   Future<IDResult<Title>> getMovieAlternativeTitles(
@@ -30,7 +28,8 @@ mixin MovieRepository {
 
   @GET('$MoviePrefix/credits')
   Future<MediaCredit> getMovieCredit(
-      @Path(MovieId) int movieId,);
+    @Path(MovieId) int movieId,
+  );
 
   @GET('$MoviePrefix/external_ids')
   Future<ExternalId> getMovieExternalId(
@@ -38,9 +37,8 @@ mixin MovieRepository {
   );
 
   @GET('$MoviePrefix/images')
-  Future<MovieImage> getMovieImage(
+  Future<MediaImageList> getMovieImage(
     @Path(MovieId) int movieId,
-    
   );
 
   @GET('$MoviePrefix/keywords')
@@ -51,14 +49,12 @@ mixin MovieRepository {
   @GET('$MoviePrefix/lists')
   Future<PageResult<MovieList>> getMovieBelongList(
     @Path(MovieId) int movieId,
-    
     @Query(Page) int? page,
   );
 
   @GET('$MoviePrefix/recommendations')
   Future<PageResult<Recommendation>> getMovieRecommendation(
     @Path(MovieId) int movieId,
-    
     @Query(Page) int? page,
   );
 
@@ -70,14 +66,12 @@ mixin MovieRepository {
   @GET('$MoviePrefix/reviews')
   Future<PageResult<Review>> getMovieReview(
     @Path(MovieId) int movieId,
-    
     @Query(Page) int? page,
   );
 
   @GET('$MoviePrefix/similar')
   Future<PageResult<Movie>> getSimilarMovie(
     @Path(MovieId) int movieId,
-    
     @Query(Page) int? page,
   );
 
@@ -89,7 +83,6 @@ mixin MovieRepository {
   @GET('$MoviePrefix/videos')
   Future<TranslationList> getMovieVideo(
     @Path(MovieId) int movieId,
-    
   );
 
   @GET('$MoviePrefix/watch/providers')
@@ -113,28 +106,24 @@ mixin MovieRepository {
 
   @GET('/movie/now_playing')
   Future<PageResult<Movie>> getNowPlayingMovie(
-    
     @Query(Page) int? page,
     @Query('region') String? region,
   );
 
   @GET('/movie/popular')
   Future<PageResult<Movie>> getPopularMovie(
-    
     @Query(Page) int? page,
     @Query('region') String? region,
   );
 
   @GET('/movie/top_rated')
   Future<PageResult<Movie>> getTopRatedMovie(
-    
     @Query(Page) int? page,
     @Query('region') String? region,
   );
 
   @GET('/movie/upcoming')
   Future<PageResult<Movie>> getUpcomingMovie(
-    
     @Query(Page) int? page,
     @Query('region') String? region,
   );

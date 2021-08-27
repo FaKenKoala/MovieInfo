@@ -45,4 +45,90 @@ mixin TVRepository {
   Future<ExternalId> getTVExternalId(
     @Path(TVId) int tvId,
   );
+
+  @GET('$TVPrefix/images')
+  Future<MediaImageList> getTVImage(
+    @Path(TVId) int tvId,
+  );
+
+  @GET('$TVPrefix/keywords')
+  Future<IDResult<Keyword>> getTVKeyword(
+    @Path(TVId) int tvId,
+  );
+
+  @GET('$TVPrefix/recommendations')
+  Future<PageResult<Recommendation>> getTVRecommendation(
+    @Path(TVId) int tvId,
+    @Query(Page) int? page,
+  );
+
+  @GET('$TVPrefix/release_dates')
+  Future<IDResult<ReleaseDateWithCountry>> getTVReleaseDate(
+    @Path(TVId) int tvId,
+  );
+
+  @GET('$TVPrefix/reviews')
+  Future<PageResult<Review>> getTVReview(
+    @Path(TVId) int tvId,
+    @Query(Page) int? page,
+  );
+
+  @GET('$TVPrefix/similar')
+  Future<PageResult<TV>> getSimilarTV(
+    @Path(TVId) int tvId,
+    @Query(Page) int? page,
+  );
+
+  @GET('$TVPrefix/translations')
+  Future<TranslationList> getTVTranslation(
+    @Path(TVId) int tvId,
+  );
+
+  @GET('$TVPrefix/videos')
+  Future<TranslationList> getTVVideo(
+    @Path(TVId) int tvId,
+  );
+
+  @GET('$TVPrefix/watch/providers')
+  Future<WatchProviderList> getTVWatchProvider(
+    @Path(TVId) int tvId,
+  );
+
+  @POST('$TVPrefix/rating')
+  Future<CodeResponse> rateTV(
+    @Path(TVId) int tvId,
+    @Body() RateContent content,
+  );
+
+  @DELETE('$TVPrefix/rating')
+  Future<CodeResponse> deleteTVRate(
+    @Path(TVId) int tvId,
+  );
+
+  @GET('/tv/latest')
+  Future<TV> getLatestTV();
+
+  @GET('/tv/now_playing')
+  Future<PageResult<TV>> getNowPlayingTV(
+    @Query(Page) int? page,
+    @Query('region') String? region,
+  );
+
+  @GET('/tv/popular')
+  Future<PageResult<TV>> getPopularTV(
+    @Query(Page) int? page,
+    @Query('region') String? region,
+  );
+
+  @GET('/tv/top_rated')
+  Future<PageResult<TV>> getTopRatedTV(
+    @Query(Page) int? page,
+    @Query('region') String? region,
+  );
+
+  @GET('/tv/upcoming')
+  Future<PageResult<TV>> getUpcomingTV(
+    @Query(Page) int? page,
+    @Query('region') String? region,
+  );
 }

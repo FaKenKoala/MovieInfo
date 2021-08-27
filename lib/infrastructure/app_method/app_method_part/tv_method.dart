@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:movie_info/domain/model/movie/rate_content.dart';
 import 'package:movie_info/infrastructure/app_method/app_method.dart';
 part 'tv_method.freezed.dart';
 
@@ -47,4 +48,83 @@ class TVMethod with _$TVMethod implements AppMethod {
   const factory TVMethod.getTVExternalId({
     required int tvId,
   }) = GetTVExternalId;
+
+  /// Get TV Images
+  const factory TVMethod.getTVImage({
+    required int tvId,
+  }) = GetTVImage;
+
+  /// Get TV keyword
+  const factory TVMethod.getTVKeyword({
+    required int tvId,
+  }) = GetTVKeyword;
+
+  // /// Get TV Lists belongs to
+  // const factory TVMethod.getTVBelongList({
+  //   required int tvId,
+  //   int? page,
+  // }) = GetTVBelongList;
+
+  /// Get TV Recommendation
+  const factory TVMethod.getTVRecommendation({
+    required int tvId,
+    int? page,
+  }) = GetTVRecommendation;
+
+  /// Get TV Review
+  const factory TVMethod.getTVReview({
+    required int tvId,
+    int? page,
+  }) = GetTVReview;
+
+  /// Get TV Similar
+  const factory TVMethod.getSimilarTV({
+    required int tvId,
+    int? page,
+  }) = GetSimilarTV;
+
+  /// Get TV Translations
+  const factory TVMethod.getTVTranslation({
+    required int tvId,
+  }) = GetTVTranslation;
+
+  /// Get TV Video
+  const factory TVMethod.getTVVideo({
+    required int tvId,
+  }) = GetTVVideo;
+
+  /// Get Watch Provider
+  const factory TVMethod.getTVWatchProvider({
+    required int tvId,
+  }) = GetTVWatchProvider;
+
+  /// Rate TV
+  const factory TVMethod.rateTV({
+    required int tvId,
+    required RateContent rateContent,
+  }) = RateTV;
+
+  /// Delete TV Rate
+  const factory TVMethod.deleteTVRate({
+    required int tvId,
+  }) = DeleteTVRate;
+
+  /// Get Latest TV
+  const factory TVMethod.getLatestTV() = GetLatestTV;
+
+  /// Get now playing TV
+  const factory TVMethod.getNowPlayingTV(
+      { int? page, String? region}) = GetNowPlayingTV;
+
+  /// Get Now playing TV
+  const factory TVMethod.getPopularTV(
+      {int? page, String? region}) = GetPopularTV;
+
+  /// Get Top Rated TV
+  const factory TVMethod.getTopRatedTV(
+      { int? page, String? region}) = GetTopRatedTV;
+
+  /// Get Upcoming TV
+  const factory TVMethod.getUpcomingTV(
+      { int? page, String? region}) = GetUpcomingTV;
 }

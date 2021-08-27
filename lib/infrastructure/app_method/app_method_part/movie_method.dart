@@ -74,7 +74,7 @@ class MovieMethod with _$MovieMethod  implements AppMethod{
   }) = GetMovieReview;
 
   /// Get Movie Similar
-  const factory MovieMethod.getMovieSimilar({
+  const factory MovieMethod.getSimilarMovie({
     required int movieId,
     int? page,
   }) = GetSimilarMovie;
