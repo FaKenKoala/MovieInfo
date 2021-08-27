@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
-import 'package:movie_info/domain/model/person/cast.dart';
+import 'package:movie_info/domain/model/person/person.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
 
 part 'find_result.g.dart';
@@ -8,7 +8,7 @@ part 'find_result.g.dart';
 @JsonSerializable()
 class FindResult {
   final List<Movie> movieResults;
-  final List<Cast> personResults;
+  final List<Person> personResults;
   final List<TV> tvResults;
   final List<TV> tvEpisodeResults;
   final List<TV> tvSeasonResults;

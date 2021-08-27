@@ -12,7 +12,7 @@ mixin TVRepository {
   Future<AccountState> getTVAccountState(@Path(TVId) int tvId);
 
   @GET('$TVPrefix/aggregate_credits')
-  Future<MediaCredit> getTVAggregateCredit(@Path(TVId) int tvId);
+  Future<CreditList> getTVAggregateCredit(@Path(TVId) int tvId);
 
   @GET('$TVPrefix/alternative_titles')
   Future<IDResult<Title>> getTVAlternativeTitles(
@@ -32,7 +32,7 @@ mixin TVRepository {
   );
 
   @GET('$TVPrefix/credits')
-  Future<MediaCredit> getTVCredit(
+  Future<CreditList> getTVCredit(
     @Path(TVId) int tvId,
   );
 

@@ -9,7 +9,8 @@ import 'package:movie_info/domain/model/code_response/code_response.dart';
 import 'package:movie_info/domain/model/configuration/configuration.dart';
 import 'package:movie_info/domain/model/enum_values/enum_values.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
-import 'package:movie_info/domain/model/person/cast.dart';
+import 'package:movie_info/domain/model/person/credit.dart';
+import 'package:movie_info/domain/model/person/person.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
 import 'package:movie_info/domain/service/i_app_service.dart';
 import 'package:movie_info/infrastructure/app_method/app_method.dart';
@@ -18,10 +19,11 @@ import 'package:movie_info/infrastructure/app_method/app_method_part/genre_metho
 import 'package:movie_info/infrastructure/util/constant.dart';
 import 'package:movie_info/infrastructure/util/movie_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../repository/local/local_repository.dart';
-import '../repository/remote/remote_repository.dart';
+import 'package:movie_info/infrastructure/repository/local/local_repository.dart';
+import 'package:movie_info/infrastructure/repository/remote/remote_repository.dart';
 
 part 'app_service_part/configuration_service.dart';
+part 'app_service_part/credit_service.dart';
 part 'app_service_part/discover_service.dart';
 part 'app_service_part/trending_service.dart';
 
@@ -33,7 +35,7 @@ abstract class AppServicePart {
 
 @Singleton(as: IAppService)
 class AppService extends AppServicePart
-    with ConfigurationService, DiscoverService, TrendingService
+    with ConfigurationService, CreditService, DiscoverService, TrendingService
     implements IAppService {
   AppService(RemoteRepository remote, LocalRepository localRepository)
       : super._(remote, localRepository);
@@ -85,6 +87,8 @@ class AppService extends AppServicePart
       case AppMethodType.Configuration:
         return (method as ConfigurationMethod)
             .map(getConfiguration: getConfiguration);
+      case AppMethodType.Credit:
+        return (method as CreditMethod).map(getCreditDetail: getCreditDetail);
       case AppMethodType.Discover:
         return (method as DiscoverMethod)
             .map(discoverMovie: discoverMovie, discoverTV: discoverTV);

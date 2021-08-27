@@ -6,7 +6,7 @@ import 'package:movie_info/domain/model/enum_values/enum_values.dart';
 import 'package:movie_info/domain/model/genre/genre.dart';
 import 'package:movie_info/domain/model/language/language.dart';
 import 'package:movie_info/domain/model/network/network.dart';
-import 'package:movie_info/domain/model/person/cast.dart';
+import 'package:movie_info/domain/model/person/person.dart';
 import 'package:movie_info/domain/model/tv/season.dart';
 
 import 'episode.dart';
@@ -29,7 +29,7 @@ class TV {
   final double popularity;
   final MediaType mediaType;
 
-  final List<Cast> createdBy;
+  final List<Person> createdBy;
   final List<int> episodeRunTime;
   final List<Genre> genres;
   final String homepage;

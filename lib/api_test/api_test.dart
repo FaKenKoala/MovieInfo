@@ -22,8 +22,9 @@ class ApiTest {
 
   final _service = getIt<IAppService>();
 
-  void movieApiTest(Movie movie) {
-    _service.execute(GetMovieDetail(movieId: movie.id));
+  void movieTest(Movie movie) {
+    // _service.execute(GetMovieDetail(movieId: movie.id));
+    _service.execute(GetMovieCredit(movieId: movie.id));
   }
 
   /// TV
@@ -102,6 +103,12 @@ class ApiTest {
     // _service.execute(GetChangeMovies());
     // _service.execute(GetChangeTVs());
     _service.execute(GetChangePersons());
+  }
+
+  creditTest() {
+    String castCreditid = '5e581ca8f48b34001779f896';
+    String crewCreditId = '5d93cc14a06efe0012596ec1';
+    _service.execute(GetCreditDetail(creditId: crewCreditId));
   }
 
   ApiTest._() {

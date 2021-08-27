@@ -2,6 +2,7 @@ import 'app_method_part/change_method.dart';
 import 'app_method_part/collection_method.dart';
 import 'app_method_part/company_method.dart';
 import 'app_method_part/configuration_method.dart';
+import 'app_method_part/credit_method.dart';
 import 'app_method_part/discover_method.dart';
 import 'app_method_part/find_method.dart';
 import 'app_method_part/keyword_method.dart';
@@ -19,6 +20,7 @@ export 'app_method_part/change_method.dart';
 export 'app_method_part/collection_method.dart';
 export 'app_method_part/company_method.dart';
 export 'app_method_part/configuration_method.dart';
+export 'app_method_part/credit_method.dart';
 export 'app_method_part/discover_method.dart';
 export 'app_method_part/find_method.dart';
 export 'app_method_part/keyword_method.dart';
@@ -42,6 +44,8 @@ extension AppMethodX on AppMethod {
     if (this is CompanyMethod) return AppMethodType.Company;
 
     if (this is ConfigurationMethod) return AppMethodType.Configuration;
+
+    if (this is CreditMethod) return AppMethodType.Credit;
 
     if (this is DiscoverMethod) return AppMethodType.Discover;
 
@@ -72,6 +76,7 @@ enum AppMethodType {
   Collection,
   Company,
   Configuration,
+  Credit,
   Discover,
   Find,
   Genre,
