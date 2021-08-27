@@ -12,9 +12,11 @@ class Episode {
     this.overview = '',
     this.productionCode = '',
     this.seasonNumber = 0,
+    this.showId = 0,
     this.stillPath = '',
     this.voteAverage = 0.0,
     this.voteCount = 0,
+    this.order = 0,
   });
 
   final DateTime? airDate;
@@ -24,9 +26,11 @@ class Episode {
   final String overview;
   final String productionCode;
   final int seasonNumber;
+  final int showId;
   final String stillPath;
   final double voteAverage;
   final int voteCount;
+  final int order;
 
   factory Episode.fromJson(Map<String, dynamic> json) =>
       _$EpisodeFromJson(json);

@@ -63,7 +63,8 @@ abstract class RemoteRepository
         FindRepository,
         MovieRepository,
         TrendingRepository,
-        TVRepository {
+        TVRepository ,
+        TVEpisodeGroupsRepository{
   @factoryMethod
   factory RemoteRepository(Dio dio, {@Named("baseUrl") String baseUrl}) =
       _RemoteRepository;

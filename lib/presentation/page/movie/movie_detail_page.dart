@@ -28,9 +28,6 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   void initState() {
     super.initState();
     movieDetail = widget.movie;
-    addDioLogger(
-        PrettyDioLogger(requestHeader: true, requestBody: true, error: false));
-    getIt<IAppService>().execute(GetUpcomingMovie());
   }
 
   @override

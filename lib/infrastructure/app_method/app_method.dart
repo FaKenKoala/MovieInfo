@@ -5,6 +5,7 @@ import 'package:movie_info/infrastructure/app_method/app_method_part/discover_me
 import 'package:movie_info/infrastructure/app_method/app_method_part/find_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/movie_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/trending_method.dart';
+import 'package:movie_info/infrastructure/app_method/app_method_part/tv_episode_group_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/tv_method.dart';
 export 'app_method_part/configuration_method.dart';
 export 'app_method_part/discover_method.dart';
@@ -31,6 +32,8 @@ extension AppMethodX on AppMethod {
 
     if (this is TVMethod) return AppMethodType.TV;
 
+    if (this is TVEpisodeGroupMethod) return AppMethodType.TVEpisodeGroup;
+
     return AppMethodType.Unknow;
   }
 }
@@ -42,5 +45,6 @@ enum AppMethodType {
   Movie,
   Trending,
   TV,
+  TVEpisodeGroup,
   Unknow,
 }

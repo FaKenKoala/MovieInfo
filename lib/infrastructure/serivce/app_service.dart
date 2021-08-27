@@ -16,6 +16,7 @@ import 'package:movie_info/domain/model/tv/tv.dart';
 
 import 'package:movie_info/domain/service/i_app_service.dart';
 import 'package:movie_info/infrastructure/app_method/app_method.dart';
+import 'package:movie_info/infrastructure/app_method/app_method_part/tv_episode_group_method.dart';
 import 'package:movie_info/infrastructure/util/constant.dart';
 import 'package:movie_info/infrastructure/util/movie_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -62,7 +63,8 @@ class AppService extends AppServicePart
         FindService,
         MovieService,
         TrendingService,
-        TVService
+        TVService,
+        TVEpisodeGroupService
     implements IAppService {
   AppService(RemoteRepository remoteRepository, LocalRepository localRepository)
       : super._(remoteRepository, localRepository);
@@ -76,7 +78,7 @@ class AppService extends AppServicePart
     try {
       return right(await _executeMethod(method))
         ..fold((l) => null, (r) {
-          MovieLog.printJson('${r.toString()}');
+          // MovieLog.printJson('${r.toString()}');
         });
     } catch (e) {
       AppException? movieException;
@@ -139,6 +141,9 @@ class AppService extends AppServicePart
             getTVContentRating: getTVContentRating,
             getTVCredit: getTVCredit,
             getTVEpisodeGroups: getTVEpisodeGroups);
+      case AppMethodType.TVEpisodeGroup:
+        return (method as TVEpisodeGroupMethod)
+            .when(getTVEpisodeGroupDetail: getTVEpisodeGroupDetail);
       case AppMethodType.Unknow:
         throw 'Unknown Method Type: $method';
     }
