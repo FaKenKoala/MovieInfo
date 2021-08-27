@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:json_annotation/json_annotation.dart';
 import 'package:movie_info/domain/model/language/language.dart';
 
@@ -15,4 +17,9 @@ class TranslationList {
   factory TranslationList.fromJson(Map<String, dynamic> json) =>
       _$TranslationListFromJson(json);
   Map<String, dynamic> toJson() => _$TranslationListToJson(this);
+  
+  @override
+  String toString() {
+    return json.encode(toJson());
+  }
 }

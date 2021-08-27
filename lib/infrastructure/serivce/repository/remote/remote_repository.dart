@@ -7,6 +7,7 @@ import 'package:movie_info/domain/model/configuration/configuration.dart';
 import 'package:movie_info/domain/model/content_rating/content_rating.dart';
 import 'package:movie_info/domain/model/find/find_result.dart';
 import 'package:movie_info/domain/model/media/image.dart';
+import 'package:movie_info/domain/model/media/video.dart';
 import 'package:movie_info/domain/model/movie/external_id.dart';
 import 'package:movie_info/domain/model/movie/keyword.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';

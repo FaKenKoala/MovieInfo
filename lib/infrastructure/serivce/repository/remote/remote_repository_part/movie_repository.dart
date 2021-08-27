@@ -81,7 +81,7 @@ mixin MovieRepository {
   );
 
   @GET('$MoviePrefix/videos')
-  Future<TranslationList> getMovieVideo(
+  Future<IDResult<Video>> getMovieVideo(
     @Path(MovieId) int movieId,
   );
 

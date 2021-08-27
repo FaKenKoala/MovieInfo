@@ -85,7 +85,7 @@ mixin TVRepository {
   );
 
   @GET('$TVPrefix/videos')
-  Future<TranslationList> getTVVideo(
+  Future<IDResult<Video>> getTVVideo(
     @Path(TVId) int tvId,
   );
 

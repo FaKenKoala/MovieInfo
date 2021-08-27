@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'video.g.dart';
@@ -32,4 +34,9 @@ class Video {
 
   factory Video.fromJson(Map<String, dynamic> json) => _$VideoFromJson(json);
   Map<String, dynamic> toJson() => _$VideoToJson(this);
+
+  @override
+  String toString() {
+    return json.encode(toJson());
+  }
 }

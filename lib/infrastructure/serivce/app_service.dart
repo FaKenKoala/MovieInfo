@@ -78,7 +78,7 @@ class AppService extends AppServicePart
     try {
       return right(await _executeMethod(method))
         ..fold((l) => null, (r) {
-          // MovieLog.printJson('${r.toString()}');
+          MovieLog.printJson('${r.toString()}');
         });
     } catch (e) {
       AppException? movieException;
