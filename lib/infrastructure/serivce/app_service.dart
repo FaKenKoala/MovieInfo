@@ -146,6 +146,7 @@ class AppService extends AppServicePart
             getTVKeyword: getTVKeyword,
             getTVRecommendation: getTVRecommendation,
             getTVReview: getTVReview,
+            getScreenedThreatricallyTV: getScreenedThreatricallyTV,
             getSimilarTV: getSimilarTV,
             getTVTranslation: getTVTranslation,
             getTVVideo: getTVVideo,

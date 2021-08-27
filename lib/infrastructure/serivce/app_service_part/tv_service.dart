@@ -68,4 +68,7 @@ mixin TVService on AppServicePart {
 
   /// Get Upcoming TV
   get getUpcomingTV => remoteRepository.getUpcomingTV;
+
+  /// Get Screened Theatrically
+  get getScreenedThreatricallyTV => remoteRepository.getTVScreenedTheatrically;
 }

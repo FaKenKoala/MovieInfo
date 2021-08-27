@@ -43,8 +43,8 @@ class ApiTest {
     // _service.execute(GetTVImage(tvId: tv.id));
     // _service.execute(GetTVKeyword(tvId: tv.id));
     // _service.execute(GetTVRecommendation(tvId: tv.id));
-    _service.execute(GetTVReview(tvId: tv.id));
-
+    // _service.execute(GetTVReview(tvId: tv.id));
+    _service.execute(GetScreenedThreatricallyTV(tvId: tv.id));
   }
 
   ApiTest._() {

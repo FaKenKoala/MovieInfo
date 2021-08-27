@@ -70,6 +70,10 @@ class TVMethod with _$TVMethod implements AppMethod {
     int? page,
   }) = GetTVReview;
 
+  const factory TVMethod.getScreenedThreatricallyTV({
+    required int tvId,
+  }) = GetScreenedThreatricallyTV;
+
   /// Get TV Similar
   const factory TVMethod.getSimilarTV({
     required int tvId,
@@ -106,18 +110,18 @@ class TVMethod with _$TVMethod implements AppMethod {
   const factory TVMethod.getLatestTV() = GetLatestTV;
 
   /// Get now playing TV
-  const factory TVMethod.getNowPlayingTV(
-      { int? page, String? region}) = GetNowPlayingTV;
+  const factory TVMethod.getNowPlayingTV({int? page, String? region}) =
+      GetNowPlayingTV;
 
   /// Get Now playing TV
-  const factory TVMethod.getPopularTV(
-      {int? page, String? region}) = GetPopularTV;
+  const factory TVMethod.getPopularTV({int? page, String? region}) =
+      GetPopularTV;
 
   /// Get Top Rated TV
-  const factory TVMethod.getTopRatedTV(
-      { int? page, String? region}) = GetTopRatedTV;
+  const factory TVMethod.getTopRatedTV({int? page, String? region}) =
+      GetTopRatedTV;
 
   /// Get Upcoming TV
-  const factory TVMethod.getUpcomingTV(
-      { int? page, String? region}) = GetUpcomingTV;
+  const factory TVMethod.getUpcomingTV({int? page, String? region}) =
+      GetUpcomingTV;
 }

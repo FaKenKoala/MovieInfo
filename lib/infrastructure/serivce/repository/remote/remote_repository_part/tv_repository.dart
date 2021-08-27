@@ -68,6 +68,11 @@ mixin TVRepository {
     @Query(Page) int? page,
   );
 
+  @GET('$TVPrefix/screened_theatrically')
+  Future<IDResult<Episode>> getTVScreenedTheatrically(
+    @Path(TVId) int tvId,
+  );
+
   @GET('$TVPrefix/similar')
   Future<PageResult<TV>> getSimilarTV(
     @Path(TVId) int tvId,
