@@ -8,7 +8,7 @@ part 'watch_provider_list.g.dart';
 @JsonSerializable()
 class WatchProviderList {
   final int id;
-  final Map<String, WatchProvider> results;
+  final Map<String, WatchProviderItem> results;
   WatchProviderList({
     this.id = 0,
     this.results = const {},

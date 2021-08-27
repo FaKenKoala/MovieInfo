@@ -7,6 +7,7 @@ import 'package:movie_info/domain/model/movie/rate_content.dart';
 import 'package:movie_info/domain/model/tv/episode_group.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
 import 'package:movie_info/domain/service/i_app_service.dart';
+import 'package:movie_info/infrastructure/app_method/app_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/movie_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/tv_episode_group_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/tv_method.dart';
@@ -49,7 +50,7 @@ class ApiTest {
     // _service.execute(GetSimilarTV(tvId: tv.id));
     // _service.execute(GetTVTranslation(tvId: tv.id));
     // _service.execute(GetTVVideo(tvId: tv.id));
-    // _service.execute(GetTVWatchProvider(tvId: tv.id));
+    _service.execute(GetTVWatchProvider(tvId: tv.id));
     // _service.execute(RateTV(tvId: tv.id,rateContent: RateContent(value: 10)));
     // _service.execute(DeleteTVRate(tvId: tv.id));
     // _service.execute(GetLatestTV());
@@ -57,6 +58,13 @@ class ApiTest {
     // _service.execute(GetOnTheAirTV());
     // _service.execute(GetPopularTV());
     // _service.execute(GetTopRatedTV());
+  }
+
+  /// watch provider
+  providerTest() {
+    // _service.execute(GetAvailableRegions());
+    // _service.execute(GetMovieProviders(watchRegion: 'US'));
+    _service.execute(GetTVProviders(watchRegion: 'US'));
   }
 
   ApiTest._() {

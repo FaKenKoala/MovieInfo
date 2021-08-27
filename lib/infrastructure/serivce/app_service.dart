@@ -64,7 +64,8 @@ class AppService extends AppServicePart
         MovieService,
         TrendingService,
         TVService,
-        TVEpisodeGroupService
+        TVEpisodeGroupService,
+        WatchProviderService
     implements IAppService {
   AppService(RemoteRepository remoteRepository, LocalRepository localRepository)
       : super._(remoteRepository, localRepository);
@@ -161,6 +162,11 @@ class AppService extends AppServicePart
       case AppMethodType.TVEpisodeGroup:
         return (method as TVEpisodeGroupMethod)
             .when(getTVEpisodeGroupDetail: getTVEpisodeGroupDetail);
+      case AppMethodType.WatchProvider:
+        return (method as WatchProviderMethod).when(
+            getAvailableRegions: getAvailableRegions,
+            getMovieProviders: getMovieProviders,
+            getTVProviders: getTVProviders);
       case AppMethodType.Unknow:
         throw 'Unknown Method Type: $method';
     }

@@ -1,10 +1,12 @@
+import 'dart:convert';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'flatrate.g.dart';
 
 @JsonSerializable()
-class Flatrate {
-  Flatrate({
+class WatchProvider {
+  WatchProvider({
     this.displayPriority = 0,
     this.logoPath = '',
     this.providerId = 0,
@@ -16,7 +18,12 @@ class Flatrate {
   final int providerId;
   final String providerName;
 
-  factory Flatrate.fromJson(Map<String, dynamic> json) =>
-      _$FlatrateFromJson(json);
-  Map<String, dynamic> toJson() => _$FlatrateToJson(this);
+  factory WatchProvider.fromJson(Map<String, dynamic> json) =>
+      _$WatchProviderFromJson(json);
+  Map<String, dynamic> toJson() => _$WatchProviderToJson(this);
+
+  @override
+  String toString() {
+    return json.encode(toJson());
+  }
 }

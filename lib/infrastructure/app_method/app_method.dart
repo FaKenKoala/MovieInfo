@@ -7,12 +7,14 @@ import 'package:movie_info/infrastructure/app_method/app_method_part/movie_metho
 import 'package:movie_info/infrastructure/app_method/app_method_part/trending_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/tv_episode_group_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/tv_method.dart';
+import 'package:movie_info/infrastructure/app_method/app_method_part/watch_provider_method.dart';
 export 'app_method_part/configuration_method.dart';
 export 'app_method_part/discover_method.dart';
 export 'app_method_part/find_method.dart';
 export 'app_method_part/movie_method.dart';
 export 'app_method_part/trending_method.dart';
 export 'app_method_part/tv_method.dart';
+export 'app_method_part/watch_provider_method.dart';
 
 typedef AppExceptionEither<T> = Either<AppException, T>;
 
@@ -34,6 +36,8 @@ extension AppMethodX on AppMethod {
 
     if (this is TVEpisodeGroupMethod) return AppMethodType.TVEpisodeGroup;
 
+    if (this is WatchProviderMethod) return AppMethodType.WatchProvider;
+
     return AppMethodType.Unknow;
   }
 }
@@ -46,5 +50,6 @@ enum AppMethodType {
   Trending,
   TV,
   TVEpisodeGroup,
+  WatchProvider,
   Unknow,
 }

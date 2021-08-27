@@ -2,6 +2,7 @@ import 'package:dio/dio.dart' hide Headers;
 import 'package:injectable/injectable.dart';
 import 'package:movie_info/domain/model/account_state/account_state.dart';
 import 'package:movie_info/domain/model/api_result/id_result.dart';
+import 'package:movie_info/domain/model/api_result/list_result.dart';
 import 'package:movie_info/domain/model/code_response/code_response.dart';
 import 'package:movie_info/domain/model/configuration/configuration.dart';
 import 'package:movie_info/domain/model/content_rating/content_rating.dart';
@@ -24,6 +25,8 @@ import 'package:movie_info/domain/model/release_date/release_date.dart';
 import 'package:movie_info/domain/model/review/review.dart';
 import 'package:movie_info/domain/model/title/title.dart';
 import 'package:movie_info/domain/model/translation/translatetion_list.dart';
+import 'package:movie_info/domain/model/watch_provider/flatrate.dart';
+import 'package:movie_info/domain/model/watch_provider/region.dart';
 import 'package:movie_info/domain/model/watch_provider/watch_provider_list.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -65,7 +68,8 @@ abstract class RemoteRepository
         MovieRepository,
         TrendingRepository,
         TVRepository ,
-        TVEpisodeGroupsRepository{
+        TVEpisodeGroupsRepository,
+        WatchProvidersRepository{
   @factoryMethod
   factory RemoteRepository(Dio dio, {@Named("baseUrl") String baseUrl}) =
       _RemoteRepository;
