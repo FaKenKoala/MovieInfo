@@ -62,6 +62,7 @@ class AppService extends AppServicePart
         DiscoverService,
         FindService,
         MovieService,
+        NetworkService,
         TrendingService,
         TVService,
         TVEpisodeGroupService,
@@ -130,6 +131,12 @@ class AppService extends AppServicePart
             getPopularMovie: getPopularMovie,
             getTopRatedMovie: getTopRatedMovie,
             getUpcomingMovie: getUpcomingMovie);
+
+      case AppMethodType.Network:
+        return (method as NetworkMethod).when(
+            getNetworkDetail: getNetworkDetail,
+            getNetworkAlternativeNames: getNetworkAlternativeNames,
+            getNetworkLogos: getNetworkLogos);
       case AppMethodType.Trending:
         return (method as TrendingMethod).map(getTrending: getTrending);
       case AppMethodType.TV:

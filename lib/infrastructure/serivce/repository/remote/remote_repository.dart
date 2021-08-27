@@ -12,6 +12,8 @@ import 'package:movie_info/domain/model/media/video.dart';
 import 'package:movie_info/domain/model/movie/external_id.dart';
 import 'package:movie_info/domain/model/movie/keyword.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
+import 'package:movie_info/domain/model/network/network.dart';
+import 'package:movie_info/domain/model/network/network_name.dart';
 import 'package:movie_info/domain/model/tv/episode.dart';
 import 'package:movie_info/domain/model/tv/episode_group.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
@@ -66,6 +68,7 @@ abstract class RemoteRepository
         DiscoverRepository,
         FindRepository,
         MovieRepository,
+        NetworkRepository,
         TrendingRepository,
         TVRepository ,
         TVEpisodeGroupsRepository,

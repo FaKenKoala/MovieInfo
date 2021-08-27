@@ -27,6 +27,7 @@ class ApiTest {
 
   /// TV
   void tvApiTest(TV tv) {
+    _service.execute(GetTVDetail(tvId: tv.id));
     // service.execute(GetTVAccountState(tvId: tv.id));
     // _service.execute(GetTVAggregateCredit(tvId: tv.id));
     // _service.execute(GetTVAlternativeTitles(tvId: tv.id));
@@ -50,7 +51,7 @@ class ApiTest {
     // _service.execute(GetSimilarTV(tvId: tv.id));
     // _service.execute(GetTVTranslation(tvId: tv.id));
     // _service.execute(GetTVVideo(tvId: tv.id));
-    _service.execute(GetTVWatchProvider(tvId: tv.id));
+    // _service.execute(GetTVWatchProvider(tvId: tv.id));
     // _service.execute(RateTV(tvId: tv.id,rateContent: RateContent(value: 10)));
     // _service.execute(DeleteTVRate(tvId: tv.id));
     // _service.execute(GetLatestTV());
@@ -64,7 +65,14 @@ class ApiTest {
   providerTest() {
     // _service.execute(GetAvailableRegions());
     // _service.execute(GetMovieProviders(watchRegion: 'US'));
-    _service.execute(GetTVProviders(watchRegion: 'US'));
+    // _service.execute(GetTVProviders(watchRegion: 'US'));
+  }
+
+  /// Network
+  networkTest() {
+    // _service.execute(GetNetworkDetail(networkId: 49));
+    // _service.execute(GetNetwrokAlternativeNames(networkId: 49));
+    _service.execute(GetNetworkLogos(networkId: 49));
   }
 
   ApiTest._() {
