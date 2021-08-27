@@ -11,7 +11,7 @@ class Language {
   @JsonKey(name: 'iso_3166_1')
   final String iso31661;
   final String name;
-  final ContentData? data;
+  final LanguageDataContent? data;
 
   Language({
     this.englishName = '',
@@ -27,21 +27,21 @@ class Language {
 }
 
 @JsonSerializable()
-class ContentData {
+class LanguageDataContent {
   final String homepage;
   final String overview;
   final int runtime;
   final String tagline;
 
   final String title;
-  ContentData(
+  LanguageDataContent(
       {this.homepage = '',
       this.overview = '',
       this.runtime = 0,
       this.tagline = '',
       this.title = ''});
 
-  factory ContentData.fromJson(Map<String, dynamic> json) =>
-      _$ContentDataFromJson(json);
-  Map<String, dynamic> toJson() => _$ContentDataToJson(this);
+  factory LanguageDataContent.fromJson(Map<String, dynamic> json) =>
+      _$LanguageDataContentFromJson(json);
+  Map<String, dynamic> toJson() => _$LanguageDataContentToJson(this);
 }
