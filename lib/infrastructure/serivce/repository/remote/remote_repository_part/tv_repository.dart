@@ -10,4 +10,7 @@ mixin TVRepository {
 
   @GET('$TVPrefix/account_states')
   Future<AccountState> getTVAccountState(@Path(TVId) int tvId);
+
+  @GET('$TVPrefix/aggregate_credits')
+  Future<MediaCredit> getTVAggregateCredit(@Path(TVId) int tvId);
 }

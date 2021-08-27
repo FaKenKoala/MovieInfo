@@ -9,6 +9,7 @@ import 'package:movie_info/domain/model/configuration/configuration.dart';
 import 'package:movie_info/domain/model/enum_values/enum_values.dart';
 import 'package:movie_info/domain/model/code_response/app_exception.dart';
 import 'package:movie_info/domain/model/api_result/page_result.dart';
+import 'package:movie_info/domain/model/media/media_credit.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
 import 'package:movie_info/domain/model/person/cast.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
@@ -73,7 +74,13 @@ class AppService extends AppServicePart
     ///
     /// 这个方法也可以自动生成，格式是： remoteRepository.{name},参数就根据method的所有参数依此赋值
     try {
-      return right(await _executeMethod(method));
+      return right(await _executeMethod(method))
+        ..fold((l) => null, (r) {
+          MovieLog.printJson('${r.toString()}');
+          if (r is MediaCredit) {
+            MovieLog.printS(r.cast.first.toJson());
+          }
+        });
     } catch (e) {
       AppException? movieException;
       if (e is DioError) {
@@ -83,7 +90,7 @@ class AppService extends AppServicePart
         } catch (_) {}
       }
       movieException ??= AppException(message: e);
-      MovieLog.print('${method.runtimeType} $movieException');
+      MovieLog.printS('${method.runtimeType} $movieException');
       return left(movieException);
     }
   }
@@ -126,7 +133,10 @@ class AppService extends AppServicePart
       case AppMethodType.Trending:
         return (method as TrendingMethod).map(getTrending: getTrending);
       case AppMethodType.TV:
-        return (method as TVMethod).when(getTVDetail: getTVDetail, getTVAccountState: getTVAccountState);
+        return (method as TVMethod).when(
+            getTVDetail: getTVDetail,
+            getTVAccountState: getTVAccountState,
+            getTVAggregateCredit: getTVAggregateCredit);
       case AppMethodType.Unknow:
         throw 'Unknown Method Type: $method';
     }

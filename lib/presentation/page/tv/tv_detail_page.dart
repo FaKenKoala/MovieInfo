@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_info/api_test/api_test.dart';
 import 'package:movie_info/application/bloc/tv/tv_bloc.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
 import 'package:movie_info/application/util/app_image_config.dart';
@@ -25,21 +26,17 @@ class _TVDetailPageState extends State<TVDetailPage> {
   void initState() {
     super.initState();
     tvDetail = widget.tv;
-    addDioLogger(
-        PrettyDioLogger(requestHeader: true, requestBody: true, error: false));
-    // getIt<IAppService>().execute(GetTVDetail(tvId: tvDetail.id));
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
         create: (_) => getIt<TVBloc>()
-        ..add(
-          TVEvent.detail(
-            movieId: widget.tv.id,
+          ..add(
+            TVEvent.detail(
+              movieId: widget.tv.id,
+            ),
           ),
-        )
-        ,
         child: BlocListener<TVBloc, TVState>(
           listenWhen: (previousState, state) {
             return state.maybeMap(detail: (_) => true, orElse: () => false);
@@ -97,6 +94,12 @@ class _TVDetailPageState extends State<TVDetailPage> {
                           ImageGlobalConfig.imageUrl(tvDetail.posterPath)),
                 ],
               ),
+            ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                ApiTest.instance.apiTest(tvDetail);
+              },
+              child: Icon(Icons.download),
             ),
           ),
         ));

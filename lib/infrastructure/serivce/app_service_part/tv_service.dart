@@ -6,4 +6,7 @@ mixin TVService on AppServicePart {
 
   /// TV Account State
   get getTVAccountState => remoteRepository.getTVAccountState;
+
+  /// TV Aggregate Cast
+  get getTVAggregateCredit => remoteRepository.getTVAggregateCredit;
 }

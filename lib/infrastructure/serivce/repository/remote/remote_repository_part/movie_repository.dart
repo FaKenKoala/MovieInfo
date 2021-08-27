@@ -29,7 +29,7 @@ mixin MovieRepository {
       @Query(Page) int? page);
 
   @GET('$MoviePrefix/credits')
-  Future<MovieCredit> getMovieCredit(
+  Future<MediaCredit> getMovieCredit(
       @Path(MovieId) int movieId,);
 
   @GET('$MoviePrefix/external_ids')

@@ -8,7 +8,6 @@ import 'presentation/page/app/app.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureGetIt();
-  addDioLogger();
   await ImageGlobalConfig.init();
   runApp(MyApp());
 }
