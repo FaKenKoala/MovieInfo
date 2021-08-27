@@ -40,7 +40,11 @@ class ApiTest {
     //   });
     // });
     // _service.execute(GetTVExternalId(tvId: tv.id));
-    _service.execute(GetTVImage(tvId: tv.id));
+    // _service.execute(GetTVImage(tvId: tv.id));
+    // _service.execute(GetTVKeyword(tvId: tv.id));
+    _service.execute(GetTVRecommendation(tvId: tv.id));
+
+
 
   }
 

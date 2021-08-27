@@ -18,7 +18,6 @@ import 'package:movie_info/domain/model/media/media_credit.dart';
 import 'package:movie_info/domain/model/movie/movie_list.dart';
 import 'package:movie_info/domain/model/api_result/page_result.dart';
 import 'package:movie_info/domain/model/movie/rate_content.dart';
-import 'package:movie_info/domain/model/recommendation/recommendation.dart';
 import 'package:movie_info/domain/model/release_date/release_date.dart';
 import 'package:movie_info/domain/model/review/review.dart';
 import 'package:movie_info/domain/model/title/title.dart';

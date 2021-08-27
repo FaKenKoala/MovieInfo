@@ -57,7 +57,7 @@ mixin TVRepository {
   );
 
   @GET('$TVPrefix/recommendations')
-  Future<PageResult<Recommendation>> getTVRecommendation(
+  Future<PageResult<TV>> getTVRecommendation(
     @Path(TVId) int tvId,
     @Query(Page) int? page,
   );

@@ -8,28 +8,20 @@ part 'movie.g.dart';
 
 @JsonSerializable()
 class Movie {
-  bool adult;
-  String backdropPath;
-  List<int> genreIds;
-  int id;
-  String originalLanguage;
-
-  String originalTitle;
-
-  String overview;
-
-  String posterPath;
-  double popularity;
-  DateTime? releaseDate;
-
-  String title;
-
-  bool video;
-
-  double voteAverage;
-
-  int voteCount;
-
+  final bool adult;
+  final String backdropPath;
+  final List<int> genreIds;
+  final int id;
+  final String originalLanguage;
+  final String originalTitle;
+  final String overview;
+  final DateTime? releaseDate;
+  final String posterPath;
+  final double popularity;
+  final String title;
+  final bool video;
+  final double voteAverage;
+  final int voteCount;
   MediaType mediaType;
 
   dynamic belongsToCollection;

@@ -53,7 +53,7 @@ mixin MovieRepository {
   );
 
   @GET('$MoviePrefix/recommendations')
-  Future<PageResult<Recommendation>> getMovieRecommendation(
+  Future<PageResult<Movie>> getMovieRecommendation(
     @Path(MovieId) int movieId,
     @Query(Page) int? page,
   );
