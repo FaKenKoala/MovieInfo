@@ -52,7 +52,7 @@ mixin TVRepository {
   );
 
   @GET('$TVPrefix/keywords')
-  Future<IDResult<Keyword>> getTVKeyword(
+  Future<IDResult<MediaKeyword>> getTVKeyword(
     @Path(TVId) int tvId,
   );
 
@@ -85,7 +85,7 @@ mixin TVRepository {
   );
 
   @GET('$TVPrefix/videos')
-  Future<IDResult<Video>> getTVVideo(
+  Future<IDResult<MediaVideo>> getTVVideo(
     @Path(TVId) int tvId,
   );
 

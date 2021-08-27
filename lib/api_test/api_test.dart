@@ -27,7 +27,7 @@ class ApiTest {
 
   /// TV
   void tvApiTest(TV tv) {
-    _service.execute(GetTVDetail(tvId: tv.id));
+    // _service.execute(GetTVDetail(tvId: tv.id));
     // service.execute(GetTVAccountState(tvId: tv.id));
     // _service.execute(GetTVAggregateCredit(tvId: tv.id));
     // _service.execute(GetTVAlternativeTitles(tvId: tv.id));
@@ -72,7 +72,12 @@ class ApiTest {
   networkTest() {
     // _service.execute(GetNetworkDetail(networkId: 49));
     // _service.execute(GetNetwrokAlternativeNames(networkId: 49));
-    _service.execute(GetNetworkLogos(networkId: 49));
+    // _service.execute(GetNetworkLogos(networkId: 49));
+  }
+
+  keywordTest() {
+    // _service.execute(GetKeywordDetail(keywordId: 13084));
+    _service.execute(GetKeywordMovies(keywordId: 13084));
   }
 
   ApiTest._() {

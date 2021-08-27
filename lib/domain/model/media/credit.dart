@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:movie_info/domain/model/person/cast.dart';
 import 'package:movie_info/domain/model/person/crew.dart';
 
-part 'media_credit.g.dart';
+part 'credit.g.dart';
 
 @JsonSerializable()
 class MediaCredit {

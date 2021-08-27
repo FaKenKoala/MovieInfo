@@ -42,7 +42,7 @@ mixin MovieRepository {
   );
 
   @GET('$MoviePrefix/keywords')
-  Future<IDResult<Keyword>> getMovieKeyword(
+  Future<IDResult<MediaKeyword>> getMovieKeyword(
     @Path(MovieId) int movieId,
   );
 
@@ -81,7 +81,7 @@ mixin MovieRepository {
   );
 
   @GET('$MoviePrefix/videos')
-  Future<IDResult<Video>> getMovieVideo(
+  Future<IDResult<MediaVideo>> getMovieVideo(
     @Path(MovieId) int movieId,
   );
 

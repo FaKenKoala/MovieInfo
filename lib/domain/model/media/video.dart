@@ -5,8 +5,8 @@ import 'package:json_annotation/json_annotation.dart';
 part 'video.g.dart';
 
 @JsonSerializable()
-class Video {
-  Video({
+class MediaVideo {
+  MediaVideo({
     this.iso6391 = '',
     this.iso31661 = '',
     this.name = '',
@@ -32,8 +32,8 @@ class Video {
   final DateTime? publishedAt;
   final String id;
 
-  factory Video.fromJson(Map<String, dynamic> json) => _$VideoFromJson(json);
-  Map<String, dynamic> toJson() => _$VideoToJson(this);
+  factory MediaVideo.fromJson(Map<String, dynamic> json) => _$MediaVideoFromJson(json);
+  Map<String, dynamic> toJson() => _$MediaVideoToJson(this);
 
   @override
   String toString() {

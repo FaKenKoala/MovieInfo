@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:json_annotation/json_annotation.dart';
 import 'package:movie_info/domain/model/company/company.dart';
 import 'package:movie_info/domain/model/country/country.dart';
@@ -22,20 +24,20 @@ class Movie {
   final bool video;
   final double voteAverage;
   final int voteCount;
-  MediaType mediaType;
+  final MediaType mediaType;
 
   dynamic belongsToCollection;
-  int budget;
-  List<Genre> genres;
-  String homepage;
-  String imdbId;
-  List<Company> productionCompanies;
-  List<Country> productionCountries;
-  int revenue;
-  int runtime;
-  List<Language> spokenLanguages;
-  String status;
-  String tagline;
+  final int budget;
+  final List<Genre> genres;
+  final String homepage;
+  final String imdbId;
+  final List<Company> productionCompanies;
+  final List<Country> productionCountries;
+  final int revenue;
+  final int runtime;
+  final List<Language> spokenLanguages;
+  final String status;
+  final String tagline;
 
   Movie({
     this.id = 0,
@@ -73,6 +75,6 @@ class Movie {
 
   @override
   String toString() {
-    return '${this.toJson()}';
+    return json.encode(toJson());
   }
 }

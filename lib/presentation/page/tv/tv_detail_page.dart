@@ -98,8 +98,9 @@ class _TVDetailPageState extends State<TVDetailPage> {
             floatingActionButton: FloatingActionButton(
               onPressed: () {
                 // ApiTest.instance.tvApiTest(tvDetail);
-                ApiTest.instance.networkTest();
+                // ApiTest.instance.networkTest();
                 // ApiTest.instance.providerTest();
+                ApiTest.instance.keywordTest();
               },
               child: Icon(Icons.download),
             ),

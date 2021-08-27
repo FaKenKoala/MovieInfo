@@ -70,9 +70,9 @@ class TVMethod with _$TVMethod implements AppMethod {
     int? page,
   }) = GetTVReview;
 
-  const factory TVMethod.getScreenedThreatricallyTV({
+  const factory TVMethod.getTVScreenedThreatrically({
     required int tvId,
-  }) = GetScreenedThreatricallyTV;
+  }) = GetTVScreenedThreatrically;
 
   /// Get TV Similar
   const factory TVMethod.getSimilarTV({

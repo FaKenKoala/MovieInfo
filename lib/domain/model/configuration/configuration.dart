@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'configuration.g.dart';
 
@@ -18,7 +20,7 @@ class Configuration {
 
   @override
   String toString() {
-    return '${this.toJson()}';
+    return json.encode(toJson());
   }
 }
 
@@ -56,6 +58,6 @@ class ImageConfig {
 
   @override
   String toString() {
-    return '${this.toJson()}';
+    return json.encode(toJson());
   }
 }
