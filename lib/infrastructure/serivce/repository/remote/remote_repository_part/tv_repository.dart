@@ -13,4 +13,16 @@ mixin TVRepository {
 
   @GET('$TVPrefix/aggregate_credits')
   Future<MediaCredit> getTVAggregateCredit(@Path(TVId) int tvId);
+
+  @GET('$TVPrefix/alternative_titles')
+  Future<IDResult<Title>> getTVAlternativeTitles(
+    @Path(TVId) int tvId,
+  );
+
+  @GET('$TVPrefix/changes')
+  Future<ChangeList> getTVChanges(
+      @Path(TVId) int tvId,
+      @Query('start_date') String? startDate,
+      @Query('end_date') String? endDate,
+      @Query(Page) int? page);
 }

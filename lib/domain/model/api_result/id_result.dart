@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'id_result.g.dart';
@@ -16,4 +18,9 @@ class IDResult<T> {
       _$IDResultFromJson(json, fromJsonT);
   Map<String, dynamic> toJson(Object? Function(T value) toJsonT) =>
       _$IDResultToJson(this, toJsonT);
+
+  @override
+  String toString() {
+    return json.encode(toJson((T t) => json.decode(t.toString())));
+  }
 }

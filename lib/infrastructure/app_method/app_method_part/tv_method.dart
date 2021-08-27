@@ -16,4 +16,17 @@ class TVMethod with _$TVMethod implements AppMethod {
   const factory TVMethod.getTVAggregateCredit({
     required int tvId,
   }) = GetTVAggregateCredit;
+
+  /// Get Alternative Titles
+  const factory TVMethod.getTVAlternativeTitles({
+    required int tvId,
+  }) = GetTVAlternativeTitles;
+
+  /// Get TV Changes
+  const factory TVMethod.getTVChanges({
+    required int tvId,
+    String? startDate,
+    String? endDate,
+    int? page,
+  }) = GetTVChanges;
 }

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:json_annotation/json_annotation.dart';
 part 'cast.g.dart';
 
@@ -32,6 +34,11 @@ class Cast {
 
   factory Cast.fromJson(Map<String, dynamic> json) => _$CastFromJson(json);
   Map<String, dynamic> toJson() => _$CastToJson(this);
+
+  @override
+  String toString() {
+    return json.encode(toJson());
+  }
 }
 
 @JsonSerializable()
@@ -47,6 +54,11 @@ class Role {
 
   factory Role.fromJson(Map<String, dynamic> json) => _$RoleFromJson(json);
   Map<String, dynamic> toJson() => _$RoleToJson(this);
+
+  @override
+  String toString() {
+    return json.encode(toJson());
+  }
 }
 
 

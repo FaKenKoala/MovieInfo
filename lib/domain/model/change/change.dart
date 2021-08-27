@@ -1,8 +1,10 @@
+import 'dart:convert';
+
 import 'package:json_annotation/json_annotation.dart';
 
-part 'movie_change.g.dart';
+part 'change.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(genericArgumentFactories: true)
 class ChangeList {
   List<Change> changes;
 
@@ -10,15 +12,20 @@ class ChangeList {
     this.changes = const [],
   });
 
-  Map<String, dynamic> toJson() => _$ChangeListToJson(this);
   factory ChangeList.fromJson(Map<String, dynamic> json) =>
       _$ChangeListFromJson(json);
+  Map<String, dynamic> toJson() => _$ChangeListToJson(this);
+
+  @override
+  String toString() {
+    return json.encode(toJson());
+  }
 }
 
-@JsonSerializable()
+@JsonSerializable(genericArgumentFactories: true)
 class Change {
   String key;
-  List<ChangeItem> items;
+  List items;
 
   Change({
     this.key = '',
@@ -27,28 +34,41 @@ class Change {
 
   factory Change.fromJson(Map<String, dynamic> json) => _$ChangeFromJson(json);
   Map<String, dynamic> toJson() => _$ChangeToJson(this);
+
+  @override
+  String toString() {
+    return json.encode(toJson());
+  }
 }
 
 @JsonSerializable()
 class ChangeItem {
-  String id;
-  String action;
-  String time;
+  final String id;
+  final String action;
+  final String? time;
   @JsonKey(name: 'iso_639_1')
-  String iso6391;
-  String value;
-  String originalValue;
+  final String iso6391;
+  @JsonKey(name: 'iso_3166_1')
+  final String iso31661;
+  final dynamic value;
+  final String originalValue;
 
   ChangeItem({
     this.id = '',
     this.action = '',
-    this.time = '',
+    this.time,
     this.iso6391 = '',
-    this.value = '',
+    this.iso31661 = '',
+    this.value,
     this.originalValue = '',
   });
 
   factory ChangeItem.fromJson(Map<String, dynamic> json) =>
       _$ChangeItemFromJson(json);
   Map<String, dynamic> toJson() => _$ChangeItemToJson(this);
+
+  @override
+  String toString() {
+    return json.encode(toJson());
+  }
 }

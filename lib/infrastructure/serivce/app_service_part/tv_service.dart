@@ -9,4 +9,9 @@ mixin TVService on AppServicePart {
 
   /// TV Aggregate Cast
   get getTVAggregateCredit => remoteRepository.getTVAggregateCredit;
+
+  /// TV Alternative Titles
+  get getTVAlternativeTitles => remoteRepository.getTVAlternativeTitles;
+
+  get getTVChanges => remoteRepository.getTVChanges;
 }

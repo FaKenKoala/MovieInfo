@@ -11,7 +11,7 @@ import 'package:movie_info/domain/model/movie/keyword.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
 
-import 'package:movie_info/domain/model/movie/movie_change.dart';
+import 'package:movie_info/domain/model/change/change.dart';
 import 'package:movie_info/domain/model/media/media_credit.dart';
 import 'package:movie_info/domain/model/movie/movie_list.dart';
 import 'package:movie_info/domain/model/api_result/page_result.dart';

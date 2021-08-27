@@ -136,7 +136,9 @@ class AppService extends AppServicePart
         return (method as TVMethod).when(
             getTVDetail: getTVDetail,
             getTVAccountState: getTVAccountState,
-            getTVAggregateCredit: getTVAggregateCredit);
+            getTVAggregateCredit: getTVAggregateCredit,
+            getTVAlternativeTitles: getTVAlternativeTitles,
+            getTVChanges: getTVChanges);
       case AppMethodType.Unknow:
         throw 'Unknown Method Type: $method';
     }

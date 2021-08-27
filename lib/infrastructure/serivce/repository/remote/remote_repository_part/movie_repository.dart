@@ -23,7 +23,7 @@ mixin MovieRepository {
 
   @GET('$MoviePrefix/changes')
   Future<ChangeList> getMovieChanges(
-      @Path(MovieId) String movieId,
+      @Path(MovieId) int movieId,
       @Query('start_date') String? startDate,
       @Query('end_date') String? endDate,
       @Query(Page) int? page);

@@ -24,7 +24,7 @@ class MovieMethod with _$MovieMethod  implements AppMethod{
 
   /// Get Movie Changes
   const factory MovieMethod.getMovieChanges({
-    required String movieId,
+    required int movieId,
     String? startDate,
     String? endDate,
     int? page,
