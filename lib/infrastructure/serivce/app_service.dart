@@ -141,7 +141,7 @@ class AppService extends AppServicePart
       case AppMethodType.Trending:
         return (method as TrendingMethod).map(getTrending: getTrending);
       case AppMethodType.TV:
-        // return (method as TVMethod).map(getTVDetail: getTVDetail);
+        return (method as TVMethod).map(getTVDetail: getTVDetail);
       case AppMethodType.Unknow:
         throw 'Unknown Method Type: $method';
     }
