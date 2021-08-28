@@ -4,5 +4,11 @@ part 'configuration_method.freezed.dart';
 
 @freezed
 class ConfigurationMethod with _$ConfigurationMethod implements AppMethod{
-  const factory ConfigurationMethod.getConfiguration() = GetConfiguration;
+  const factory ConfigurationMethod.getAPIConfiguration() = GetAPIConfiguration;
+  const factory ConfigurationMethod.getConfigurationCountries() = GetConfigurationCountries;
+
+const factory ConfigurationMethod.getConfigurationJobs() = GetConfigurationJobs;
+const factory ConfigurationMethod.getConfigurationLanguages() = GetConfigurationLanguages;
+const factory ConfigurationMethod.getConfigurationTranslations() = GetConfigurationTranslations;
+const factory ConfigurationMethod.getConfigurationTimezones() = GetConfigurationTimezones;
 }

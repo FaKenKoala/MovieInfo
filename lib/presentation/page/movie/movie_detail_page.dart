@@ -130,7 +130,8 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                 // ApiTest.instance.collectionTest();
                 // ApiTest.instance.changeTest();
                 // ApiTest.instance.creditTest();
-                ApiTest.instance.personTest();
+                // ApiTest.instance.personTest();
+                ApiTest.instance.configurationTest();
               },
               child: Icon(Icons.upload),
             ),

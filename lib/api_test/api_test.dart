@@ -129,6 +129,14 @@ class ApiTest {
     // _service.execute(GetPopularPerson());
   }
 
+  configurationTest() {
+    // _service.execute(GetConfigurationCountries());
+    // _service.execute(GetConfigurationJobs());
+    // _service.execute(GetConfigurationLanguages());
+    // _service.execute(GetConfigurationTranslations());
+    _service.execute(GetConfigurationTimezones());
+  }
+
   ApiTest._() {
     addDioLogger(PrettyDioLogger(
         requestHeader: true,

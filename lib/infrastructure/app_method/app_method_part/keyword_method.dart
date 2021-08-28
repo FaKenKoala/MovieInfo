@@ -4,8 +4,12 @@ part 'keyword_method.freezed.dart';
 
 @freezed
 class KeywordMethod with _$KeywordMethod implements AppMethod {
-  const factory KeywordMethod.getKeywordDetail({required int keywordId}) =
-      GetKeywordDetail;
-  const factory KeywordMethod.getKeywordMovies({required int keywordId,@Default(true)bool includeAdult}) =
-      GetKeywordMovies;
+  const factory KeywordMethod.getKeywordDetail({
+    required int keywordId,
+  }) = GetKeywordDetail;
+  
+  const factory KeywordMethod.getKeywordMovies({
+    required int keywordId,
+    @Default(true) bool includeAdult,
+  }) = GetKeywordMovies;
 }

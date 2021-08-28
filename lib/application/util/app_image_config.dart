@@ -48,7 +48,7 @@ class ImageGlobalConfig {
     }
 
     AppExceptionEither<Configuration> result =
-        await getIt<IAppService>().execute(GetConfiguration());
+        await getIt<IAppService>().execute(GetAPIConfiguration());
 
     result.fold((_) {}, (r) {
       _instance!._remoteConfig = r;

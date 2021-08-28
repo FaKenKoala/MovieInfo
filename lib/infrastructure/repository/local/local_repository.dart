@@ -9,7 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 @singleton
 class LocalRepository {
-  Option<Configuration> getConfiguration() {
+  Option<Configuration> getAPIConfiguration() {
     String? configString =
         getIt<SharedPreferences>().get(Constants.ImageGlobalConfig) as String?;
     if (configString != null) {

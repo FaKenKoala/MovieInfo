@@ -137,10 +137,14 @@ class Job {
   final String job;
   final String creditId;
   final int episodeCount;
+  final String department;
+  final List<String> jobs;
   Job({
     this.job = '',
     this.creditId = '',
     this.episodeCount = 0,
+    this.department = '',
+    this.jobs = const [],
   });
 
   factory Job.fromJson(Map<String, dynamic> json) => _$JobFromJson(json);

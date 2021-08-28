@@ -96,8 +96,13 @@ class AppService extends AppServicePart
             getCompanyLogos: remote.getCompanyLogos);
 
       case AppMethodType.Configuration:
-        return (method as ConfigurationMethod)
-            .map(getConfiguration: getConfiguration);
+        return (method as ConfigurationMethod).when(
+            getAPIConfiguration: getAPIConfiguration,
+            getConfigurationCountries: remote.getConfigurationCountries,
+            getConfigurationJobs: remote.getConfigurationJobs,
+            getConfigurationLanguages: remote.getConfigurationLanguages,
+            getConfigurationTranslations: remote.getConfigurationTranslations,
+            getConfigurationTimezones: remote.getConfigurationTimezones);
 
       case AppMethodType.Credit:
         return (method as CreditMethod).map(getCreditDetail: getCreditDetail);
