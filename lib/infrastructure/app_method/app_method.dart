@@ -12,6 +12,7 @@ import 'app_method_part/movie_method.dart';
 import 'app_method_part/network_method.dart';
 import 'app_method_part/person_method.dart';
 import 'app_method_part/review_method.dart';
+import 'app_method_part/search_method.dart';
 import 'app_method_part/trending_method.dart';
 import 'app_method_part/tv_episode_group_method.dart';
 import 'app_method_part/tv_episode_method.dart';
@@ -36,6 +37,7 @@ export 'app_method_part/movie_method.dart';
 export 'app_method_part/network_method.dart';
 export 'app_method_part/person_method.dart';
 export 'app_method_part/review_method.dart';
+export 'app_method_part/search_method.dart';
 export 'app_method_part/trending_method.dart';
 export 'app_method_part/tv_episode_group_method.dart';
 export 'app_method_part/tv_episode_method.dart';
@@ -77,6 +79,8 @@ extension AppMethodX on AppMethod {
 
     if (this is ReviewMethod) return AppMethodType.Review;
 
+    if (this is SearchMethod) return AppMethodType.Search;
+
     if (this is TrendingMethod) return AppMethodType.Trending;
 
     if (this is TVEpisodeGroupMethod) return AppMethodType.TVEpisodeGroup;
@@ -108,6 +112,7 @@ enum AppMethodType {
   Network,
   Person,
   Review,
+  Search,
   Trending,
   TV,
   TVEpisode,

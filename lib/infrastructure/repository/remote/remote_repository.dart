@@ -86,6 +86,7 @@ abstract class RemoteRepository
         NetworkRepository,
         PersonRepository,
         ReviewRepository,
+        SearchRepository,
         TrendingRepository,
         TVEpisodeGroupsRepository,
         TVSeasonRepository,

@@ -30,7 +30,6 @@ part 'app_service_part/trending_service.dart';
 part 'app_service_part/tv_episode_service.dart';
 part 'app_service_part/tv_season_service.dart';
 
-
 abstract class AppServicePart {
   final LocalRepository localRepository;
   final RemoteRepository remoteRepository;
@@ -177,6 +176,16 @@ class AppService extends AppServicePart
             getPersonTranslations: remote.getPersonTranslations,
             getLatestPerson: remote.getLatestPerson,
             getPopularPerson: remote.getPopularPerson);
+
+      case AppMethodType.Search:
+        return (method as SearchMethod).when(
+            searchCompany: remote.searchCompany,
+            searchCollection: remote.searchCollection,
+            searchKeyword: remote.searchKeyword,
+            searchMovie: remote.searchMovie,
+            multiSearch: remote.multiSearch,
+            searchPerson: remote.searchPerson,
+            searchTV: remote.searchTV);
 
       case AppMethodType.Review:
         return (method as ReviewMethod)

@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
-import 'package:movie_info/domain/model/movie/rate_content.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
 import 'package:movie_info/domain/service/i_app_service.dart';
 import 'package:movie_info/infrastructure/app_method/app_method.dart';
@@ -177,7 +176,7 @@ class ApiTest {
     // _service.execute(GetTVSeasonAcountState(tvId: tv.id, seasonNumber: 1));
     // _service.execute(GetTVSeasonAggregatedCredits(tvId: tv.id, seasonNumber: 1));
 
-    // _service.execute(GetTVSeasonChange(seasonId: seasonId));
+    _service.execute(GetTVSeasonChange(seasonId: seasonId));
 
     // _service.execute(GetTVSeasonCredits(tvId: tv.id, seasonNumber: 1));
     // _service.execute(GetTVSeasonExternalID(tvId: tv.id, seasonNumber: 1));
@@ -193,7 +192,7 @@ class ApiTest {
     // _service.execute(GetTVEpisodeAccountState(
     //     tvId: tv.id, seasonNumber: 1, episodeNumber: 1));
 
-    // _service.execute(GetTVEpisodeChange(episodeId: seasonId, startDate: DateTime.now()));
+    _service.execute(GetTVEpisodeChange(episodeId: seasonId, startDate: DateTime.now()));
 
     // _service.execute(GetTVEpisodeCredits(tvId: tv.id, seasonNumber: 1, episodeNumber: 1));
     // _service.execute(GetTVEpisodeExternalID(tvId: tv.id, seasonNumber: 1, episodeNumber: 1));
