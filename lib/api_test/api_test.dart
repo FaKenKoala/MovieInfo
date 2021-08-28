@@ -1,12 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
+import 'package:movie_info/domain/model/movie/rate_content.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
 import 'package:movie_info/domain/service/i_app_service.dart';
 import 'package:movie_info/infrastructure/app_method/app_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/certification_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/genre_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/review_method.dart';
+import 'package:movie_info/infrastructure/app_method/app_method_part/tv_episode_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/tv_season_method.dart';
 import 'package:movie_info/infrastructure/util/dio_logger.dart';
 import 'package:movie_info/infrastructure/util/http_interceptor.dart';
@@ -170,7 +172,6 @@ class ApiTest {
   }
 
   tvSeasonsTest(TV tv) {
-    // TODO: 9
     int seasonId = 3624;
     // _service.execute(GetTVSeasonDetail(tvId: tv.id, seasonNumber: 1));
     // _service.execute(GetTVSeasonAcountState(tvId: tv.id, seasonNumber: 1));
@@ -186,10 +187,22 @@ class ApiTest {
     _service.execute(GetTVSeasonVideos(tvId: tv.id, seasonNumber: 1));
   }
 
-  tvEpisodesTest(
-    TV tv,
-  ) {
-    // TODO: 10
+  tvEpisodesTest(TV tv) {
+    int seasonId = 3624;
+    // _service.execute(GetTVEpisodeDetail(tvId: tv.id, seasonNumber: 1,episodeNumber: 1));
+    // _service.execute(GetTVEpisodeAccountState(
+    //     tvId: tv.id, seasonNumber: 1, episodeNumber: 1));
+
+    // _service.execute(GetTVEpisodeChange(episodeId: seasonId, startDate: DateTime.now()));
+
+    // _service.execute(GetTVEpisodeCredits(tvId: tv.id, seasonNumber: 1, episodeNumber: 1));
+    // _service.execute(GetTVEpisodeExternalID(tvId: tv.id, seasonNumber: 1, episodeNumber: 1));
+
+    // _service.execute(GetTVEpisodeImage(tvId: tv.id, seasonNumber: 1, episodeNumber: 1));
+    // _service.execute(GetTVEpisodeTranslations(tvId: tv.id, seasonNumber: 1, episodeNumber: 1));
+    // _service.execute(GetTVEpisodeVideo(tvId: tv.id, seasonNumber: 1, episodeNumber: 1));
+    // _service.execute(RateTVEpisode(tvId: tv.id, seasonNumber: 1, episodeNumber: 1, rateContent: RateContent(value: 10)));
+    _service.execute(DeleteRateTVEpisode(tvId: tv.id, seasonNumber: 1, episodeNumber: 1));
   }
 
   /// watch provider

@@ -1,53 +1,54 @@
 part of '../remote_repository.dart';
 
 const CTVEpisodeNumber = 'episode_number';
-const TVEpisodePrefix = '$TVSeasonPrefix/episode/$CTVEpisodeNumber';
+const TVEpisodePrefix = '$TVSeasonPrefix/episode/{$CTVEpisodeNumber}';
 const CRating = 'rating';
 mixin TVEpisodeRepository {
   @GET('$TVEpisodePrefix')
-  Future getTVEpisodeDetail(
+  Future<TVEpisode> getTVEpisodeDetail(
     @Path('$CTVId') int tvId,
     @Path('$CTVSeasonNumber') int seasonNumber,
     @Path('$CTVEpisodeNumber') int episodeNumber,
   );
 
   @GET('$TVEpisodePrefix/$CAccountStates')
-  Future getTVEpisodeAccountState(
+  Future<AccountState> getTVEpisodeAccountState(
     @Path('$CTVId') int tvId,
     @Path('$CTVSeasonNumber') int seasonNumber,
     @Path('$CTVEpisodeNumber') int episodeNumber,
   );
 
-  @GET('$TVEpisodePrefix/$CChanges')
-  Future getTVEpisodeChange(
-    @Path('$CTVId') int tvId,
-    @Path('$CTVSeasonNumber') int seasonNumber,
-    @Path('$CTVEpisodeNumber') int episodeNumber,
+  @GET('/tv/episode/{episode_id}/changes')
+  Future<ChangeList> getTVEpisodeChange(
+    @Path('episode_id') int episodeId,
+    @Query('start_date') String? startDate,
+    @Query('end_date') String? endDate,
+    @Query('page') int? page,
   );
 
   @GET('$TVEpisodePrefix/$CCredits')
-  Future getTVEpisodeCredits(
+  Future<TVCreditList> getTVEpisodeCredits(
     @Path('$CTVId') int tvId,
     @Path('$CTVSeasonNumber') int seasonNumber,
     @Path('$CTVEpisodeNumber') int episodeNumber,
   );
 
   @GET('$TVEpisodePrefix/$CExternalIds')
-  Future getTVEpisodeExternalID(
+  Future<ExternalId> getTVEpisodeExternalID(
     @Path('$CTVId') int tvId,
     @Path('$CTVSeasonNumber') int seasonNumber,
     @Path('$CTVEpisodeNumber') int episodeNumber,
   );
 
   @GET('$TVEpisodePrefix/$CImages')
-  Future getTVEpisodeImage(
+  Future<MediaImageList> getTVEpisodeImage(
     @Path('$CTVId') int tvId,
     @Path('$CTVSeasonNumber') int seasonNumber,
     @Path('$CTVEpisodeNumber') int episodeNumber,
   );
 
   @GET('$TVEpisodePrefix/$CTranslations')
-  Future getTVEpisodeTranslations(
+  Future<TranslationList> getTVEpisodeTranslations(
     @Path('$CTVId') int tvId,
     @Path('$CTVSeasonNumber') int seasonNumber,
     @Path('$CTVEpisodeNumber') int episodeNumber,

@@ -25,7 +25,7 @@ mixin TVSeasonRepository {
   );
 
   @GET('$TVSeasonPrefix/$CAggregateCredits')
-  Future<TVSeasonCreditList> getTVSeasonAggregatedCredits(
+  Future<TVCreditList> getTVSeasonAggregatedCredits(
     @Path('$CTVId') int tvId,
     @Path('$CTVSeasonNumber') int seasonNumber,
   );
@@ -33,10 +33,13 @@ mixin TVSeasonRepository {
   @GET('/tv/season/{season_id}/$CChanges')
   Future<ChangeList> getTVSeasonChange(
     @Path('season_id') int seasonId,
+    @Query('start_date') String? startDate,
+    @Query('end_date') String? endDate,
+    @Query('page') int? page,
   );
 
   @GET('$TVSeasonPrefix/$CCredits')
-  Future<TVSeasonCreditList> getTVSeasonCredits(
+  Future<TVCreditList> getTVSeasonCredits(
     @Path('$CTVId') int tvId,
     @Path('$CTVSeasonNumber') int seasonNumber,
   );

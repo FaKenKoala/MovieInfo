@@ -22,6 +22,9 @@ class TVSeasonMethod with _$TVSeasonMethod implements AppMethod {
 
   const factory TVSeasonMethod.getTVSeasonChange({
     required int seasonId,
+    DateTime? startDate,
+    DateTime? endDate,
+    int? page,
   }) = GetTVSeasonChange;
 
   const factory TVSeasonMethod.getTVSeasonCredits({

@@ -12,11 +12,14 @@ class MediaImageList {
   final List<MediaImageItem> backdrops;
   final List<MediaImageItem> logos;
   final List<MediaImageItem> posters;
-  MediaImageList(
-      {this.id = 0,
-      this.backdrops = const [],
-      this.logos = const [],
-      this.posters = const []});
+  final List<MediaImageItem> stills;
+  MediaImageList({
+    this.id = 0,
+    this.backdrops = const [],
+    this.logos = const [],
+    this.posters = const [],
+    this.stills = const [],
+  });
 
   factory MediaImageList.fromJson(Map<String, dynamic> json) =>
       _$MediaImageListFromJson(json);
@@ -50,7 +53,7 @@ class MediaImageItem {
     this.width = 0,
     this.imageType = '',
     this.mediaType = MediaType.ALL,
-    this.media, 
+    this.media,
   });
 
   factory MediaImageItem.fromJson(Map<String, dynamic> json) =>

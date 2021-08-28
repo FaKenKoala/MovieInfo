@@ -20,9 +20,10 @@ class TVEpisodeMethod with _$TVEpisodeMethod implements AppMethod {
   }) = GetTVEpisodeAccountState;
 
   const factory TVEpisodeMethod.getTVEpisodeChange({
-    required int tvId,
-    required int seasonNumber,
-    required int episodeNumber,
+    required int episodeId,
+    DateTime? startDate,
+    DateTime? endDate,
+    int? page,
   }) = GetTVEpisodeChange;
 
   const factory TVEpisodeMethod.getTVEpisodeCredits({

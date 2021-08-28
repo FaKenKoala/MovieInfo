@@ -15,7 +15,7 @@ import 'package:movie_info/domain/model/find/find_result.dart';
 import 'package:movie_info/domain/model/genre/genre_list.dart';
 import 'package:movie_info/domain/model/language/language.dart';
 import 'package:movie_info/domain/model/language/timezone.dart';
-import 'package:movie_info/domain/model/person/tv_season_credit_list.dart';
+import 'package:movie_info/domain/model/person/tv_credit_list.dart';
 import 'package:movie_info/domain/model/person/credit.dart';
 import 'package:movie_info/domain/model/person/credit_list.dart';
 import 'package:movie_info/domain/model/media/image.dart';
