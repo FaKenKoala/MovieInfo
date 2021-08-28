@@ -101,8 +101,8 @@ class _TVDetailPageState extends State<TVDetailPage> {
                 // ApiTest.instance.genreTest();
                 // ApiTest.instance.tvSeasonsTest(tvDetail);
                 // ApiTest.instance.tvEpisodesTest(tvDetail);
-                ApiTest.instance.tvEpisodesTest(tvDetail);
-
+                // ApiTest.instance.tvEpisodesTest(tvDetail);
+                ApiTest.instance.searchTest();
               },
               child: Icon(Icons.download),
             ),

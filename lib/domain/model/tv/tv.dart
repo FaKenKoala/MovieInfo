@@ -26,7 +26,7 @@ class TV {
   final int voteCount;
   final String overview;
   final String backdropPath;
-  final double popularity;
+  final num popularity;
   final MediaType mediaType;
 
   final List<Person> createdBy;

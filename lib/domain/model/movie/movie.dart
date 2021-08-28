@@ -10,6 +10,34 @@ import 'package:movie_info/domain/model/language/language.dart';
 part 'movie.g.dart';
 
 @JsonSerializable()
+class MovieList {
+  MovieList({
+    this.description = '',
+    this.favoriteCount = 0,
+    this.id = 0,
+    this.itemCount = 0,
+    this.iso6391 = '',
+    this.listType = '',
+    this.name = '',
+    this.posterPath = '',
+  });
+
+  final String description;
+  final int favoriteCount;
+  final int id;
+  final int itemCount;
+  @JsonKey(name: 'iso_639_1')
+  final String iso6391;
+  final String listType;
+  final String name;
+  final String posterPath;
+
+  factory MovieList.fromJson(Map<String, dynamic> json) =>
+      _$MovieListFromJson(json);
+  Map<String, dynamic> toJson() => _$MovieListToJson(this);
+}
+
+@JsonSerializable()
 class Movie {
   final bool adult;
   final String? backdropPath;
@@ -27,7 +55,7 @@ class Movie {
   final String? posterPath;
   final List<Company> productionCompanies;
   final List<Country> productionCountries;
-  final DateTime? releaseDate;
+  final String? releaseDate;
   final int revenue;
   final int runtime;
   final List<Language> spokenLanguages;

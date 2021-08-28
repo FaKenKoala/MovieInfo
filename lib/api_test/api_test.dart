@@ -129,7 +129,15 @@ class ApiTest {
   }
 
   searchTest() {
-    // TODO: 7
+    // _service.execute(SearchCompany(query: 'Joey'));
+    // _service.execute(SearchCollection(query: 'Love'));
+    // _service.execute(SearchKeyword(query: 'Love'));
+    // _service.execute(SearchMovie(query: 'Love'));
+    // _service.execute(MultiSearch(query: 'Love'));
+
+    // _service.execute(SearchPerson(query: 'Love'));
+
+    _service.execute(SearchTV(query: 'Love'));
   }
 
   /// TV
@@ -192,7 +200,8 @@ class ApiTest {
     // _service.execute(GetTVEpisodeAccountState(
     //     tvId: tv.id, seasonNumber: 1, episodeNumber: 1));
 
-    _service.execute(GetTVEpisodeChange(episodeId: seasonId, startDate: DateTime.now()));
+    _service.execute(
+        GetTVEpisodeChange(episodeId: seasonId, startDate: DateTime.now()));
 
     // _service.execute(GetTVEpisodeCredits(tvId: tv.id, seasonNumber: 1, episodeNumber: 1));
     // _service.execute(GetTVEpisodeExternalID(tvId: tv.id, seasonNumber: 1, episodeNumber: 1));
@@ -201,7 +210,8 @@ class ApiTest {
     // _service.execute(GetTVEpisodeTranslations(tvId: tv.id, seasonNumber: 1, episodeNumber: 1));
     // _service.execute(GetTVEpisodeVideo(tvId: tv.id, seasonNumber: 1, episodeNumber: 1));
     // _service.execute(RateTVEpisode(tvId: tv.id, seasonNumber: 1, episodeNumber: 1, rateContent: RateContent(value: 10)));
-    _service.execute(DeleteRateTVEpisode(tvId: tv.id, seasonNumber: 1, episodeNumber: 1));
+    _service.execute(
+        DeleteRateTVEpisode(tvId: tv.id, seasonNumber: 1, episodeNumber: 1));
   }
 
   /// watch provider

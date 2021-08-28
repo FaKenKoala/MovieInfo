@@ -12,6 +12,7 @@ import 'package:movie_info/domain/model/enum_values/enum_values.dart';
 import 'package:movie_info/domain/model/media/image.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
 import 'package:movie_info/domain/model/person/credit.dart';
+import 'package:movie_info/domain/model/person/person.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
 import 'package:movie_info/domain/service/i_app_service.dart';
 import 'package:movie_info/infrastructure/app_method/app_method.dart';
@@ -25,6 +26,7 @@ import 'package:movie_info/infrastructure/repository/remote/remote_repository.da
 part 'app_service_part/configuration_service.dart';
 part 'app_service_part/credit_service.dart';
 part 'app_service_part/discover_service.dart';
+part 'app_service_part/search_service.dart';
 part 'app_service_part/person_service.dart';
 part 'app_service_part/trending_service.dart';
 part 'app_service_part/tv_episode_service.dart';
@@ -43,6 +45,7 @@ class AppService extends AppServicePart
         CreditService,
         DiscoverService,
         PersonService,
+        SearchService,
         TrendingService,
         TVEpisodeService,
         TVSeasonService
@@ -184,7 +187,7 @@ class AppService extends AppServicePart
             searchKeyword: remote.searchKeyword,
             searchMovie: remote.searchMovie,
             multiSearch: remote.multiSearch,
-            searchPerson: remote.searchPerson,
+            searchPerson: searchPerson,
             searchTV: remote.searchTV);
 
       case AppMethodType.Review:

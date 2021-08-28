@@ -2,25 +2,25 @@ part of '../remote_repository.dart';
 
 mixin SearchRepository {
   @GET('/search/company')
-  Future searchCompany(
+  Future<PageResult<Company>> searchCompany(
     @Query('query') String query,
     @Query('page') int? page,
   );
 
   @GET('/search/collection')
-  Future searchCollection(
+  Future<PageResult<Collection>> searchCollection(
     @Query('query') String query,
     @Query('page') int? page,
   );
 
   @GET('/search/keyword')
-  Future searchKeyword(
+  Future<PageResult<MediaKeyword>> searchKeyword(
     @Query('query') String query,
     @Query('page') int? page,
   );
 
   @GET('/search/movie')
-  Future searchMovie(
+  Future<PageResult<Movie>> searchMovie(
     @Query('query') String query,
     @Query('page') int? page,
     @Query('include_adult') bool? includeAdult,
@@ -38,7 +38,7 @@ mixin SearchRepository {
   );
 
   @GET('/search/person')
-  Future searchPerson(
+  Future<PageResult<Person>> searchPerson(
     @Query('query') String query,
     @Query('page') int? page,
     @Query('include_adult') bool? includeAdult,
@@ -46,7 +46,7 @@ mixin SearchRepository {
   );
 
   @GET('/search/tv')
-  Future searchTV(
+  Future<PageResult<TV>> searchTV(
     @Query('query') String query,
     @Query('page') int? page,
     @Query('include_adult') bool? includeAdult,
