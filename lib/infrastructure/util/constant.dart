@@ -8,4 +8,6 @@ class Constants {
   static const ImageGlobalConfigKey = 'image_global_configuration';
 
   static const GuestSessionKey = 'guest_session';
+
+  static const GuestSessionID = 'guest_session_id';
 }

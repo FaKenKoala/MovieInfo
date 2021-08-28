@@ -1,5 +1,4 @@
-import 'package:movie_info/infrastructure/app_method/app_method_part/authentication_method.dart';
-
+import 'app_method_part/authentication_method.dart';
 import 'app_method_part/certification_method.dart';
 import 'app_method_part/change_method.dart';
 import 'app_method_part/collection_method.dart';
@@ -9,6 +8,7 @@ import 'app_method_part/credit_method.dart';
 import 'app_method_part/discover_method.dart';
 import 'app_method_part/find_method.dart';
 import 'app_method_part/genre_method.dart';
+import 'app_method_part/guest_session_method.dart';
 import 'app_method_part/keyword_method.dart';
 import 'app_method_part/movie_method.dart';
 import 'app_method_part/network_method.dart';
@@ -34,6 +34,7 @@ export 'app_method_part/credit_method.dart';
 export 'app_method_part/discover_method.dart';
 export 'app_method_part/find_method.dart';
 export 'app_method_part/genre_method.dart';
+export 'app_method_part/guest_session_method.dart';
 export 'app_method_part/keyword_method.dart';
 export 'app_method_part/movie_method.dart';
 export 'app_method_part/network_method.dart';
@@ -54,7 +55,7 @@ class AppMethod {}
 extension AppMethodX on AppMethod {
   AppMethodType get methodType {
     if (this is AuthenticationMethod) return AppMethodType.Authentication;
-    
+
     if (this is CertificationMethod) return AppMethodType.Certification;
 
     if (this is ChangeMethod) return AppMethodType.Change;
@@ -73,6 +74,8 @@ extension AppMethodX on AppMethod {
 
     if (this is GenreMethod) return AppMethodType.Genre;
 
+    if (this is GuestSessionMethod) return AppMethodType.GuestSession;
+
     if (this is KeywordMethod) return AppMethodType.Keyword;
 
     if (this is MovieMethod) return AppMethodType.Movie;
@@ -89,9 +92,9 @@ extension AppMethodX on AppMethod {
 
     if (this is TVEpisodeGroupMethod) return AppMethodType.TVEpisodeGroup;
 
-    if (this is TVMethod) return AppMethodType.TV;
-
     if (this is TVEpisodeMethod) return AppMethodType.TVEpisode;
+
+    if (this is TVMethod) return AppMethodType.TV;
 
     if (this is TVSeasonMethod) return AppMethodType.TVSeason;
 
@@ -112,6 +115,7 @@ enum AppMethodType {
   Discover,
   Find,
   Genre,
+  GuestSession,
   Keyword,
   Movie,
   Network,
@@ -121,8 +125,8 @@ enum AppMethodType {
   Trending,
   TV,
   TVEpisode,
-  TVSeason,
   TVEpisodeGroup,
+  TVSeason,
   Unknow,
   WatchProvider,
 }

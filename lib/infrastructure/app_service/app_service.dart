@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
+import 'package:movie_info/application/util/app_config.dart';
 import 'package:movie_info/domain/model/api_result/page_result.dart';
 import 'package:movie_info/domain/model/authentication/guest_session.dart';
 import 'package:movie_info/domain/model/change/change.dart';
@@ -11,10 +12,12 @@ import 'package:movie_info/domain/model/code_response/code_response.dart';
 import 'package:movie_info/domain/model/configuration/configuration.dart';
 import 'package:movie_info/domain/model/enum_values/enum_values.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
+import 'package:movie_info/domain/model/tv/episode.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
 import 'package:movie_info/domain/service/i_app_service.dart';
 import 'package:movie_info/infrastructure/app_method/app_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/authentication_method.dart';
+import 'package:movie_info/infrastructure/app_method/app_method_part/guest_session_method.dart';
 import 'package:movie_info/infrastructure/util/constant.dart';
 import 'package:movie_info/infrastructure/util/date_util.dart';
 import 'package:movie_info/infrastructure/util/movie_logger.dart';
@@ -32,6 +35,7 @@ part 'app_service_part/credit_service.dart';
 part 'app_service_part/discover_service.dart';
 part 'app_service_part/external_id_service.dart';
 part 'app_service_part/genre_service.dart';
+part 'app_service_part/guest_session_service.dart';
 part 'app_service_part/keyword_service.dart';
 part 'app_service_part/movie_service.dart';
 part 'app_service_part/network_service.dart';
@@ -66,6 +70,7 @@ class AppService extends AppServicePart
         GenreService,
         KeywordService,
         MovieService,
+        GuestSessionService,
         NetworkService,
         PersonService,
         ReviewService,
@@ -103,7 +108,7 @@ class AppService extends AppServicePart
     try {
       var finalResult = await _executeMethod(method);
       catching(() {
-        MovieLog.printJson('${finalResult.toString()}');
+        // MovieLog.printJson('${finalResult.toString()}');
       });
       return right(finalResult);
     } catch (exception) {
@@ -167,6 +172,12 @@ class AppService extends AppServicePart
 
       case AppMethodType.Find:
         return (method as FindMethod).when(findByExternalID: findByExternalID);
+
+      case AppMethodType.GuestSession:
+        return (method as GuestSessionMethod).when(
+            getRatedMovies: getRatedMovies,
+            getRatedTVs: getRatedTVs,
+            getRatedTVEpisodes: getRatedTVEpisodes);
 
       case AppMethodType.Genre:
         return (method as GenreMethod)

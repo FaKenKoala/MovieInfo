@@ -41,6 +41,7 @@ import 'package:movie_info/domain/model/tv/season.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
 import 'package:movie_info/domain/model/watch_provider/region.dart';
 import 'package:movie_info/domain/model/watch_provider/watch_provider.dart';
+import 'package:movie_info/infrastructure/util/constant.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'remote_repository_part/authentication_repository.dart';
@@ -53,7 +54,7 @@ part 'remote_repository_part/credit_repository.dart';
 part 'remote_repository_part/discover_repository.dart';
 part 'remote_repository_part/find_repository.dart';
 part 'remote_repository_part/genre_repository.dart';
-part 'remote_repository_part/guest_sessions_repository.dart';
+part 'remote_repository_part/guest_session_repository.dart';
 part 'remote_repository_part/keyword_repository.dart';
 part 'remote_repository_part/lists_repository.dart';
 part 'remote_repository_part/movie_repository.dart';
@@ -83,6 +84,7 @@ abstract class RemoteRepository
         CreditRepository,
         DiscoverRepository,
         FindRepository,
+        GuestSessionRepository,
         GenreRepository,
         KeywordRepository,
         MovieRepository,

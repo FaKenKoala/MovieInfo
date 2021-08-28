@@ -7,6 +7,7 @@ import 'package:movie_info/domain/model/configuration/configuration.dart';
 import 'package:movie_info/domain/service/i_app_service.dart';
 import 'package:movie_info/infrastructure/app_method/app_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/authentication_method.dart';
+import 'package:movie_info/infrastructure/util/dio_util.dart';
 
 class AppConfig {
   AppConfig._();
@@ -37,13 +38,13 @@ class AppConfig {
     if (_guestSession != null) {
       return;
     }
-    
 
     AppExceptionEither<GuestSession> session =
         await getIt<IAppService>().execute(GetGuestSession());
 
     session.fold((_) {}, (r) {
       _instance!._guestSession = r;
+      addGuestSession();
     });
   }
 

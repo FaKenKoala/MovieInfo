@@ -4,12 +4,14 @@ import 'package:movie_info/application/util/app_config.dart';
 import 'package:movie_info/domain/model/api_result/page_result.dart';
 import 'package:movie_info/domain/model/authentication/guest_session.dart';
 import 'package:movie_info/domain/model/enum_values/enum_values.dart';
+import 'package:movie_info/domain/model/media/rate_content.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
 import 'package:movie_info/domain/service/i_app_service.dart';
 import 'package:movie_info/infrastructure/app_method/app_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/certification_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/genre_method.dart';
+import 'package:movie_info/infrastructure/app_method/app_method_part/guest_session_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/review_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/tv_episode_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/tv_season_method.dart';
@@ -81,17 +83,13 @@ class ApiTest {
     _service.execute(GetTVGenreList());
   }
 
-  guestSessionTest() async{
+  guestSessionTest() async {
     // TODO: 3
-    GuestSession? session = AppConfig.instance.guestSession;
-    print('${session?.toString()}');
 
-    var appDir = await getApplicationDocumentsDirectory();
-    var tempDir = await getTemporaryDirectory();
-    print('dabaseDirectory: $appDir');
-    print('fielsDirectory: $tempDir');
+    // _service.execute(GetRatedMovies());
+    _service.execute(GetRatedTVs());
+    // _service.execute(GetRatedTVEpisodes());
   }
-
   keywordTest() {
     // 2
     // _service.execute(GetKeywordDetail(keywordId: 13084));
@@ -190,8 +188,8 @@ class ApiTest {
     // _service.execute(GetTVTranslation(tvId: tv.id));
     // _service.execute(GetTVVideo(tvId: tv.id));
     // _service.execute(GetTVWatchProvider(tvId: tv.id));
-    // _service.execute(RateTV(tvId: tv.id,rateContent: RateContent(value: 10)));
-    // _service.execute(DeleteTVRate(tvId: tv.id));
+    // _service.execute(RateTV(tvId: tv.id, rateContent: RateContent(value: 10)));
+    _service.execute(DeleteTVRate(tvId: tv.id));
     // _service.execute(GetLatestTV());
     // _service.execute(GetAiringTodayTV());
     // _service.execute(GetOnTheAirTV());
@@ -221,8 +219,8 @@ class ApiTest {
     // _service.execute(GetTVEpisodeAccountState(
     //     tvId: tv.id, seasonNumber: 1, episodeNumber: 1));
 
-    _service.execute(
-        GetTVEpisodeChange(episodeId: seasonId, startDate: DateTime.now()));
+    // _service.execute(
+    // GetTVEpisodeChange(episodeId: seasonId, startDate: DateTime.now()));
 
     // _service.execute(GetTVEpisodeCredits(tvId: tv.id, seasonNumber: 1, episodeNumber: 1));
     // _service.execute(GetTVEpisodeExternalID(tvId: tv.id, seasonNumber: 1, episodeNumber: 1));
@@ -230,9 +228,13 @@ class ApiTest {
     // _service.execute(GetTVEpisodeImage(tvId: tv.id, seasonNumber: 1, episodeNumber: 1));
     // _service.execute(GetTVEpisodeTranslations(tvId: tv.id, seasonNumber: 1, episodeNumber: 1));
     // _service.execute(GetTVEpisodeVideo(tvId: tv.id, seasonNumber: 1, episodeNumber: 1));
-    // _service.execute(RateTVEpisode(tvId: tv.id, seasonNumber: 1, episodeNumber: 1, rateContent: RateContent(value: 10)));
-    _service.execute(
-        DeleteRateTVEpisode(tvId: tv.id, seasonNumber: 1, episodeNumber: 1));
+    _service.execute(RateTVEpisode(
+        tvId: tv.id,
+        seasonNumber: 1,
+        episodeNumber: 1,
+        rateContent: RateContent(value: 10)));
+    // _service.execute(
+    //     DeleteRateTVEpisode(tvId: tv.id, seasonNumber: 1, episodeNumber: 1));
   }
 
   /// watch provider
@@ -247,7 +249,7 @@ class ApiTest {
     addDioLogger(PrettyDioLogger(
         requestHeader: true,
         requestBody: true,
-        responseBody: false,
+        responseBody: true,
         error: false));
     getIt<Dio>()..interceptors.add(HttpInterceptor());
   }
