@@ -4,18 +4,17 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
 import 'package:movie_info/domain/model/api_result/page_result.dart';
+import 'package:movie_info/domain/model/authentication/guest_session.dart';
 import 'package:movie_info/domain/model/change/change.dart';
 import 'package:movie_info/domain/model/code_response/app_exception.dart';
 import 'package:movie_info/domain/model/code_response/code_response.dart';
 import 'package:movie_info/domain/model/configuration/configuration.dart';
 import 'package:movie_info/domain/model/enum_values/enum_values.dart';
-import 'package:movie_info/domain/model/media/image.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
-import 'package:movie_info/domain/model/person/credit.dart';
-import 'package:movie_info/domain/model/person/person.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
 import 'package:movie_info/domain/service/i_app_service.dart';
 import 'package:movie_info/infrastructure/app_method/app_method.dart';
+import 'package:movie_info/infrastructure/app_method/app_method_part/authentication_method.dart';
 import 'package:movie_info/infrastructure/util/constant.dart';
 import 'package:movie_info/infrastructure/util/date_util.dart';
 import 'package:movie_info/infrastructure/util/movie_logger.dart';
@@ -23,6 +22,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:movie_info/infrastructure/repository/local/local_repository.dart';
 import 'package:movie_info/infrastructure/repository/remote/remote_repository.dart';
 
+part 'app_service_part/authentication_service.dart';
 part 'app_service_part/certification_service.dart';
 part 'app_service_part/change_service.dart';
 part 'app_service_part/collection_service.dart';
@@ -54,6 +54,7 @@ abstract class AppServicePart {
 @Singleton(as: IAppService)
 class AppService extends AppServicePart
     with
+        AuthenticationService,
         CertificationService,
         ChangeService,
         CollectionService,
@@ -80,33 +81,51 @@ class AppService extends AppServicePart
       : super._(remote, localRepository);
 
   @override
-  Future<AppExceptionEither<T>> execute<T>(AppMethod method) async {
+  Future<Either<AppException, T>> execute<T>(AppMethod method) async {
     /// 这个_executeMethod方法应该用编译时注解自动生成代码，格式时根据method.map的参数名称 {name}，
     /// 生成 name: get{name.firstUppercase}的方法调用，如同现有的_executeMethod所展示的一样。
     ///
     /// 这个方法也可以自动生成，格式是： remote.{name},参数就根据method的所有参数依此赋值
+    ///
+    ///
+    // return Task(() => _executeMethod(method))
+    //     .attempt()
+    //     .map((Either<Object, dynamic> either) {
+    //   return either.leftMap((exception) {
+    //     return catching(() {
+    //       CodeResponse codeResponse =
+    //           CodeResponse.fromJson((exception as DioError).response?.data);
+    //       return AppException(codeResponse: codeResponse);
+    //     }).swap().map((_) => AppException(message: exception)).fold(id, id);
+    //   });
+    // }).run();
+
     try {
-      return right(await _executeMethod(method))
-      ..fold((l) => null, (r) {
-        // catching(() => MovieLog.printJson('${r.toString()}'));
-        MovieLog.printJson('${r.toString()}');
+      var finalResult = await _executeMethod(method);
+      catching(() {
+        MovieLog.printJson('${finalResult.toString()}');
       });
-    } catch (e) {
-      AppException? movieException;
-      if (e is DioError) {
-        try {
-          CodeResponse errorResponse = CodeResponse.fromJson(e.response?.data);
-          movieException = AppException(codeResponse: errorResponse);
-        } catch (_) {}
-      }
-      movieException ??= AppException(message: e);
-      MovieLog.printS('${method.runtimeType} $movieException');
-      return left(movieException);
+      return right(finalResult);
+    } catch (exception) {
+      AppException finalException = catching(() {
+        CodeResponse errorResponse =
+            CodeResponse.fromJson((exception as DioError).response?.data);
+        return AppException(codeResponse: errorResponse);
+      }).swap().map((_) {
+        return AppException(message: exception);
+      }).fold(id, id);
+
+      MovieLog.printS('${method.runtimeType} $finalException');
+      return left(finalException);
     }
   }
 
   Future _executeMethod(AppMethod method) async {
     switch (method.methodType) {
+      case AppMethodType.Authentication:
+        return (method as AuthenticationMethod)
+            .when(getGuestSession: getGuestSession);
+
       case AppMethodType.Certification:
         return (method as CertificationMethod).when(
             getCertificationMovieList: getCertificationMovieList,

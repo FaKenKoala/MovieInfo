@@ -4,6 +4,7 @@ import 'package:movie_info/domain/model/account_state/account_state.dart';
 import 'package:movie_info/domain/model/api_result/id_result.dart';
 import 'package:movie_info/domain/model/api_result/list_result.dart';
 import 'package:movie_info/domain/model/api_result/page_result.dart';
+import 'package:movie_info/domain/model/authentication/guest_session.dart';
 import 'package:movie_info/domain/model/certification/certification.dart';
 import 'package:movie_info/domain/model/change/change.dart';
 import 'package:movie_info/domain/model/code_response/code_response.dart';
@@ -38,11 +39,11 @@ import 'package:movie_info/domain/model/tv/episode_group.dart';
 import 'package:movie_info/domain/model/tv/episode.dart';
 import 'package:movie_info/domain/model/tv/season.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
-import 'package:movie_info/domain/model/watch_provider/flatrate.dart';
 import 'package:movie_info/domain/model/watch_provider/region.dart';
-import 'package:movie_info/domain/model/watch_provider/watch_provider_list.dart';
+import 'package:movie_info/domain/model/watch_provider/watch_provider.dart';
 import 'package:retrofit/retrofit.dart';
 
+part 'remote_repository_part/authentication_repository.dart';
 part 'remote_repository_part/certification_repository.dart';
 part 'remote_repository_part/change_repository.dart';
 part 'remote_repository_part/collection_repository.dart';
@@ -73,6 +74,7 @@ part 'remote_repository.g.dart';
 @singleton
 abstract class RemoteRepository
     with
+        AuthenticationRepository,
         CertificationRepository,
         ChangeRepository,
         CompanyRepository,

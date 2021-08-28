@@ -3,7 +3,7 @@ part of '../remote_repository.dart';
 const ConfigurationPrefix = '/configuration';
 mixin ConfigurationRepository {
   @GET('$ConfigurationPrefix')
-  Future<Configuration> getAPIConfiguration();
+  Future<APIConfiguration> getAPIConfiguration();
 
   @GET('$ConfigurationPrefix/countries')
   Future<List<Country>> getConfigurationCountries();

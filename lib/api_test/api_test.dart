@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
+import 'package:movie_info/application/util/app_config.dart';
 import 'package:movie_info/domain/model/api_result/page_result.dart';
+import 'package:movie_info/domain/model/authentication/guest_session.dart';
 import 'package:movie_info/domain/model/enum_values/enum_values.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
@@ -13,6 +15,7 @@ import 'package:movie_info/infrastructure/app_method/app_method_part/tv_episode_
 import 'package:movie_info/infrastructure/app_method/app_method_part/tv_season_method.dart';
 import 'package:movie_info/infrastructure/util/dio_logger.dart';
 import 'package:movie_info/infrastructure/util/http_interceptor.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:collection/collection.dart';
 
@@ -78,8 +81,15 @@ class ApiTest {
     _service.execute(GetTVGenreList());
   }
 
-  guestSessionTest() {
+  guestSessionTest() async{
     // TODO: 3
+    GuestSession? session = AppConfig.instance.guestSession;
+    print('${session?.toString()}');
+
+    var appDir = await getApplicationDocumentsDirectory();
+    var tempDir = await getTemporaryDirectory();
+    print('dabaseDirectory: $appDir');
+    print('fielsDirectory: $tempDir');
   }
 
   keywordTest() {
@@ -136,14 +146,15 @@ class ApiTest {
     // _service.execute(SearchCollection(query: 'Love'));
     // _service.execute(SearchKeyword(query: 'Love'));
     // _service.execute(SearchMovie(query: 'Love'));
-    final result = await _service.execute<PageResult<MediaTypeBase>>(MultiSearch(query: 'Joey'));
+    final result = await _service
+        .execute<PageResult<MediaTypeBase>>(MultiSearch(query: 'Joey'));
     print('result: ${result.runtimeType}');
     result.fold((l) {
       print('结果: $l');
     }, (r) {
-        r.results.forEachIndexed((index, e) {
-          print('$index: ${e.mediaType}');
-        });
+      r.results.forEachIndexed((index, e) {
+        print('$index: ${e.mediaType}');
+      });
     });
     // _service.execute(SearchPerson(query: 'Love'));
 

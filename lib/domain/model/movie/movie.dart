@@ -4,7 +4,6 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:movie_info/domain/model/collection/collection.dart';
 import 'package:movie_info/domain/model/company/company.dart';
 import 'package:movie_info/domain/model/country/country.dart';
-import 'package:movie_info/domain/model/enum_values/media_status.dart';
 import 'package:movie_info/domain/model/enum_values/media_type.dart';
 import 'package:movie_info/domain/model/genre/genre.dart';
 import 'package:movie_info/domain/model/language/language.dart';

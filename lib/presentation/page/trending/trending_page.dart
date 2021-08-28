@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_info/application/bloc/trending/trending_bloc.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
 import 'package:movie_info/application/route/app_router.gr.dart';
-import 'package:movie_info/application/util/app_image_config.dart';
+import 'package:movie_info/application/util/app_config.dart';
 import 'package:movie_info/domain/model/api_result/page_result.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
@@ -73,7 +73,7 @@ class _TrendingListWidgetState extends State<_TrendingListWidget> {
             child: posterPath == null
                 ? Text('No image')
                 : CachedNetworkImage(
-                    imageUrl: ImageGlobalConfig.imageUrl(posterPath),
+                    imageUrl: AppConfig.imageUrl(posterPath),
                     fit: BoxFit.cover,
                   ),
           ),

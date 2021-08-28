@@ -4,19 +4,19 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'configuration.g.dart';
 
 @JsonSerializable()
-class Configuration {
+class APIConfiguration {
   final ImageConfig images;
   final List<String> changeKeys;
 
-  Configuration({
+  APIConfiguration({
     required this.images,
     this.changeKeys = const [],
   });
 
-  factory Configuration.fromJson(Map<String, dynamic> json) =>
-      _$ConfigurationFromJson(json);
+  factory APIConfiguration.fromJson(Map<String, dynamic> json) =>
+      _$APIConfigurationFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ConfigurationToJson(this);
+  Map<String, dynamic> toJson() => _$APIConfigurationToJson(this);
 
   @override
   String toString() {

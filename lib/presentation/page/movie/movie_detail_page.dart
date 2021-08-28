@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_info/api_test/api_test.dart';
 import 'package:movie_info/application/bloc/movie/movie_bloc.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
-import 'package:movie_info/application/util/app_image_config.dart';
+import 'package:movie_info/application/util/app_config.dart';
 import 'package:movie_info/domain/model/account_state/account_state.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
 import 'package:movie_info/presentation/page/movie/movie_image_page.dart';
@@ -112,7 +112,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                   }),
                   CachedNetworkImage(
                       imageUrl:
-                          ImageGlobalConfig.imageUrl(movieDetail.posterPath)),
+                          AppConfig.imageUrl(movieDetail.posterPath)),
                   SizedBox(height: 10),
                   Center(
                     child: Text(

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_info/api_test/api_test.dart';
 import 'package:movie_info/application/bloc/tv/tv_bloc.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
-import 'package:movie_info/application/util/app_image_config.dart';
+import 'package:movie_info/application/util/app_config.dart';
 import 'package:movie_info/domain/model/account_state/account_state.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
 import 'package:provider/provider.dart';
@@ -88,8 +88,7 @@ class _TVDetailPageState extends State<TVDetailPage> {
                     },
                   ),
                   CachedNetworkImage(
-                      imageUrl:
-                          ImageGlobalConfig.imageUrl(tvDetail.posterPath)),
+                      imageUrl: AppConfig.imageUrl(tvDetail.posterPath)),
                 ],
               ),
             ),
@@ -102,8 +101,9 @@ class _TVDetailPageState extends State<TVDetailPage> {
                 // ApiTest.instance.tvSeasonsTest(tvDetail);
                 // ApiTest.instance.tvEpisodesTest(tvDetail);
                 // ApiTest.instance.tvEpisodesTest(tvDetail);
-                ApiTest.instance.searchTest();
+                // ApiTest.instance.searchTest();
                 // ApiTest.instance.creditTest();
+                ApiTest.instance.guestSessionTest();
               },
               child: Icon(Icons.download),
             ),
