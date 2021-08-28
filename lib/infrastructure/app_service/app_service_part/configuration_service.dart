@@ -10,4 +10,15 @@ mixin ConfigurationService on AppServicePart {
       return remoteConfig;
     }, (a) => a);
   }
+
+  get getConfigurationCountries => remoteRepository.getConfigurationCountries;
+
+  get getConfigurationJobs => remoteRepository.getConfigurationJobs;
+
+  get getConfigurationLanguages => remoteRepository.getConfigurationLanguages;
+
+  get getConfigurationTranslations =>
+      remoteRepository.getConfigurationTranslations;
+
+  get getConfigurationTimezones => remoteRepository.getConfigurationTimezones;
 }

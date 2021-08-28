@@ -7,9 +7,9 @@ mixin PersonService on AppServicePart {
         DateUtil.format(startDate), DateUtil.format(endDate), page ?? 1);
   }
 
-  Future getPersonTaggedImages(GetPersonTaggedImages images) async {
+  Future<PageResult<MediaImageItem>> getPersonTaggedImages(int personId) async {
     PageResult<MediaImageItem> result =
-        await remoteRepository.getPersonTaggedImages(images.personId);
+        await remoteRepository.getPersonTaggedImages(personId);
 
     final finalResult = result.copyWith(
         results: result.results.map((MediaImageItem item) {
@@ -19,4 +19,22 @@ mixin PersonService on AppServicePart {
     }).toList());
     return finalResult;
   }
+
+  get getPersonDetail => remoteRepository.getPersonDetail;
+
+  get getPersonMovieCredits => remoteRepository.getPersonMovieCredits;
+
+  get getPersonTVCredits => remoteRepository.getPersonTVCredits;
+
+  get getPersonCombinedCredits => remoteRepository.getPersonCombinedCredits;
+
+  get getPersonExternalIds => remoteRepository.getPersonExternalIds;
+
+  get getPersonImages => remoteRepository.getPersonImages;
+
+  get getPersonTranslations => remoteRepository.getPersonTranslations;
+
+  get getLatestPerson => remoteRepository.getLatestPerson;
+
+  get getPopularPerson => remoteRepository.getPopularPerson;
 }

@@ -12,7 +12,7 @@ mixin CollectionRepository {
   );
 
   @GET('/collectioin/{collection_id}/translations')
-  Future<TranslationList> getCollectionTranslation(
+  Future<TranslationList> getCollectionTranslations(
     @Path('collection_id') int collectionId,
   );
 }

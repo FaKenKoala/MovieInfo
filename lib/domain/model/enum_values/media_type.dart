@@ -1,10 +1,7 @@
-import 'dart:convert';
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
 import 'package:movie_info/domain/model/person/person.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
-import 'package:movie_info/infrastructure/util/movie_logger.dart';
 
 import 'enum_values.dart';
 
@@ -29,25 +26,16 @@ const MediaTypeEnumMap = {
 @sealed
 abstract class MediaTypeInDynaimc {
   static mediaTypeInDynamic(dynamic e, [MediaType? mediaType]) {
-    var result;
-    try {
-      result = enumDecodeNullable(
-          MediaTypeEnumMap, mediaType ?? e['media_type'],
-          unknownValue: MediaType.ALL);
-      switch (result) {
-        case MediaType.MOVIE:
-          return Movie.fromJson(e);
-        case MediaType.TV:
-          return TV.fromJson(e);
-        case MediaType.PERSON:
-          return Person.fromJson(e);
-        default:
-          return e;
-      }
-    } catch (_) {
-      MovieLog.printS('解析错误: $result, 数据:$e');
-
-      rethrow;
+    switch (enumDecodeNullable(MediaTypeEnumMap, mediaType ?? e['media_type'],
+        unknownValue: MediaType.ALL)) {
+      case MediaType.MOVIE:
+        return Movie.fromJson(e);
+      case MediaType.TV:
+        return TV.fromJson(e);
+      case MediaType.PERSON:
+        return Person.fromJson(e);
+      default:
+        return e;
     }
   }
 

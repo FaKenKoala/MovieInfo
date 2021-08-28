@@ -133,11 +133,11 @@ class ApiTest {
     // _service.execute(SearchCollection(query: 'Love'));
     // _service.execute(SearchKeyword(query: 'Love'));
     // _service.execute(SearchMovie(query: 'Love'));
-    // _service.execute(MultiSearch(query: 'Love'));
+    _service.execute(MultiSearch(query: 'Love'));
 
     // _service.execute(SearchPerson(query: 'Love'));
 
-    _service.execute(SearchTV(query: 'Love'));
+    // _service.execute(SearchTV(query: 'Love'));
   }
 
   /// TV
