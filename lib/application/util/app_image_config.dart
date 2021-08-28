@@ -55,7 +55,7 @@ class ImageGlobalConfig {
     });
   }
 
-  static String imageUrl(String posterPath) {
+  static String imageUrl(String? posterPath) {
     return '${instance.config.images.secureBaseUrl}${instance.config.images.posterSizes[4]}$posterPath';
   }
 }

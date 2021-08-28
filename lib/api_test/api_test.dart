@@ -111,6 +111,15 @@ class ApiTest {
     _service.execute(GetCreditDetail(creditId: crewCreditId));
   }
 
+  personTest() {
+    int personId = 7902;
+    //31211;
+
+    // _service.execute(GetPersonDetail(personId: 1));
+
+    _service.execute(GetPersonMovieCredits(personId: 53123));
+  }
+
   ApiTest._() {
     addDioLogger(PrettyDioLogger(
         requestHeader: true,

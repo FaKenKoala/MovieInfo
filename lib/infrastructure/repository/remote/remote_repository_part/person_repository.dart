@@ -4,12 +4,12 @@ const PersonPrefix = '/person/{$PersonID}';
 const PersonID = 'person_id';
 mixin PersonRepository {
   @GET('$PersonPrefix')
-  Future getPersonDetail(
+  Future<Person> getPersonDetail(
     @Path(PersonID) int personId,
   );
 
   @GET('$PersonPrefix/changes')
-  Future getPersonChanges(
+  Future<ChangeList> getPersonChanges(
     @Path(PersonID) int personId,
     @Query('start_date') String? startDate,
     @Query('end_date') String? endDate,
@@ -17,17 +17,17 @@ mixin PersonRepository {
   );
 
   @GET('$PersonPrefix/movie_credits')
-  Future getPersonMovieCredits(
+  Future<CreditList> getPersonMovieCredits(
     @Path(PersonID) int personId,
   );
 
   @GET('$PersonPrefix/tv_credits')
-  Future getPersonTVCredits(
+  Future<CreditList> getPersonTVCredits(
     @Path(PersonID) int personId,
   );
 
   @GET('$PersonPrefix/combined_credits')
-  Future getPersonCombinedCredits(
+  Future<CreditList> getPersonCombinedCredits(
     @Path(PersonID) int personId,
   );
 

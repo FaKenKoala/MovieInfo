@@ -6,7 +6,7 @@ part 'person_method.freezed.dart';
 class PersonMethod with _$PersonMethod implements AppMethod {
   const factory PersonMethod.getPersonDetail({
     required int personId,
-  }) = GerPersonDetail;
+  }) = GetPersonDetail;
 
   const factory PersonMethod.getPersonChanges({
     required int personId,

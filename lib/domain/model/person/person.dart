@@ -1,7 +1,5 @@
 import 'dart:convert';
-
 import 'package:json_annotation/json_annotation.dart';
-import 'package:movie_info/domain/model/enum_values/enum_values.dart';
 
 part 'person.g.dart';
 
@@ -9,32 +7,48 @@ part 'person.g.dart';
 class Person {
   Person({
     this.adult = false,
-    this.gender = 0,
-    this.id = 0,
-    this.knownForDepartment = '',
-    this.name = '',
-    this.originalName = '',
-    this.popularity = 0.0,
-    this.profilePath = '',
+    this.alsoKnownAs = const [],
+    this.biography = '',
+    this.birthday,
     this.character = '',
     this.creditId = '',
-    this.order = 0,
-    this.roles = const [],
-    this.totalEpisodeCount = 0,
+    this.deathday,
+    this.department = '',
+    this.gender = 0,
+    this.genreIds = const [],
+    this.homepage = '',
+    this.id = 0,
+    this.imdbId,
     this.job = '',
     this.jobs = const [],
-    this.department = '',
     this.knownFor = const [],
+    this.knownForDepartment = '',
+    this.name = '',
+    this.order = 0,
+    this.originalName = '',
+    this.placeOfBirth = '',
+    this.popularity = 0.0,
+    this.profilePath = '',
+    this.roles = const [],
+    this.totalEpisodeCount = 0,
   });
 
   final bool adult;
+  final List<String> alsoKnownAs;
+  final String biography;
+  final DateTime? birthday;
+  final DateTime? deathday;
   final int gender;
+  final List<int> genreIds;
+  final String homepage;
   final int id;
+  final String? imdbId;
   final String knownForDepartment;
   final String name;
   final String originalName;
-  final double popularity;
-  final String profilePath;
+  final String placeOfBirth;
+  final num popularity;
+  final String? profilePath;
   final String character;
   final String creditId;
   final List<Role> roles;
@@ -137,25 +151,3 @@ class Job {
     return json.encode(toJson());
   }
 }
-
-// knownForFromJson(Object? json) {
-//   if (json is Map<String, dynamic>) {
-//     try {
-//       MediaType? mediaType =
-//           enumDecodeNullable(MediaTypeEnumMap, json['media_type']);
-//       switch (mediaType) {
-//         case MediaType.MOVIE:
-//           return Movie.fromJson(json);
-//         case MediaType.TV:
-//           return TV.fromJson(json);
-//         default:
-//           return json;
-//       }
-//     } catch (_) {}
-//   }
-//   return json;
-// }
-
-// knownForToJson(Object value) {
-//   return json.decode(value.toString());
-// }

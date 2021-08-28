@@ -24,7 +24,6 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   @override
   void initState() {
     super.initState();
-    ApiTest.instance;
     movieDetail = widget.movie;
   }
 
@@ -130,7 +129,8 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                 // ApiTest.instance.companyTest();
                 // ApiTest.instance.collectionTest();
                 // ApiTest.instance.changeTest();
-                ApiTest.instance.creditTest();
+                // ApiTest.instance.creditTest();
+                ApiTest.instance.personTest();
               },
               child: Icon(Icons.upload),
             ),
