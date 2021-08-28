@@ -42,7 +42,7 @@ class MediaImageItem {
   final int width;
   final String imageType;
   final MediaType mediaType;
-  final dynamic media;
+  final MediaTypeBase? media;
   MediaImageItem({
     this.aspectRatio = 0.0,
     this.height = 0,

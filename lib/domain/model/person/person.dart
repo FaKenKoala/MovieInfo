@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:movie_info/domain/model/enum_values/enum_values.dart';
 
 part 'person.g.dart';
 
 @JsonSerializable()
-class Person {
+class Person extends MediaTypeBase {
   Person({
     this.adult = false,
     this.alsoKnownAs = const [],
@@ -31,7 +32,8 @@ class Person {
     this.profilePath = '',
     this.roles = const [],
     this.totalEpisodeCount = 0,
-  });
+    this.mediaType = MediaType.PERSON,
+  }) : super(mediaType);
 
   final bool adult;
   final List<String> alsoKnownAs;
@@ -58,10 +60,11 @@ class Person {
   final String job;
   final List<Job> jobs;
   final String department;
+  final MediaType mediaType;
 
   /// media_type: movie/tv/person
   // @JsonKey(fromJson: knownForFromJson, toJson: knownForToJson)
-  final List<dynamic> knownFor;
+  final List<MediaTypeBase> knownFor;
 
   factory Person.fromJson(Map<String, dynamic> json) => _$PersonFromJson(json);
   Map<String, dynamic> toJson() => _$PersonToJson(this);
@@ -88,7 +91,7 @@ class Person {
     String? job,
     List<Job>? jobs,
     String? department,
-    List<dynamic>? knownFor,
+    List<MediaTypeBase>? knownFor,
   }) {
     return Person(
       adult: adult ?? this.adult,

@@ -13,7 +13,7 @@ import 'episode.dart';
 part 'tv.g.dart';
 
 @JsonSerializable()
-class TV {
+class TV extends MediaTypeBase{
   final DateTime? firstAirDate;
   final List<int> genreIds;
   final String originalLanguage;
@@ -83,7 +83,7 @@ class TV {
     this.backdropPath = '',
     this.popularity = 0.0,
     this.mediaType = MediaType.TV,
-  });
+  }):super(mediaType);
 
   factory TV.fromJson(Map<String, dynamic> json) => _$TVFromJson(json);
 

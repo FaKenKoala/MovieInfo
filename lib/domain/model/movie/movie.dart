@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:json_annotation/json_annotation.dart';
+import 'package:movie_info/domain/model/collection/collection.dart';
 import 'package:movie_info/domain/model/company/company.dart';
 import 'package:movie_info/domain/model/country/country.dart';
 import 'package:movie_info/domain/model/enum_values/media_status.dart';
@@ -38,10 +39,10 @@ class MovieList {
 }
 
 @JsonSerializable()
-class Movie {
+class Movie extends MediaTypeBase{
   final bool adult;
   final String? backdropPath;
-  final dynamic belongsToCollection;
+  final Collection? belongsToCollection;
   final int budget;
   final List<int> genreIds;
   final List<Genre> genres;
@@ -59,7 +60,7 @@ class Movie {
   final int revenue;
   final int runtime;
   final List<Language> spokenLanguages;
-  final MediaStatus status;
+  final String status;
   final String tagline;
   final String title;
   final bool video;
@@ -89,13 +90,13 @@ class Movie {
     this.revenue = 0,
     this.runtime = 0,
     this.spokenLanguages = const [],
-    this.status = MediaStatus.Released,
+    this.status = '',
     this.tagline = '',
     this.title = '',
     this.video = true,
     this.voteAverage = 0.0,
     this.voteCount = 0,
-  });
+  }):super(mediaType);
 
   factory Movie.fromJson(Map<String, dynamic> json) => _$MovieFromJson(json);
 

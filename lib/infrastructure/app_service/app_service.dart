@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
 import 'package:movie_info/domain/model/api_result/page_result.dart';
-import 'package:movie_info/domain/model/change/change_list.dart';
+import 'package:movie_info/domain/model/change/change.dart';
 import 'package:movie_info/domain/model/code_response/app_exception.dart';
 import 'package:movie_info/domain/model/code_response/code_response.dart';
 import 'package:movie_info/domain/model/configuration/configuration.dart';
@@ -87,10 +87,10 @@ class AppService extends AppServicePart
     /// 这个方法也可以自动生成，格式是： remote.{name},参数就根据method的所有参数依此赋值
     try {
       return right(await _executeMethod(method))
-        ..fold((l) => null, (r) {
-          // catching(() => MovieLog.printJson('${r.toString()}'));
-          MovieLog.printJson('${r.toString()}');
-        });
+      ..fold((l) => null, (r) {
+        // catching(() => MovieLog.printJson('${r.toString()}'));
+        MovieLog.printJson('${r.toString()}');
+      });
     } catch (e) {
       AppException? movieException;
       if (e is DioError) {
@@ -140,7 +140,7 @@ class AppService extends AppServicePart
             getConfigurationTimezones: getConfigurationTimezones);
 
       case AppMethodType.Credit:
-        return (method as CreditMethod).map(getCreditDetail: getCreditDetail);
+        return (method as CreditMethod).when(getCreditDetail: getCreditDetail);
 
       case AppMethodType.Discover:
         return (method as DiscoverMethod)

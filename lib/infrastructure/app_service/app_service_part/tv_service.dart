@@ -1,53 +1,53 @@
-
-
 part of '../app_service.dart';
-mixin TVService on AppServicePart {get getTVDetail => remoteRepository.getTVDetail;
 
-get getTVAccountState => remoteRepository.getTVAccountState;
+mixin TVService on AppServicePart {
+  get getTVDetail => remoteRepository.getTVDetail;
 
-get getTVAggregateCredit => remoteRepository.getTVAggregateCredit;
+  get getTVAccountState => remoteRepository.getTVAccountState;
 
-get getTVAlternativeTitles => remoteRepository.getTVAlternativeTitles;
+  get getTVAggregateCredit => remoteRepository.getTVAggregateCredit;
 
-get getTVChanges => remoteRepository.getTVChanges;
+  get getTVAlternativeTitles => remoteRepository.getTVAlternativeTitles;
 
-get getTVContentRating => remoteRepository.getTVContentRating;
+  get getTVChanges => remoteRepository.getTVChanges;
 
-get getTVCredit => remoteRepository.getTVCredit;
+  get getTVContentRating => remoteRepository.getTVContentRating;
 
-get getTVEpisodeGroups => remoteRepository.getTVEpisodeGroups;
+  get getTVCredit => remoteRepository.getTVCredit;
 
-get getTVExternalId => remoteRepository.getTVExternalId;
+  get getTVEpisodeGroups => remoteRepository.getTVEpisodeGroups;
 
-get getTVImage => remoteRepository.getTVImage;
+  get getTVExternalId => remoteRepository.getTVExternalId;
 
-get getTVKeyword => remoteRepository.getTVKeyword;
+  get getTVImage => remoteRepository.getTVImage;
 
-get getTVRecommendation => remoteRepository.getTVRecommendation;
+  get getTVKeyword => remoteRepository.getTVKeyword;
 
-get getTVReview => remoteRepository.getTVReview;
+  get getTVRecommendation => remoteRepository.getTVRecommendation;
 
-get getTVScreenedTheatrically => remoteRepository.getTVScreenedTheatrically;
+  get getTVReview => remoteRepository.getTVReview;
 
-get getSimilarTV => remoteRepository.getSimilarTV;
+  get getTVScreenedTheatrically => remoteRepository.getTVScreenedTheatrically;
 
-get getTVTranslation => remoteRepository.getTVTranslation;
+  get getSimilarTV => remoteRepository.getSimilarTV;
 
-get getTVVideo => remoteRepository.getTVVideo;
+  get getTVTranslation => remoteRepository.getTVTranslation;
 
-get getTVWatchProvider => remoteRepository.getTVWatchProvider;
+  get getTVVideo => remoteRepository.getTVVideo;
 
-get rateTV => remoteRepository.rateTV;
+  get getTVWatchProvider => remoteRepository.getTVWatchProvider;
 
-get deleteTVRate => remoteRepository.deleteTVRate;
+  get rateTV => remoteRepository.rateTV;
 
-get getLatestTV => remoteRepository.getLatestTV;
+  get deleteTVRate => remoteRepository.deleteTVRate;
 
-get getAiringTodayTV => remoteRepository.getAiringTodayTV;
+  get getLatestTV => remoteRepository.getLatestTV;
 
-get getOnTheAirTV => remoteRepository.getOnTheAirTV;
+  get getAiringTodayTV => remoteRepository.getAiringTodayTV;
 
-get getPopularTV => remoteRepository.getPopularTV;
+  get getOnTheAirTV => remoteRepository.getOnTheAirTV;
 
-get getTopRatedTV => remoteRepository.getTopRatedTV;
+  get getPopularTV => remoteRepository.getPopularTV;
+
+  get getTopRatedTV => remoteRepository.getTopRatedTV;
 }

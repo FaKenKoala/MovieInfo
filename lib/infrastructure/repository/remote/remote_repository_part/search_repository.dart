@@ -30,7 +30,7 @@ mixin SearchRepository {
   );
 
   @GET('/search/multi')
-  Future multiSearch(
+  Future<PageResult<MediaTypeBase>> multiSearch(
     @Query('query') String query,
     @Query('page') int? page,
     @Query('include_adult') bool? includeAdult,

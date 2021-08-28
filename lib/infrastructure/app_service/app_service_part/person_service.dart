@@ -7,18 +7,7 @@ mixin PersonService on AppServicePart {
         DateUtil.format(startDate), DateUtil.format(endDate), page ?? 1);
   }
 
-  Future<PageResult<MediaImageItem>> getPersonTaggedImages(int personId) async {
-    PageResult<MediaImageItem> result =
-        await remoteRepository.getPersonTaggedImages(personId);
-
-    final finalResult = result.copyWith(
-        results: result.results.map((MediaImageItem item) {
-      return item.copyWith(
-          media: MediaTypeInDynaimc.mediaTypeInDynamic(
-              item.media, item.mediaType));
-    }).toList());
-    return finalResult;
-  }
+  get getPersonTaggedImages => remoteRepository.getPersonTaggedImages;
 
   get getPersonDetail => remoteRepository.getPersonDetail;
 

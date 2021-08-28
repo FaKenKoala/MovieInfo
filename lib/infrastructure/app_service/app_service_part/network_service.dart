@@ -1,7 +1,9 @@
 part of '../app_service.dart';
-mixin NetworkService on AppServicePart {get getNetworkDetail => remoteRepository.getNetworkDetail;
 
-get getNetworkAlternativeNames => remoteRepository.getNetworkAlternativeNames;
+mixin NetworkService on AppServicePart {
+  get getNetworkDetail => remoteRepository.getNetworkDetail;
 
-get getNetworkLogos => remoteRepository.getNetworkLogos;
+  get getNetworkAlternativeNames => remoteRepository.getNetworkAlternativeNames;
+
+  get getNetworkLogos => remoteRepository.getNetworkLogos;
 }

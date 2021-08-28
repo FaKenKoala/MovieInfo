@@ -1,3 +1,5 @@
+import 'dart:core';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
 import 'package:movie_info/domain/model/person/person.dart';
@@ -55,6 +57,35 @@ extension MediaTypeX on MediaType {
   String get name => MediaTypeEnumMap[this]!;
 }
 
-extension ListX on List {
-  get toMediaTypeList => MediaTypeInDynaimc.fromList(this);
+class MediaTypeBase {
+  final MediaType mediaType;
+  final Map<String, dynamic>? data;
+  MediaTypeBase(this.mediaType, [this.data]);
+
+  factory MediaTypeBase.fromJson(Map<String, dynamic> json) {
+    switch (enumDecodeNullable(MediaTypeEnumMap, json['media_type'],
+        unknownValue: MediaType.ALL)) {
+      case MediaType.MOVIE:
+        return Movie.fromJson(json);
+      case MediaType.TV:
+        return TV.fromJson(json);
+      case MediaType.PERSON:
+        return Person.fromJson(json);
+      default:
+        return MediaTypeBase(MediaType.ALL, json);
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    switch (mediaType) {
+      case MediaType.MOVIE:
+        return (this as Movie).toJson();
+      case MediaType.TV:
+        return (this as TV).toJson();
+      case MediaType.PERSON:
+        return (this as Person).toJson();
+      default:
+    }
+    return data ?? {};
+  }
 }

@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
+import 'package:movie_info/domain/model/api_result/page_result.dart';
+import 'package:movie_info/domain/model/enum_values/enum_values.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
 import 'package:movie_info/domain/service/i_app_service.dart';
@@ -12,6 +14,7 @@ import 'package:movie_info/infrastructure/app_method/app_method_part/tv_season_m
 import 'package:movie_info/infrastructure/util/dio_logger.dart';
 import 'package:movie_info/infrastructure/util/http_interceptor.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import 'package:collection/collection.dart';
 
 class ApiTest {
   static ApiTest? _instance;
@@ -128,13 +131,20 @@ class ApiTest {
     _service.execute(GetReviewDetail(reviewId: '61048d3d688cd0007f215a28'));
   }
 
-  searchTest() {
+  searchTest() async {
     // _service.execute(SearchCompany(query: 'Joey'));
     // _service.execute(SearchCollection(query: 'Love'));
     // _service.execute(SearchKeyword(query: 'Love'));
     // _service.execute(SearchMovie(query: 'Love'));
-    _service.execute(MultiSearch(query: 'Love'));
-
+    final result = await _service.execute<PageResult<MediaTypeBase>>(MultiSearch(query: 'Joey'));
+    print('result: ${result.runtimeType}');
+    result.fold((l) {
+      print('结果: $l');
+    }, (r) {
+        r.results.forEachIndexed((index, e) {
+          print('$index: ${e.mediaType}');
+        });
+    });
     // _service.execute(SearchPerson(query: 'Love'));
 
     // _service.execute(SearchTV(query: 'Love'));
