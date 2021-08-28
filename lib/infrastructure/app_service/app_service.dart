@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:intl/intl.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
 import 'package:movie_info/domain/model/api_result/page_result.dart';
 import 'package:movie_info/domain/model/change/change_list.dart';
@@ -19,6 +18,7 @@ import 'package:movie_info/infrastructure/app_method/app_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/certification_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/change_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/genre_method.dart';
+import 'package:movie_info/infrastructure/app_method/app_method_part/review_method.dart';
 import 'package:movie_info/infrastructure/util/constant.dart';
 import 'package:movie_info/infrastructure/util/date_util.dart';
 import 'package:movie_info/infrastructure/util/movie_logger.dart';
@@ -82,7 +82,7 @@ class AppService extends AppServicePart
         return (method as CertificationMethod).when(
             getCertificationMovieList: remote.getCertificationMovieList,
             getCertificationTVList: remote.getCertificationTVList);
-            
+
       case AppMethodType.Change:
         return (method as ChangeMethod).when(
             getChangeMovies: remote.getChangeMovies,
@@ -176,6 +176,10 @@ class AppService extends AppServicePart
             getPersonTranslations: remote.getPersonTranslations,
             getLatestPerson: remote.getLatestPerson,
             getPopularPerson: remote.getPopularPerson);
+
+      case AppMethodType.Review:
+        return (method as ReviewMethod)
+            .when(getReviewDetail: remote.getReviewDetail);
 
       case AppMethodType.Trending:
         return (method as TrendingMethod).map(getTrending: getTrending);

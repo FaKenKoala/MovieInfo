@@ -1,4 +1,4 @@
-import 'package:movie_info/domain/model/certification/certification.dart';
+import 'package:movie_info/infrastructure/app_method/app_method_part/review_method.dart';
 
 import 'app_method_part/certification_method.dart';
 import 'app_method_part/change_method.dart';
@@ -43,7 +43,7 @@ class AppMethod {}
 extension AppMethodX on AppMethod {
   AppMethodType get methodType {
     if (this is CertificationMethod) return AppMethodType.Certification;
-    
+
     if (this is ChangeMethod) return AppMethodType.Change;
 
     if (this is CollectionMethod) return AppMethodType.Collection;
@@ -67,6 +67,8 @@ extension AppMethodX on AppMethod {
     if (this is NetworkMethod) return AppMethodType.Network;
 
     if (this is PersonMethod) return AppMethodType.Person;
+
+    if (this is ReviewMethod) return AppMethodType.Review;
 
     if (this is TrendingMethod) return AppMethodType.Trending;
 
@@ -94,6 +96,7 @@ enum AppMethodType {
   Movie,
   Network,
   Person,
+  Review,
   Trending,
   TV,
   TVEpisodeGroup,

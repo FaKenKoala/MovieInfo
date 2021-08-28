@@ -72,7 +72,7 @@ class MediaImageItem {
     int? width,
     String? imageType,
     MediaType? mediaType,
-    dynamic? media,
+    dynamic media,
   }) {
     return MediaImageItem(
       aspectRatio: aspectRatio ?? this.aspectRatio,
