@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:json_annotation/json_annotation.dart';
 
+import 'package:movie_info/domain/model/enum_values/enum_values.dart';
+
 part 'image.g.dart';
 
 @JsonSerializable()
@@ -32,9 +34,12 @@ class MediaImageItem {
   @JsonKey(name: 'iso_639_1')
   final String iso6391;
   final String filePath;
-  final double voteAverage;
+  final num voteAverage;
   final int voteCount;
   final int width;
+  final String imageType;
+  final MediaType mediaType;
+  final dynamic media;
   MediaImageItem({
     this.aspectRatio = 0.0,
     this.height = 0,
@@ -43,6 +48,9 @@ class MediaImageItem {
     this.voteAverage = 0.0,
     this.voteCount = 0,
     this.width = 0,
+    this.imageType = '',
+    this.mediaType = MediaType.ALL,
+    this.media, 
   });
 
   factory MediaImageItem.fromJson(Map<String, dynamic> json) =>
@@ -52,5 +60,31 @@ class MediaImageItem {
   @override
   String toString() {
     return json.encode(toJson());
+  }
+
+  MediaImageItem copyWith({
+    double? aspectRatio,
+    int? height,
+    String? iso6391,
+    String? filePath,
+    num? voteAverage,
+    int? voteCount,
+    int? width,
+    String? imageType,
+    MediaType? mediaType,
+    dynamic? media,
+  }) {
+    return MediaImageItem(
+      aspectRatio: aspectRatio ?? this.aspectRatio,
+      height: height ?? this.height,
+      iso6391: iso6391 ?? this.iso6391,
+      filePath: filePath ?? this.filePath,
+      voteAverage: voteAverage ?? this.voteAverage,
+      voteCount: voteCount ?? this.voteCount,
+      width: width ?? this.width,
+      imageType: imageType ?? this.imageType,
+      mediaType: mediaType ?? this.mediaType,
+      media: media ?? this.media,
+    );
   }
 }

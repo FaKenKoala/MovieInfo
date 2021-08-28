@@ -3,8 +3,8 @@ import 'package:json_annotation/json_annotation.dart';
 part 'cast.g.dart';
 
 @JsonSerializable()
-class Cast {
-  Cast({
+class CastCrew {
+  CastCrew({
     this.adult = false,
     this.backdropPath = '',
     this.character = '',
@@ -28,6 +28,8 @@ class Cast {
     this.voteAverage = 0,
     this.voteCount = 0,
     this.order = 0,
+    this.department = '',
+    this.job = '',
   });
 
   final bool adult;
@@ -50,11 +52,14 @@ class Cast {
   final DateTime? releaseDate;
   final String title;
   final bool video;
-  final int voteAverage;
+  final num voteAverage;
   final int voteCount;
 
   final int order;
 
-  factory Cast.fromJson(Map<String, dynamic> json) => _$CastFromJson(json);
-  Map<String, dynamic> toJson() => _$CastToJson(this);
+  final String department;
+  final String job;
+
+  factory CastCrew.fromJson(Map<String, dynamic> json) => _$CastCrewFromJson(json);
+  Map<String, dynamic> toJson() => _$CastCrewToJson(this);
 }

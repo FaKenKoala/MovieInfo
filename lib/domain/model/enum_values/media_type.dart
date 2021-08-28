@@ -25,8 +25,8 @@ const MediaTypeEnumMap = {
 
 @sealed
 abstract class MediaTypeInDynaimc {
-  static _mediaTypeInDynamic(dynamic e) {
-    switch (enumDecodeNullable(MediaTypeEnumMap, e['media_type'],
+  static mediaTypeInDynamic(dynamic e, [MediaType? mediaType]) {
+    switch (enumDecodeNullable(MediaTypeEnumMap, mediaType ?? e['media_type'],
         unknownValue: MediaType.ALL)) {
       case MediaType.MOVIE:
         return Movie.fromJson(e);
@@ -41,7 +41,7 @@ abstract class MediaTypeInDynaimc {
 
   static fromJson(dynamic json) {
     if (json is Map<String, dynamic>) {
-      return _mediaTypeInDynamic(json);
+      return mediaTypeInDynamic(json);
     }
     return json;
   }

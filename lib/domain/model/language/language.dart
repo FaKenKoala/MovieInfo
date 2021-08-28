@@ -37,6 +37,7 @@ class LanguageData {
   final String overview;
   final int runtime;
   final String tagline;
+  final String biography;
 
   final String title;
   LanguageData(
@@ -44,7 +45,8 @@ class LanguageData {
       this.overview = '',
       this.runtime = 0,
       this.tagline = '',
-      this.title = ''});
+      this.title = '',
+      this.biography = ''});
 
   factory LanguageData.fromJson(Map<String, dynamic> json) =>
       _$LanguageDataFromJson(json);

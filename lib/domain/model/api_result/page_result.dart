@@ -6,6 +6,7 @@ part 'page_result.g.dart';
 
 @JsonSerializable(genericArgumentFactories: true)
 class PageResult<T> {
+  final int id;
   final int page;
   final MovieDate? dates;
   final List<T> results;
@@ -13,7 +14,8 @@ class PageResult<T> {
   final int totalResults;
 
   PageResult(
-      { this.page = 1,
+      {this.id = -1,
+      this.page = 1,
       this.dates,
       this.results = const [],
       required this.totalPages,
@@ -26,6 +28,7 @@ class PageResult<T> {
       _$PageResultToJson(this, toJsonT);
 
   PageResult<T> copyWith({
+    int? id,
     int? page,
     MovieDate? dates,
     List<T>? results,
@@ -33,6 +36,7 @@ class PageResult<T> {
     int? totalResults,
   }) {
     return PageResult(
+      id: id ?? this.id,
       page: page ?? this.page,
       dates: dates ?? this.dates,
       results: results ?? this.results,

@@ -23,6 +23,7 @@ import 'package:movie_info/domain/model/movie/rate_content.dart';
 import 'package:movie_info/domain/model/media/name.dart';
 import 'package:movie_info/domain/model/network/network.dart';
 import 'package:movie_info/domain/model/person/person.dart';
+import 'package:movie_info/domain/model/person/profile_image.dart';
 import 'package:movie_info/domain/model/release_date/release_date.dart';
 import 'package:movie_info/domain/model/review/review.dart';
 import 'package:movie_info/domain/model/title/title.dart';

@@ -32,28 +32,28 @@ mixin PersonRepository {
   );
 
   @GET('$PersonPrefix/external_ids')
-  Future getPersonExternalIds(
+  Future<ExternalId> getPersonExternalIds(
     @Path(PersonID) int personId,
   );
 
   @GET('$PersonPrefix/images')
-  Future getPersonImages(
+  Future<PersonProfileImageList> getPersonImages(
     @Path(PersonID) int personId,
   );
 
   @GET('$PersonPrefix/tagged_images')
-  Future getPersonTaggedImages(
+  Future<PageResult<MediaImageItem>> getPersonTaggedImages(
     @Path(PersonID) int personId,
   );
 
   @GET('$PersonPrefix/translations')
-  Future getPersonTranslations(
+  Future<TranslationList> getPersonTranslations(
     @Path(PersonID) int personId,
   );
 
   @GET('/person/latest')
-  Future getLatestPerson();
+  Future<Person> getLatestPerson();
 
   @GET('/person/popular')
-  Future getPopularPerson();
+  Future<PageResult<Person>> getPopularPerson();
 }

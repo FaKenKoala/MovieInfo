@@ -112,12 +112,21 @@ class ApiTest {
   }
 
   personTest() {
-    int personId = 7902;
+    int personId = 169337;
     //31211;
 
     // _service.execute(GetPersonDetail(personId: 1));
+    // _service.execute(GetPersonChanges(personId: 1));
 
-    _service.execute(GetPersonMovieCredits(personId: 53123));
+    // _service.execute(GetPersonMovieCredits(personId: 53123));
+    // _service.execute(GetPersonTVCredits(personId: 53123));
+    // _service.execute(GetPersonCombinedCredits(personId: 53123));
+    // _service.execute(GetPersonExternalIds(personId: 53123));
+    _service.execute(GetPersonImages(personId: personId));
+    // _service.execute(GetPersonTaggedImages(personId: personId));
+    // _service.execute(GetPersonTranslations(personId: 1234));
+    // _service.execute(GetLatestPerson());
+    // _service.execute(GetPopularPerson());
   }
 
   ApiTest._() {
