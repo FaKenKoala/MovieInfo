@@ -18,6 +18,11 @@ import 'package:movie_info/domain/model/find/find_result.dart';
 import 'package:movie_info/domain/model/genre/genre_list.dart';
 import 'package:movie_info/domain/model/language/language.dart';
 import 'package:movie_info/domain/model/language/timezone.dart';
+import 'package:movie_info/domain/model/list/add_list_item.dart';
+import 'package:movie_info/domain/model/list/media_item_status.dart';
+import 'package:movie_info/domain/model/list/media_list.dart';
+import 'package:movie_info/domain/model/list/new_list_content.dart';
+import 'package:movie_info/domain/model/list/new_list_response.dart';
 import 'package:movie_info/domain/model/person/tv_credit_list.dart';
 import 'package:movie_info/domain/model/person/credit.dart';
 import 'package:movie_info/domain/model/person/credit_list.dart';
@@ -56,7 +61,7 @@ part 'remote_repository_part/find_repository.dart';
 part 'remote_repository_part/genre_repository.dart';
 part 'remote_repository_part/guest_session_repository.dart';
 part 'remote_repository_part/keyword_repository.dart';
-part 'remote_repository_part/lists_repository.dart';
+part 'remote_repository_part/list_repository.dart';
 part 'remote_repository_part/movie_repository.dart';
 part 'remote_repository_part/network_repository.dart';
 part 'remote_repository_part/person_repository.dart';
@@ -88,6 +93,7 @@ abstract class RemoteRepository
         GenreRepository,
         KeywordRepository,
         MovieRepository,
+        ListRepository,
         NetworkRepository,
         PersonRepository,
         ReviewRepository,

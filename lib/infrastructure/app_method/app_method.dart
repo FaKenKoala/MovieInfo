@@ -36,6 +36,7 @@ export 'app_method_part/find_method.dart';
 export 'app_method_part/genre_method.dart';
 export 'app_method_part/guest_session_method.dart';
 export 'app_method_part/keyword_method.dart';
+export 'app_method_part/list_method.dart';
 export 'app_method_part/movie_method.dart';
 export 'app_method_part/network_method.dart';
 export 'app_method_part/person_method.dart';
@@ -78,6 +79,8 @@ extension AppMethodX on AppMethod {
 
     if (this is KeywordMethod) return AppMethodType.Keyword;
 
+    if (this is ListMethod) return AppMethodType.List;
+
     if (this is MovieMethod) return AppMethodType.Movie;
 
     if (this is NetworkMethod) return AppMethodType.Network;
@@ -117,6 +120,7 @@ enum AppMethodType {
   Genre,
   GuestSession,
   Keyword,
+  List,
   Movie,
   Network,
   Person,

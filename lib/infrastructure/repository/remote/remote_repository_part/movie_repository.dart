@@ -48,7 +48,7 @@ mixin MovieRepository {
   );
 
   @GET('$MoviePrefix/lists')
-  Future<PageResult<MovieList>> getMovieBelongList(
+  Future<PageResult<MediaList>> getMovieBelongList(
     @Path(MovieId) int movieId,
     @Query(Page) int? page,
   );

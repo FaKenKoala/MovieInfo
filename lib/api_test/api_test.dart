@@ -84,7 +84,7 @@ class ApiTest {
   }
 
   guestSessionTest() async {
-    // TODO: 3
+    // 3
 
     // _service.execute(GetRatedMovies());
     _service.execute(GetRatedTVs());

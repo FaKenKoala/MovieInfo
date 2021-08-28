@@ -37,6 +37,7 @@ part 'app_service_part/external_id_service.dart';
 part 'app_service_part/genre_service.dart';
 part 'app_service_part/guest_session_service.dart';
 part 'app_service_part/keyword_service.dart';
+part 'app_service_part/list_service.dart';
 part 'app_service_part/movie_service.dart';
 part 'app_service_part/network_service.dart';
 part 'app_service_part/person_service.dart';
@@ -69,6 +70,7 @@ class AppService extends AppServicePart
         ExternalIDService,
         GenreService,
         KeywordService,
+        ListService,
         MovieService,
         GuestSessionService,
         NetworkService,
