@@ -4,6 +4,7 @@ import 'package:movie_info/domain/model/account_state/account_state.dart';
 import 'package:movie_info/domain/model/api_result/id_result.dart';
 import 'package:movie_info/domain/model/api_result/list_result.dart';
 import 'package:movie_info/domain/model/api_result/page_result.dart';
+import 'package:movie_info/domain/model/certification/certification.dart';
 import 'package:movie_info/domain/model/change/change_list.dart';
 import 'package:movie_info/domain/model/code_response/code_response.dart';
 import 'package:movie_info/domain/model/company/company.dart';
@@ -69,6 +70,7 @@ part 'remote_repository.g.dart';
 @singleton
 abstract class RemoteRepository
     with
+        CertificationRepository,
         ChangeRepository,
         CompanyRepository,
         CollectionRepository,

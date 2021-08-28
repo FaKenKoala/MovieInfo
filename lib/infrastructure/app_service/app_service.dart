@@ -16,6 +16,7 @@ import 'package:movie_info/domain/model/person/credit.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
 import 'package:movie_info/domain/service/i_app_service.dart';
 import 'package:movie_info/infrastructure/app_method/app_method.dart';
+import 'package:movie_info/infrastructure/app_method/app_method_part/certification_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/change_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/genre_method.dart';
 import 'package:movie_info/infrastructure/util/constant.dart';
@@ -77,6 +78,11 @@ class AppService extends AppServicePart
 
   Future _executeMethod(AppMethod method) async {
     switch (method.methodType) {
+      case AppMethodType.Certification:
+        return (method as CertificationMethod).when(
+            getCertificationMovieList: remote.getCertificationMovieList,
+            getCertificationTVList: remote.getCertificationTVList);
+            
       case AppMethodType.Change:
         return (method as ChangeMethod).when(
             getChangeMovies: remote.getChangeMovies,

@@ -1,3 +1,6 @@
+import 'package:movie_info/domain/model/certification/certification.dart';
+
+import 'app_method_part/certification_method.dart';
 import 'app_method_part/change_method.dart';
 import 'app_method_part/collection_method.dart';
 import 'app_method_part/company_method.dart';
@@ -39,6 +42,8 @@ class AppMethod {}
 
 extension AppMethodX on AppMethod {
   AppMethodType get methodType {
+    if (this is CertificationMethod) return AppMethodType.Certification;
+    
     if (this is ChangeMethod) return AppMethodType.Change;
 
     if (this is CollectionMethod) return AppMethodType.Collection;
@@ -76,6 +81,7 @@ extension AppMethodX on AppMethod {
 }
 
 enum AppMethodType {
+  Certification,
   Change,
   Collection,
   Company,

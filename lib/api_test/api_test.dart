@@ -2,12 +2,14 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
 import 'package:movie_info/domain/model/api_result/id_result.dart';
+import 'package:movie_info/domain/model/certification/certification.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
 import 'package:movie_info/domain/model/movie/rate_content.dart';
 import 'package:movie_info/domain/model/tv/episode_group.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
 import 'package:movie_info/domain/service/i_app_service.dart';
 import 'package:movie_info/infrastructure/app_method/app_method.dart';
+import 'package:movie_info/infrastructure/app_method/app_method_part/certification_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/genre_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/movie_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/tv_episode_group_method.dart';
@@ -135,6 +137,11 @@ class ApiTest {
     // _service.execute(GetConfigurationLanguages());
     // _service.execute(GetConfigurationTranslations());
     _service.execute(GetConfigurationTimezones());
+  }
+
+  certificationTest() {
+    // _service.execute(GetCertificationMovieList());
+    _service.execute(GetCertificationTVList());
   }
 
   ApiTest._() {
