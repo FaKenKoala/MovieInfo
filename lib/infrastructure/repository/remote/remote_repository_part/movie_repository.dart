@@ -11,7 +11,7 @@ mixin MovieRepository {
     @Path(MovieId) int movieId,
   );
 
-  @GET('$MoviePrefix/account_states')
+  @GET('$MoviePrefix/$CAccountStates')
   Future<AccountState> getMovieAccountState(@Path(MovieId) int movieId);
 
   @GET('$MoviePrefix/alternative_titles')

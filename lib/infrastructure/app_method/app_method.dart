@@ -1,4 +1,6 @@
 import 'package:movie_info/infrastructure/app_method/app_method_part/review_method.dart';
+import 'package:movie_info/infrastructure/app_method/app_method_part/tv_episode_method.dart';
+import 'package:movie_info/infrastructure/app_method/app_method_part/tv_season_method.dart';
 
 import 'app_method_part/certification_method.dart';
 import 'app_method_part/change_method.dart';
@@ -76,6 +78,10 @@ extension AppMethodX on AppMethod {
 
     if (this is TVMethod) return AppMethodType.TV;
 
+    if (this is TVEpisodeMethod) return AppMethodType.TVEpisode;
+
+    if (this is TVSeasonMethod) return AppMethodType.TVSeason;
+
     if (this is WatchProviderMethod) return AppMethodType.WatchProvider;
 
     return AppMethodType.Unknow;
@@ -99,6 +105,8 @@ enum AppMethodType {
   Review,
   Trending,
   TV,
+  TVEpisode,
+  TVSeason,
   TVEpisodeGroup,
   Unknow,
   WatchProvider,

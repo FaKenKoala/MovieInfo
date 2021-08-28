@@ -10,7 +10,7 @@ class EpisodeGroupItem {
   final String id;
   final String name;
   final int order;
-  final List<Episode> episodes;
+  final List<TVEpisode> episodes;
   final bool locked;
   EpisodeGroupItem({
     this.id = '',

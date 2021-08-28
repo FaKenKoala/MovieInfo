@@ -19,6 +19,8 @@ import 'package:movie_info/infrastructure/app_method/app_method_part/certificati
 import 'package:movie_info/infrastructure/app_method/app_method_part/change_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/genre_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/review_method.dart';
+import 'package:movie_info/infrastructure/app_method/app_method_part/tv_episode_method.dart';
+import 'package:movie_info/infrastructure/app_method/app_method_part/tv_season_method.dart';
 import 'package:movie_info/infrastructure/util/constant.dart';
 import 'package:movie_info/infrastructure/util/date_util.dart';
 import 'package:movie_info/infrastructure/util/movie_logger.dart';
@@ -211,6 +213,31 @@ class AppService extends AppServicePart
             getOnTheAirTV: remote.getOnTheAirTV,
             getPopularTV: remote.getPopularTV,
             getTopRatedTV: remote.getTopRatedTV);
+
+      case AppMethodType.TVSeason:
+        return (method as TVSeasonMethod).when(
+            getTVSeasonDetail: remote.getTVSeasonDetail,
+            getTVSeasonAccountState: remote.getTVSeasonAccountState,
+            getTVSeasonAggregatedCredits: remote.getTVSeasonAggregatedCredits,
+            getTVSeasonChange: remote.getTVSeasonChange,
+            getTVSeasonCredits: remote.getTVSeasonCredits,
+            getTVSeasonExternalID: remote.getTVSeasonExternalID,
+            getTVSeasonImage: remote.getTVSeasonImage,
+            getTVSeasonTranslations: remote.getTVSeasonTranslations,
+            getTVSeasonVideos: remote.getTVSeasonVideos);
+
+      case AppMethodType.TVEpisode:
+        return (method as TVEpisodeMethod).when(
+            getTVEpisodeDetail: remote.getTVEpisodeDetail,
+            getTVEpisodeAccountState: remote.getTVEpisodeAccountState,
+            getTVEpisodeChange: remote.getTVEpisodeChange,
+            getTVEpisodeCredits: remote.getTVEpisodeCredits,
+            getTVEpisodeExternalID: remote.getTVEpisodeExternalID,
+            getTVEpisodeImage: remote.getTVEpisodeImage,
+            getTVEpisodeTranslations: remote.getTVEpisodeTranslations,
+            getTVEpisodeVideo: remote.getTVEpisodeVideo,
+            rateTVEpisode: remote.rateTVEpisode,
+            deleteRateTVEpisode: remote.deleteRateTVEpisode);
 
       case AppMethodType.TVEpisodeGroup:
         return (method as TVEpisodeGroupMethod)

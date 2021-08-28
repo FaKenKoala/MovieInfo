@@ -6,8 +6,8 @@ import 'package:movie_info/domain/service/i_app_service.dart';
 import 'package:movie_info/infrastructure/app_method/app_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/certification_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/genre_method.dart';
-import 'package:movie_info/infrastructure/app_method/app_method_part/movie_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/review_method.dart';
+import 'package:movie_info/infrastructure/app_method/app_method_part/tv_season_method.dart';
 import 'package:movie_info/infrastructure/util/dio_logger.dart';
 import 'package:movie_info/infrastructure/util/http_interceptor.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -123,7 +123,7 @@ class ApiTest {
   }
 
   reviewTest() {
-    // TODO: 1
+    // 1
     _service.execute(GetReviewDetail(reviewId: '61048d3d688cd0007f215a28'));
   }
 
@@ -169,11 +169,26 @@ class ApiTest {
     // _service.execute(GetTopRatedTV());
   }
 
-  tvSeasonsTest() {
+  tvSeasonsTest(TV tv) {
     // TODO: 9
+    int seasonId = 3624;
+    // _service.execute(GetTVSeasonDetail(tvId: tv.id, seasonNumber: 1));
+    // _service.execute(GetTVSeasonAcountState(tvId: tv.id, seasonNumber: 1));
+    // _service.execute(GetTVSeasonAggregatedCredits(tvId: tv.id, seasonNumber: 1));
+
+    // _service.execute(GetTVSeasonChange(seasonId: seasonId));
+
+    // _service.execute(GetTVSeasonCredits(tvId: tv.id, seasonNumber: 1));
+    // _service.execute(GetTVSeasonExternalID(tvId: tv.id, seasonNumber: 1));
+
+    // _service.execute(GetTVSeasonImage(tvId: tv.id, seasonNumber: 1));
+    // _service.execute(GetTVSeasonTranslations(tvId: tv.id, seasonNumber: 1));
+    _service.execute(GetTVSeasonVideos(tvId: tv.id, seasonNumber: 1));
   }
 
-  tvEpisodesTest() {
+  tvEpisodesTest(
+    TV tv,
+  ) {
     // TODO: 10
   }
 

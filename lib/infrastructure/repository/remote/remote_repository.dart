@@ -15,6 +15,7 @@ import 'package:movie_info/domain/model/find/find_result.dart';
 import 'package:movie_info/domain/model/genre/genre_list.dart';
 import 'package:movie_info/domain/model/language/language.dart';
 import 'package:movie_info/domain/model/language/timezone.dart';
+import 'package:movie_info/domain/model/person/tv_season_credit_list.dart';
 import 'package:movie_info/domain/model/person/credit.dart';
 import 'package:movie_info/domain/model/person/credit_list.dart';
 import 'package:movie_info/domain/model/media/image.dart';
@@ -34,6 +35,7 @@ import 'package:movie_info/domain/model/title/title.dart';
 import 'package:movie_info/domain/model/translation/translatetion_list.dart';
 import 'package:movie_info/domain/model/tv/episode_group.dart';
 import 'package:movie_info/domain/model/tv/episode.dart';
+import 'package:movie_info/domain/model/tv/season.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
 import 'package:movie_info/domain/model/watch_provider/flatrate.dart';
 import 'package:movie_info/domain/model/watch_provider/region.dart';
@@ -59,9 +61,9 @@ part 'remote_repository_part/reviews_repository.dart';
 part 'remote_repository_part/search_repository.dart';
 part 'remote_repository_part/trending_repository.dart';
 part 'remote_repository_part/tv_episode_groups_repository.dart';
-part 'remote_repository_part/tv_episodes_repository.dart';
+part 'remote_repository_part/tv_episode_repository.dart';
 part 'remote_repository_part/tv_repository.dart';
-part 'remote_repository_part/tv_seasons_repository.dart';
+part 'remote_repository_part/tv_season_repository.dart';
 part 'remote_repository_part/watch_provider_repository.dart';
 
 part 'remote_repository.g.dart';
@@ -86,6 +88,8 @@ abstract class RemoteRepository
         ReviewRepository,
         TrendingRepository,
         TVEpisodeGroupsRepository,
+        TVSeasonRepository,
+        TVEpisodeRepository,
         TVRepository,
         WatchProvidersRepository {
   @factoryMethod

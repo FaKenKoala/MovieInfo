@@ -16,7 +16,7 @@ part 'trending_bloc.freezed.dart';
 class TrendingBloc extends Bloc<TrendingEvent, TrendingState> {
   final IAppService movieService;
   TrendingBloc(this.movieService) : super(_Initial()) {
-    add(TrendingEvent.trending(mediaType: MediaType.MOVIE));
+    add(TrendingEvent.trending(mediaType: MediaType.TV));
   }
 
   @override

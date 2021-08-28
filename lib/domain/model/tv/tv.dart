@@ -36,14 +36,14 @@ class TV {
   final bool inProduction;
   final List<String> languages;
   final DateTime? lastAirDate;
-  final Episode? lastEpisodeToAir;
-  final Episode? nextEpisodeToAir;
+  final TVEpisode? lastEpisodeToAir;
+  final TVEpisode? nextEpisodeToAir;
   final List<Network> networks;
   final int numberOfEpisodes;
   final int numberOfSeasons;
   final List<Network> productionCompanies;
   final List<Country> productionCountries;
-  final List<Season> seasons;
+  final List<TVSeason> seasons;
   final List<Language> spokenLanguages;
   final String status;
   final String tagline;
