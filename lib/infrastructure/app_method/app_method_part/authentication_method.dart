@@ -5,5 +5,18 @@ part 'authentication_method.freezed.dart';
 
 @freezed
 class AuthenticationMethod with _$AuthenticationMethod implements AppMethod {
-  factory AuthenticationMethod.getGuestSession() = GetGuestSession;
+  const factory AuthenticationMethod.getGuestSession() = GetGuestSession;
+
+  const factory AuthenticationMethod.getRequestToken() = GetRequestToken;
+
+  const factory AuthenticationMethod.createSession() = CreateSession;
+
+  const factory AuthenticationMethod.createSessionWithLogin({
+    required String username,
+    required String password,
+  }) = CreateSessionWithLogin;
+
+  const factory AuthenticationMethod.createSessionV4() = CreateSessionV4;
+
+  const factory AuthenticationMethod.deleteSession() = DeleteSession;
 }

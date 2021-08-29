@@ -11,6 +11,8 @@ mixin ListService on AppServicePart {
 
   get removeMediaListItem => remoteRepository.removeMediaListItem;
 
+  get clearMediaList => remoteRepository.clearMediaList;
+
   get deleteMediaList => remoteRepository.deleteMediaList;
 }
 

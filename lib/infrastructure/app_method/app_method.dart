@@ -1,3 +1,5 @@
+import 'package:movie_info/domain/model/authentication/account.dart';
+
 import 'app_method_part/authentication_method.dart';
 import 'app_method_part/certification_method.dart';
 import 'app_method_part/change_method.dart';
@@ -10,6 +12,7 @@ import 'app_method_part/find_method.dart';
 import 'app_method_part/genre_method.dart';
 import 'app_method_part/guest_session_method.dart';
 import 'app_method_part/keyword_method.dart';
+import 'app_method_part/list_method.dart';
 import 'app_method_part/movie_method.dart';
 import 'app_method_part/network_method.dart';
 import 'app_method_part/person_method.dart';
@@ -55,6 +58,8 @@ class AppMethod {}
 
 extension AppMethodX on AppMethod {
   AppMethodType get methodType {
+    if (this is Account) return AppMethodType.Account;
+    
     if (this is AuthenticationMethod) return AppMethodType.Authentication;
 
     if (this is CertificationMethod) return AppMethodType.Certification;
@@ -108,6 +113,7 @@ extension AppMethodX on AppMethod {
 }
 
 enum AppMethodType {
+  Account,
   Authentication,
   Certification,
   Change,

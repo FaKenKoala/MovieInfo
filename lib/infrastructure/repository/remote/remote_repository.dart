@@ -4,7 +4,12 @@ import 'package:movie_info/domain/model/account_state/account_state.dart';
 import 'package:movie_info/domain/model/api_result/id_result.dart';
 import 'package:movie_info/domain/model/api_result/list_result.dart';
 import 'package:movie_info/domain/model/api_result/page_result.dart';
+import 'package:movie_info/domain/model/authentication/account.dart';
+import 'package:movie_info/domain/model/authentication/add_to_watchlist_content.dart';
 import 'package:movie_info/domain/model/authentication/guest_session.dart';
+import 'package:movie_info/domain/model/authentication/mark_favorite_content.dart';
+import 'package:movie_info/domain/model/authentication/request_token.dart';
+import 'package:movie_info/domain/model/authentication/session.dart';
 import 'package:movie_info/domain/model/certification/certification.dart';
 import 'package:movie_info/domain/model/change/change.dart';
 import 'package:movie_info/domain/model/code_response/code_response.dart';
@@ -49,6 +54,7 @@ import 'package:movie_info/domain/model/watch_provider/watch_provider.dart';
 import 'package:movie_info/infrastructure/util/constant.dart';
 import 'package:retrofit/retrofit.dart';
 
+part 'remote_repository_part/account_repository.dart';
 part 'remote_repository_part/authentication_repository.dart';
 part 'remote_repository_part/certification_repository.dart';
 part 'remote_repository_part/change_repository.dart';
@@ -80,6 +86,7 @@ part 'remote_repository.g.dart';
 @singleton
 abstract class RemoteRepository
     with
+        AccountRepository,
         AuthenticationRepository,
         CertificationRepository,
         ChangeRepository,

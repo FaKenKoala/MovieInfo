@@ -5,7 +5,10 @@ import 'package:injectable/injectable.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
 import 'package:movie_info/application/util/app_config.dart';
 import 'package:movie_info/domain/model/api_result/page_result.dart';
+import 'package:movie_info/domain/model/authentication/account.dart';
 import 'package:movie_info/domain/model/authentication/guest_session.dart';
+import 'package:movie_info/domain/model/authentication/request_token.dart';
+import 'package:movie_info/domain/model/authentication/session.dart';
 import 'package:movie_info/domain/model/change/change.dart';
 import 'package:movie_info/domain/model/code_response/app_exception.dart';
 import 'package:movie_info/domain/model/code_response/code_response.dart';
@@ -16,6 +19,7 @@ import 'package:movie_info/domain/model/tv/episode.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
 import 'package:movie_info/domain/service/i_app_service.dart';
 import 'package:movie_info/infrastructure/app_method/app_method.dart';
+import 'package:movie_info/infrastructure/app_method/app_method_part/account_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/authentication_method.dart';
 import 'package:movie_info/infrastructure/app_method/app_method_part/guest_session_method.dart';
 import 'package:movie_info/infrastructure/util/constant.dart';
@@ -25,6 +29,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:movie_info/infrastructure/repository/local/local_repository.dart';
 import 'package:movie_info/infrastructure/repository/remote/remote_repository.dart';
 
+part 'app_service_part/account_service.dart';
 part 'app_service_part/authentication_service.dart';
 part 'app_service_part/certification_service.dart';
 part 'app_service_part/change_service.dart';
@@ -59,6 +64,7 @@ abstract class AppServicePart {
 @Singleton(as: IAppService)
 class AppService extends AppServicePart
     with
+        AccountService,
         AuthenticationService,
         CertificationService,
         ChangeService,
@@ -129,9 +135,28 @@ class AppService extends AppServicePart
 
   Future _executeMethod(AppMethod method) async {
     switch (method.methodType) {
+      case AppMethodType.Account:
+        return (method as AccountMethod).map(
+            getAccountDetail: getAccountDetail,
+            getCreatedList: getCreatedList,
+            getFavoriteMovies: getFavoriteMovies,
+            getFavoriteTVs: getFavoriteTVs,
+            markAsFavorite: markAsFavorite,
+            getAccountRatedMovies: getAccountRatedMovies,
+            getAccountRatedTVs: getAccountRatedTVs,
+            getAccountRatedTVEpisodes: getAccountRatedTVEpisodes,
+            getMovieWatchlist: getMovieWatchlist,
+            getTVWatchlist: getTVWatchlist,
+            addToWatchlist: addToWatchlist);
+
       case AppMethodType.Authentication:
-        return (method as AuthenticationMethod)
-            .when(getGuestSession: getGuestSession);
+        return (method as AuthenticationMethod).when(
+            getGuestSession: getGuestSession,
+            getRequestToken: getRequestToken,
+            createSession: createSession,
+            createSessionWithLogin: createSessionWithLogin,
+            createSessionV4: createSessionV4,
+            deleteSession: deleteSession);
 
       case AppMethodType.Certification:
         return (method as CertificationMethod).when(
@@ -191,6 +216,15 @@ class AppService extends AppServicePart
         return (method as KeywordMethod).when(
             getKeywordDetail: getKeywordDetail,
             getKeywordMovies: getKeywordMovies);
+      case AppMethodType.List:
+        return (method as ListMethod).when(
+            getMediaListDetail: getMediaListDetail,
+            getMediaListItemStatus: getMediaListItemStatus,
+            createMediaList: createMediaList,
+            addMediaListItem: addMediaListItem,
+            removeMediaListItem: removeMediaListItem,
+            clearMediaList: clearMediaList,
+            deleteMediaList: deleteMediaList);
 
       case AppMethodType.Movie:
         return (method as MovieMethod).when(

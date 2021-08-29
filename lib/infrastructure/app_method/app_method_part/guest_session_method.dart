@@ -6,17 +6,14 @@ part 'guest_session_method.freezed.dart';
 @freezed
 class GuestSessionMethod with _$GuestSessionMethod implements AppMethod {
   factory GuestSessionMethod.getRatedMovies({
-    String? guestSessionID,
     String? sortBy,
   }) = GetRatedMovies;
 
   factory GuestSessionMethod.getRatedTVs({
-    String? guestSessionID,
     String? sortBy,
   }) = GetRatedTVs;
 
   factory GuestSessionMethod.getRatedTVEpisodes({
-    String? guestSessionID,
     String? sortBy,
   }) = GetRatedTVEpisodes;
 }

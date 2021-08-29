@@ -2,7 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
+import 'package:movie_info/domain/model/authentication/account.dart';
 import 'package:movie_info/domain/model/authentication/guest_session.dart';
+import 'package:movie_info/domain/model/authentication/request_token.dart';
+import 'package:movie_info/domain/model/authentication/session.dart';
 import 'package:movie_info/domain/model/configuration/configuration.dart';
 import 'package:movie_info/domain/service/i_app_service.dart';
 import 'package:movie_info/infrastructure/app_method/app_method.dart';
@@ -46,6 +49,28 @@ class AppConfig {
       _instance!._guestSession = r;
       addGuestSession();
     });
+  }
+
+  RequestToken? _requestToken;
+  RequestToken? get requestToken => _requestToken;
+
+  _getRequestToken() async{
+
+  }
+
+
+  Session? _session;
+  Session? get session => _session;
+
+  _getSession() async{
+    
+  }
+
+  Account? _account;
+  Account? get account => _account;
+
+  _getAccount() async{
+    
   }
 
   /// need to await this to confirm at least the assetConfig is loaded succesfully.
