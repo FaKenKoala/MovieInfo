@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:movie_info/application/bloc/movie/list/movie_home_bloc.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
 import 'package:movie_info/infrastructure/util/color_util.dart';
@@ -89,6 +92,23 @@ class _AppHomePageState extends State<AppHomePage>
                     child: Icon(Icons.movie)),
                 ListTile(
                   title: Text('My List'),
+                ),
+                ListTile(
+                  title: Row(
+                    children: [
+                      Text(
+                        'by ',
+                        style: TextStyle(
+                          color: ColorUtil.PrimaryColor,
+                          fontSize: 20,
+                        ),
+                      ),
+                      Image.asset(
+                        'assets/images/tmdb_long_logo.png',
+                        width: 200,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
