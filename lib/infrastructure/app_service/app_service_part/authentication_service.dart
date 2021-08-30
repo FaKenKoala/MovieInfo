@@ -23,7 +23,7 @@ mixin AuthenticationService on AppServicePart {
         .fold(_getRemote, id);
   }
 
-  get getRequestToken => remoteRepository.getRequestToken();
+  get getRequestToken => remoteRepository.getRequestToken;
 
   Future<Session> createSession() async {
     return await remoteRepository.createSession({

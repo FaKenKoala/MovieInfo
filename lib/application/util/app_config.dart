@@ -54,24 +54,17 @@ class AppConfig {
   RequestToken? _requestToken;
   RequestToken? get requestToken => _requestToken;
 
-  _getRequestToken() async{
-
-  }
-
+  _getRequestToken() async {}
 
   Session? _session;
   Session? get session => _session;
 
-  _getSession() async{
-    
-  }
+  _getSession() async {}
 
   Account? _account;
   Account? get account => _account;
 
-  _getAccount() async{
-    
-  }
+  _getAccount() async {}
 
   /// need to await this to confirm at least the assetConfig is loaded succesfully.
   static init() async {
@@ -101,6 +94,14 @@ class AppConfig {
   }
 
   static String imageUrl(String? posterPath) {
-    return '${instance.config.images.secureBaseUrl}${instance.config.images.posterSizes[4]}$posterPath';
+    return '${instance.config.images.secureBaseUrl}${instance.config.images.posterSizes[5]}$posterPath';
+  }
+
+  static String backdrop(String? backdropPath) {
+    return '${instance.config.images.secureBaseUrl}${instance.config.images.backdropSizes.last}$backdropPath';
+  }
+
+  static String logo(String? logoPath) {
+    return '${instance.config.images.secureBaseUrl}${instance.config.images.logoSizes.last}$logoPath';
   }
 }

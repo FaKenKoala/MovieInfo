@@ -15,6 +15,7 @@ import 'package:movie_info/domain/model/code_response/code_response.dart';
 import 'package:movie_info/domain/model/configuration/configuration.dart';
 import 'package:movie_info/domain/model/enum_values/enum_values.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
+import 'package:movie_info/domain/model/person/person.dart';
 import 'package:movie_info/domain/model/tv/episode.dart';
 import 'package:movie_info/domain/model/tv/tv.dart';
 import 'package:movie_info/domain/service/i_app_service.dart';
@@ -95,24 +96,6 @@ class AppService extends AppServicePart
 
   @override
   Future<Either<AppException, T>> execute<T>(AppMethod method) async {
-    /// 这个_executeMethod方法应该用编译时注解自动生成代码，格式时根据method.map的参数名称 {name}，
-    /// 生成 name: get{name.firstUppercase}的方法调用，如同现有的_executeMethod所展示的一样。
-    ///
-    /// 这个方法也可以自动生成，格式是： remote.{name},参数就根据method的所有参数依此赋值
-    ///
-    ///
-    // return Task(() => _executeMethod(method))
-    //     .attempt()
-    //     .map((Either<Object, dynamic> either) {
-    //   return either.leftMap((exception) {
-    //     return catching(() {
-    //       CodeResponse codeResponse =
-    //           CodeResponse.fromJson((exception as DioError).response?.data);
-    //       return AppException(codeResponse: codeResponse);
-    //     }).swap().map((_) => AppException(message: exception)).fold(id, id);
-    //   });
-    // }).run();
-
     try {
       var finalResult = await _executeMethod(method);
       catching(() {
@@ -286,7 +269,11 @@ class AppService extends AppServicePart
         return (method as ReviewMethod).when(getReviewDetail: getReviewDetail);
 
       case AppMethodType.Trending:
-        return (method as TrendingMethod).map(getTrending: getTrending);
+        return (method as TrendingMethod).map(
+            getMovieTrending: getMovieTrending,
+            getTVTrending: getTVTrending,
+            getPersonTrending: getPersonTrending,
+            getTrending: getTrending);
 
       case AppMethodType.TV:
         return (method as TVMethod).when(

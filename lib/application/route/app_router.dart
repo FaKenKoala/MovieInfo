@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_info/application/bloc/movie/movie_bloc.dart';
 import 'package:movie_info/presentation/page/home/home_page.dart';
-import 'package:movie_info/presentation/page/movie/movie_detail_page.dart';
+import 'package:movie_info/presentation/page/movie/detail/movie_detail_page.dart';
 import 'package:movie_info/presentation/page/tv/tv_detail_page.dart';
 
 @MaterialAutoRouter(

@@ -20,6 +20,7 @@ import 'package:movie_info/infrastructure/util/http_interceptor.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:collection/collection.dart';
+import 'package:provider/provider.dart';
 
 class ApiTest {
   static ApiTest? _instance;
@@ -90,6 +91,7 @@ class ApiTest {
     _service.execute(GetRatedTVs());
     // _service.execute(GetRatedTVEpisodes());
   }
+
   keywordTest() {
     // 2
     // _service.execute(GetKeywordDetail(keywordId: 13084));
@@ -101,6 +103,8 @@ class ApiTest {
   }
 
   void movieTest(Movie movie) {
+    Provider provider;
+    
     /// 23
     // _service.execute(GetMovieDetail(movieId: movie.id));
     // _service.execute(GetMovieCredit(movieId: movie.id));

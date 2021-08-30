@@ -4,6 +4,8 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movie_info/domain/model/account_state/account_state.dart';
+import 'package:movie_info/domain/model/api_result/page_result.dart';
+import 'package:movie_info/domain/model/enum_values/enum_values.dart';
 import 'package:movie_info/domain/model/media/image.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
 import 'package:movie_info/domain/service/i_app_service.dart';
@@ -15,8 +17,8 @@ part 'movie_bloc.freezed.dart';
 
 @injectable
 class MovieBloc extends Bloc<MovieEvent, MovieState> {
-  final IAppService movieService;
-  MovieBloc(this.movieService) : super(MovieStateInitial());
+  final IAppService appService;
+  MovieBloc(this.appService) : super(MovieStateInitial());
 
   @override
   Stream<MovieState> mapEventToState(
@@ -28,17 +30,18 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
         image: _getMovieImage);
   }
 
+ 
+
   Future<MovieState> _getMovieDetail(_MovieEventDetail detail) async {
-    final result = await movieService.execute(GetMovieDetail(
+    final result = await appService.execute(GetMovieDetail(
       movieId: detail.movieId,
-      
     ));
     return result.fold((l) => MovieState.error(l), (r) => MovieState.detail(r));
   }
 
   Future<MovieState> _getMovieAccountState(
       _MovieEventAccountState state) async {
-    final result = await movieService.execute(GetMovieAccountState(
+    final result = await appService.execute(GetMovieAccountState(
       movieId: state.movieId,
     ));
     return result.fold(
@@ -46,7 +49,7 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
   }
 
   Future<MovieState> _getMovieImage(_MovieEventImage state) async {
-    final result = await movieService.execute(GetMovieImage(
+    final result = await appService.execute(GetMovieImage(
       movieId: state.movieId,
     ));
     return result.fold((l) => MovieState.error(l), (r) => MovieState.image(r));

@@ -2,9 +2,10 @@ part of 'movie_bloc.dart';
 
 @freezed
 class MovieEvent with _$MovieEvent {
-  const factory MovieEvent.detail(
-      {required int movieId,
-     }) = _MovieEventDetail;
+  
+  const factory MovieEvent.detail({
+    required int movieId,
+  }) = _MovieEventDetail;
 
   const factory MovieEvent.accountState({
     required int movieId,

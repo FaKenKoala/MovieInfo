@@ -22,7 +22,7 @@ abstract class DioModule {
         baseUrl: baseUrl,
         queryParameters: {
           'api_key': Constants.TMDB_V3_API_KEY,
-          'language': 'en',
+          'language': 'zh',
           'session_id': null,
           'guest_session_id': null,
           'append_to_response': null,
