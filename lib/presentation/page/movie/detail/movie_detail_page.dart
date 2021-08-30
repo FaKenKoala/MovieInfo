@@ -35,6 +35,7 @@ class MovieDetailPage extends StatelessWidget {
                 children: [
                   _MovieDetailWidget(movie: movie),
                   MovieImagePage(movie: movie),
+                  SizedBox(height: 10,),
                 ],
               ),
             ),

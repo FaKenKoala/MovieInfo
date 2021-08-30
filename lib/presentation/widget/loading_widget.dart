@@ -5,8 +5,9 @@ class LoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
+    return Container(
+      height: 100,
+      child: Center(
         child: CircularProgressIndicator(),
       ),
     );

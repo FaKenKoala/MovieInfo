@@ -103,7 +103,6 @@ class ApiTest {
   }
 
   void movieTest(Movie movie) {
-    Provider provider;
     
     /// 23
     // _service.execute(GetMovieDetail(movieId: movie.id));
@@ -218,7 +217,7 @@ class ApiTest {
   }
 
   tvEpisodesTest(TV tv) {
-    int seasonId = 3624;
+    // int seasonId = 3624;
     // _service.execute(GetTVEpisodeDetail(tvId: tv.id, seasonNumber: 1,episodeNumber: 1));
     // _service.execute(GetTVEpisodeAccountState(
     //     tvId: tv.id, seasonNumber: 1, episodeNumber: 1));

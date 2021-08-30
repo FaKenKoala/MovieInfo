@@ -4,8 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movie_info/domain/model/account_state/account_state.dart';
-import 'package:movie_info/domain/model/api_result/page_result.dart';
-import 'package:movie_info/domain/model/enum_values/enum_values.dart';
 import 'package:movie_info/domain/model/media/image.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
 import 'package:movie_info/domain/service/i_app_service.dart';

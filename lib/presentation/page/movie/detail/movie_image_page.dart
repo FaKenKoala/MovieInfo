@@ -52,12 +52,13 @@ class _MovieImagePageState extends State<MovieImagePage> {
                           title: 'Backdrops',
                         ),
                       if (r.logos.isNotEmpty)
-                        _ImageWidget(images: r.logos, title: 'Logos'),
-                      if (r.posters.isNotEmpty)
                         _ImageWidget(
-                          images: r.posters,
-                          title: 'Posters',
+                          images: r.logos,
+                          title: 'Logos',
                         ),
+                      if (r.posters.isNotEmpty)
+                        _ImageWidget(images: r.posters, title: '海报' //'Posters',
+                            ),
                     ],
                   ),
                 ));
@@ -88,7 +89,7 @@ class _ImageWidget extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Text(title),
           ),
-          SizedBox(height:10),
+          SizedBox(height: 10),
           Container(
             height: 200,
             child: ListView.separated(

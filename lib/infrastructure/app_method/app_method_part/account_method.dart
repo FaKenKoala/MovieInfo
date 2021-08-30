@@ -1,7 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:movie_info/domain/model/authentication/add_to_watchlist_content.dart';
 import 'package:movie_info/domain/model/authentication/mark_favorite_content.dart';
-import 'package:movie_info/domain/model/enum_values/enum_values.dart';
 import 'package:movie_info/infrastructure/app_method/app_method.dart';
 
 part 'account_method.freezed.dart';
