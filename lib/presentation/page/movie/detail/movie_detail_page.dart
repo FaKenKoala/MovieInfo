@@ -6,13 +6,17 @@ import 'package:movie_info/application/bloc/movie/movie_bloc.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
 import 'package:movie_info/application/util/app_config.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
+import 'package:movie_info/infrastructure/util/dio_logger.dart';
 import 'package:movie_info/presentation/page/movie/detail/movie_image_page.dart';
 import 'package:movie_info/presentation/widget/genre/genre_widget.dart';
 import 'package:movie_info/presentation/widget/language/language_widget.dart';
 
 class MovieDetailPage extends StatelessWidget {
   final Movie movie;
-  const MovieDetailPage({Key? key, required this.movie}) : super(key: key);
+  MovieDetailPage({Key? key, required this.movie}) : super(key: key) {
+    addDioLogger();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -34,8 +38,10 @@ class MovieDetailPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _MovieDetailWidget(movie: movie),
-                  MovieImagePage(movie: movie),
-                  SizedBox(height: 10,),
+                  // MovieImagePage(movie: movie),
+                  SizedBox(
+                    height: 10,
+                  ),
                 ],
               ),
             ),
@@ -88,7 +94,7 @@ class _MovieDetailWidgetState extends State<_MovieDetailWidget> {
                           Icons.star,
                           color: Colors.amber,
                         ),
-                    rating: movieDetail.voteAverage / 2),
+                    rating: (movieDetail.voteAverage??0).toDouble()/2),
                 SizedBox(
                   width: 10,
                 ),

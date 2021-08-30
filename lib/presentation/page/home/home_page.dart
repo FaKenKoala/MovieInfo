@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_info/application/bloc/movie/list/movie_home_bloc.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
 import 'package:movie_info/infrastructure/util/color_util.dart';
-import 'package:movie_info/presentation/page/movie/trending/movie_home_page.dart';
+import 'package:movie_info/presentation/page/movie/home/movie_home_page.dart';
 import 'package:movie_info/presentation/page/person/person_list_page.dart';
 import 'package:movie_info/presentation/page/search/search_page.dart';
 import 'package:movie_info/presentation/page/tv/tv_list_page.dart';

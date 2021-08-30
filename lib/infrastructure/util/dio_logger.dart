@@ -12,7 +12,7 @@ addDioLogger([PrettyDioLogger? logger]) {
   getIt<Dio>().interceptors..add(logger ?? PrettyDioLogger(
     requestHeader: true,
     requestBody: true,
-    responseBody: true));
+    responseBody: false));
 }
 
 addHttpInterceptor() {

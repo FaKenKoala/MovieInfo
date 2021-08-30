@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:json_annotation/json_annotation.dart';
-import 'package:movie_info/domain/model/collection/collection.dart';
 import 'package:movie_info/domain/model/company/company.dart';
 import 'package:movie_info/domain/model/country/country.dart';
 import 'package:movie_info/domain/model/enum_values/media_type.dart';
@@ -9,13 +8,11 @@ import 'package:movie_info/domain/model/genre/genre.dart';
 import 'package:movie_info/domain/model/language/language.dart';
 part 'movie.g.dart';
 
-
-
 @JsonSerializable()
-class Movie extends MediaTypeBase{
+class Movie extends MediaTypeBase {
   final bool adult;
   final String? backdropPath;
-  final Collection? belongsToCollection;
+  final MovieCollectionInfo? belongsToCollection;
   final int budget;
   final List<int> genreIds;
   final List<Genre> genres;
@@ -37,7 +34,7 @@ class Movie extends MediaTypeBase{
   final String tagline;
   final String title;
   final bool video;
-  final double voteAverage;
+  final num? voteAverage;
   final int voteCount;
   final MediaType mediaType;
 
@@ -67,13 +64,36 @@ class Movie extends MediaTypeBase{
     this.tagline = '',
     this.title = '',
     this.video = true,
-    this.voteAverage = 0.0,
+    this.voteAverage,
     this.voteCount = 0,
-  }):super(mediaType);
+  }) : super(mediaType);
 
   factory Movie.fromJson(Map<String, dynamic> json) => _$MovieFromJson(json);
 
   Map<String, dynamic> toJson() => _$MovieToJson(this);
+
+  @override
+  String toString() {
+    return json.encode(toJson());
+  }
+}
+
+@JsonSerializable()
+class MovieCollectionInfo {
+  final int id;
+  final String name;
+  final String? posterPath;
+  final String? backdropPath;
+  MovieCollectionInfo({
+    this.id = 0,
+    this.name = '',
+    this.posterPath,
+    this.backdropPath,
+  });
+
+  factory MovieCollectionInfo.fromJson(Map<String, dynamic> json) =>
+      _$MovieCollectionInfoFromJson(json);
+  Map<String, dynamic> toJson() => _$MovieCollectionInfoToJson(this);
 
   @override
   String toString() {
