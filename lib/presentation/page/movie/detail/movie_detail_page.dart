@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:movie_info/application/bloc/movie/movie_bloc.dart';
+import 'package:movie_info/application/bloc/movie/detail/movie_detail_bloc.dart';
 import 'package:movie_info/application/get_it/get_it_main.dart';
 import 'package:movie_info/application/util/app_config.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
@@ -22,9 +22,9 @@ class MovieDetailPage extends StatelessWidget {
     return MultiBlocProvider(
         providers: [
           BlocProvider(
-              create: (_) => getIt<MovieBloc>()
+              create: (_) => getIt<MovieDetailBloc>()
                 ..add(
-                  MovieEvent.detail(movieId: movie.id),
+                  MovieDetailEvent.detail(movieId: movie.id),
                 )),
         ],
         child: Scaffold(
@@ -68,7 +68,7 @@ class _MovieDetailWidgetState extends State<_MovieDetailWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MovieBloc, MovieState>(
+    return BlocBuilder<MovieDetailBloc, MovieDetailState>(
       builder: (_, state) {
         state.maybeMap(
             orElse: () {},
