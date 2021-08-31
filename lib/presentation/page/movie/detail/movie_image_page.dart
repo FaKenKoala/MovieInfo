@@ -103,7 +103,7 @@ class _ImageWidget extends StatelessWidget {
               },
               itemBuilder: (_, index) {
                 return CachedNetworkImage(
-                    imageUrl: AppConfig.imageUrl(images[index].filePath),
+                    imageUrl: AppConfig.poster(images[index].filePath),
                     fit: BoxFit.cover);
               },
               itemCount: images.length,

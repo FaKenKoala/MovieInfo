@@ -93,8 +93,8 @@ class AppConfig {
     });
   }
 
-  static String imageUrl(String? posterPath) {
-    return '${instance.config.images.secureBaseUrl}${instance.config.images.posterSizes[5]}$posterPath';
+  static String poster(String? posterPath) {
+    return '${instance.config.images.secureBaseUrl}${instance.config.images.posterSizes[3]}$posterPath';
   }
 
   static String backdrop(String? backdropPath) {

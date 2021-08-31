@@ -7,4 +7,4 @@ abstract class IAppService {
   Future<AppExceptionEither<T>> execute<T>(covariant IAppMethod method);
 }
 
-class IAppMethod {}
+abstract class IAppMethod {}

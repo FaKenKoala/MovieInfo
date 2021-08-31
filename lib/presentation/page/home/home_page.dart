@@ -115,18 +115,26 @@ class _AppHomePageState extends State<AppHomePage>
           ),
           bottomNavigationBar: Material(
             color: ColorUtil.PrimaryColor,
-            child: TabBar(controller: tabController, tabs: [
-              Tab(icon: Icon(Icons.movie)),
-              Tab(icon: Icon(Icons.tv)),
-              Tab(icon: Icon(Icons.person)),
-              Tab(icon: Icon(Icons.search)),
-            ]),
+            child: Padding(
+              padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).padding.bottom),
+              child: TabBar(controller: tabController, tabs: [
+                Tab(icon: Icon(Icons.movie)),
+                Tab(icon: Icon(Icons.tv)),
+                Tab(icon: Icon(Icons.person)),
+                Tab(icon: Icon(Icons.search)),
+              ]),
+            ),
           ),
           appBar: AppBar(
             centerTitle: true,
             title: PopupMenuButton<int>(
               offset: Offset(-20, 40),
               onSelected: (index) {
+                if (selectOption[tabController.index] == index) {
+                  return;
+                }
+
                 setState(() {
                   selectOption[tabController.index] = index;
                 });

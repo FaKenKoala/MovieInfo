@@ -15,17 +15,10 @@ class MovieListPage extends StatefulWidget {
 
 class _MovieListPageState extends State<MovieListPage> {
   late ScrollController controller;
-  late int widgetHashcode;
   @override
   void initState() {
     super.initState();
     controller = ScrollController();
-    widgetHashcode = widget.hashCode;
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
   }
 
   @override
@@ -35,12 +28,15 @@ class _MovieListPageState extends State<MovieListPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    if (widgetHashcode != widget.hashCode && widget.movies.page == 1) {
-      /// new type movie data, sometimes only buile new widget and rebuild state.build, but not renew state.
-      /// This is the mechanism of flutter!!!
+  void didUpdateWidget(covariant MovieListPage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.movies.page == 1) {
       controller.jumpTo(0);
     }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return GridView.builder(
         controller: controller,
         itemCount: widget.movies.results.length,

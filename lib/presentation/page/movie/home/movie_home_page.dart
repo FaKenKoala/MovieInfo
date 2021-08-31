@@ -4,6 +4,7 @@ import 'package:movie_info/application/bloc/movie/list/movie_home_bloc.dart';
 import 'package:movie_info/presentation/page/movie/home/movie_list_page.dart';
 import 'package:movie_info/presentation/widget/loading_widget.dart';
 import 'package:movie_info/presentation/widget/movie_error_widget.dart';
+import 'package:provider/provider.dart';
 
 class MovieHomePage extends StatefulWidget {
   const MovieHomePage({Key? key}) : super(key: key);
@@ -14,11 +15,13 @@ class MovieHomePage extends StatefulWidget {
 
 class _MovieHomePageState extends State<MovieHomePage>
     with AutomaticKeepAliveClientMixin {
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     context.read<MovieHomeBloc>().add(MovieHomeEvent.trending());
+    RenderObjectWidget renderObjectWidget;
+    RenderObject renderObject;
+    RenderObjectElement renderObjectElement;
   }
 
   @override

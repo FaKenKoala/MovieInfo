@@ -73,7 +73,7 @@ class _TrendingListWidgetState extends State<_TrendingListWidget> {
             child: posterPath == null
                 ? Text('No image')
                 : CachedNetworkImage(
-                    imageUrl: AppConfig.imageUrl(posterPath),
+                    imageUrl: AppConfig.poster(posterPath),
                     fit: BoxFit.cover,
                   ),
           ),

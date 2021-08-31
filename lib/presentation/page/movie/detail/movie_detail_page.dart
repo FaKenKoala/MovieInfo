@@ -7,7 +7,6 @@ import 'package:movie_info/application/get_it/get_it_main.dart';
 import 'package:movie_info/application/util/app_config.dart';
 import 'package:movie_info/domain/model/movie/movie.dart';
 import 'package:movie_info/infrastructure/util/dio_logger.dart';
-import 'package:movie_info/presentation/page/movie/detail/movie_image_page.dart';
 import 'package:movie_info/presentation/widget/genre/genre_widget.dart';
 import 'package:movie_info/presentation/widget/language/language_widget.dart';
 

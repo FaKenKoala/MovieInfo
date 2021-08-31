@@ -13,6 +13,7 @@ class MovieItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return InkWell(
       borderRadius: BorderRadius.circular(8),
       onTap: () {
@@ -30,8 +31,12 @@ class MovieItemWidget extends StatelessWidget {
                       topLeft: Radius.circular(4),
                       topRight: Radius.circular(4)),
                   child: CachedNetworkImage(
-                    imageUrl: AppConfig.imageUrl(movie.posterPath),
+                    imageUrl: AppConfig.poster(movie.posterPath),
                     fit: BoxFit.cover,
+
+                    // placeholder: (_, __) {
+                    //   return CachedNetworkImage(imageUrl: Cache);
+                    // },
                   ),
                 ),
               ),
@@ -43,7 +48,8 @@ class MovieItemWidget extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 2.5),
                 child: CustomPaint(
                   size: Size(40, 40),
-                  painter: RatingPainter(valueInTen: movie.voteAverage, radius: 20),
+                  painter:
+                      RatingPainter(valueInTen: movie.voteAverage, radius: 20),
                 ),
               ),
             ),

@@ -16,7 +16,7 @@ class TVItemWidget extends StatelessWidget {
           children: [
             Expanded(
                 child: CachedNetworkImage(
-              imageUrl: AppConfig.imageUrl(tv.posterPath),
+              imageUrl: AppConfig.poster(tv.posterPath),
               fit: BoxFit.cover,
             )),
             Text(

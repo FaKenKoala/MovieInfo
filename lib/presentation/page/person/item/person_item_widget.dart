@@ -16,7 +16,7 @@ class PersonItemWidget extends StatelessWidget {
           children: [
             Expanded(
                 child: CachedNetworkImage(
-              imageUrl: AppConfig.imageUrl(person.profilePath),
+              imageUrl: AppConfig.poster(person.profilePath),
               fit: BoxFit.cover,
             )),
             Text(

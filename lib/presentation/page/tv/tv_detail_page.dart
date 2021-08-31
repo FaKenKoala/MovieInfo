@@ -88,7 +88,7 @@ class _TVDetailPageState extends State<TVDetailPage> {
                     },
                   ),
                   CachedNetworkImage(
-                      imageUrl: AppConfig.imageUrl(tvDetail.posterPath)),
+                      imageUrl: AppConfig.poster(tvDetail.posterPath)),
                 ],
               ),
             ),
