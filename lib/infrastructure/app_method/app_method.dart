@@ -1,4 +1,5 @@
 import 'package:movie_info/domain/model/authentication/account.dart';
+import 'package:movie_info/domain/service/i_app_service.dart';
 
 import 'app_method_part/authentication_method.dart';
 import 'app_method_part/certification_method.dart';
@@ -25,9 +26,6 @@ import 'app_method_part/tv_method.dart';
 import 'app_method_part/tv_season_method.dart';
 import 'app_method_part/watch_provider_method.dart';
 
-import 'package:dartz/dartz.dart';
-import 'package:movie_info/domain/model/code_response/app_exception.dart';
-
 export 'app_method_part/certification_method.dart';
 export 'app_method_part/change_method.dart';
 export 'app_method_part/collection_method.dart';
@@ -52,14 +50,12 @@ export 'app_method_part/tv_method.dart';
 export 'app_method_part/tv_season_method.dart';
 export 'app_method_part/watch_provider_method.dart';
 
-typedef AppExceptionEither<T> = Either<AppException, T>;
-
-class AppMethod {}
+class AppMethod implements IAppMethod {}
 
 extension AppMethodX on AppMethod {
   AppMethodType get methodType {
     if (this is Account) return AppMethodType.Account;
-    
+
     if (this is AuthenticationMethod) return AppMethodType.Authentication;
 
     if (this is CertificationMethod) return AppMethodType.Certification;
